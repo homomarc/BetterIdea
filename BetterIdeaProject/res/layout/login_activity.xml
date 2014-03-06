@@ -55,17 +55,16 @@
             android:contentDescription="@string/facebook"
             android:src="@drawable/facebook" />
 
-        <ImageView
-            android:id="@+id/imageView3"
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:baselineAlignBottom="false"
-            android:contentDescription="@string/google"
-            android:src="@drawable/google" />
+            android:layout_marginBottom="30dip"
+            android:enabled="false" >
+        </com.google.android.gms.common.SignInButton>
 
     </LinearLayout>
-
+	
     <Button
         android:id="@+id/register_button"
     	style="@style/button_style"
