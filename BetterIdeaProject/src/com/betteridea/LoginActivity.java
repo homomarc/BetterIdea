@@ -32,12 +32,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Android Google+ Quickstart activity.
- * 
- * Demonstrates Google+ Sign-In and usage of the Google+ APIs to retrieve a
- * users profile information.
- */
+
 public class LoginActivity extends FragmentActivity implements
     ConnectionCallbacks, OnConnectionFailedListener,
     ResultCallback<People.LoadPeopleResult>, View.OnClickListener {
@@ -84,11 +79,7 @@ public class LoginActivity extends FragmentActivity implements
   private int mSignInError;
   
   private SignInButton mSignInButton;
-  private Button mSignOutButton;
-  private Button mRevokeButton;
   private TextView mStatus;
-  private ArrayAdapter<String> mCirclesAdapter;
-  private ArrayList<String> mCirclesList;
 
   	//onClick Login Button
 	public void login(View view){
@@ -188,8 +179,6 @@ public class LoginActivity extends FragmentActivity implements
     
     // Update the user interface to reflect that the user is signed in.
     mSignInButton.setEnabled(false);
-    mSignOutButton.setEnabled(true);
-    mRevokeButton.setEnabled(true);
     
     // Retrieve some profile information to personalize our app for the user.
     Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
@@ -297,7 +286,7 @@ public class LoginActivity extends FragmentActivity implements
   @Override
   public void onResult(LoadPeopleResult peopleData) {
     if (peopleData.getStatus().getStatusCode() == CommonStatusCodes.SUCCESS) {
-      mCirclesList.clear();
+      /*mCirclesList.clear();
       PersonBuffer personBuffer = peopleData.getPersonBuffer();
       try {
           int count = personBuffer.getCount();
@@ -310,7 +299,7 @@ public class LoginActivity extends FragmentActivity implements
 
       mCirclesAdapter.notifyDataSetChanged();
     } else {
-      Log.e(TAG, "Error requesting visible circles: " + peopleData.getStatus());
+      Log.e(TAG, "Error requesting visible circles: " + peopleData.getStatus());*/
     }
   }
 

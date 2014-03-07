@@ -11,7 +11,7 @@ public class RegisterActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_screen_marc);
+        setContentView(R.layout.register_activity);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

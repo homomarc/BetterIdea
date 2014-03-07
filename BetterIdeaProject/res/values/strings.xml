@@ -31,6 +31,8 @@
 	<string name="search_text">Suchbegriff</string>
 	<string name="title_activity_register">Registrieren</string>
 	<string name="title_activity_settings">Einstellungen</string>
+	<string name="register_account">Register Account</string>
+	<string name="email_adress_hint">mail@example.com</string>
 	
 	<!-- Google Sign+ -->
 	
@@ -52,4 +54,5 @@
     <string name="play_services_error">Google Play services is not available.  This application will close.</string>
     <string name="close">Close</string>
     <string name="profile_picture">User\'s profile picture.</string>
+    
 </resources>
