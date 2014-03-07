@@ -23,8 +23,12 @@
     <string name="password_hint">Passwort</string>
 	<string name="new_thema">Neues Thema</string>
 	<string name="my_topics">Meine Themen</string>
+	
+	<!-- navigation items -->
 	<string name="navigation_home">Startseite</string>
 	<string name="navigation_mygames">Meine Themen</string>
+	<string name="navigation_logout">Abmelden</string>
+	
 	<string name="last_ideas">Letzte Ideen</string>
 	<string name="label_options">Einstellungen</string>
 	<string name="label_language">Sprache</string>

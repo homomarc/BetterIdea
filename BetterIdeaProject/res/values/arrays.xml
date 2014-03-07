@@ -7,5 +7,8 @@
             <item>
                 @string/navigation_mygames
             </item>
+            <item>
+                @string/navigation_logout
+            </item>
         </string-array>
     </resources>

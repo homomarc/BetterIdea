@@ -1,5 +1,9 @@
 package com.betteridea;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
+
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
@@ -23,6 +27,8 @@ public class MainActivity extends Activity {
 	private ListView navigationList;
 	private FragmentManager fragmentManager;
 	private ActionBarDrawerToggle drawerToggle;
+	
+	private GoogleApiClient mGoogleApiClient;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +100,26 @@ public class MainActivity extends Activity {
 			navigationList.setItemChecked(position, true);
 			getActionBar().setTitle(navigation[position]);
 			drawerLayout.closeDrawer(navigationList);
+			switch(position){
+				case 0:
+					break;
+				case 1:
+					//TODO: G+ Logout  funktioniert noch nicht, loggt sich gleich wieder ein
+				    if (mGoogleApiClient.isConnected()) {
+				      Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+				      mGoogleApiClient.disconnect();
+				      mGoogleApiClient.connect();
+				    }
+					break;
+				//LOGOUT
+				case 2:
+				//TODO: Überprüfen ob mit G+ oder FB oder Mailaccount eingeloggt
+					
+					//Zurückkehren zu LoginActivity
+					Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
+					startActivity(logoutIntent);
+					break;
+			}
 		}
     }
     
@@ -125,5 +151,10 @@ public class MainActivity extends Activity {
     	}
     	return super.onOptionsItemSelected(item);
     }
+    //Zurückbutton deaktivieren
+    @Override
+    public void onBackPressed() {
+    }
+    
 }
 
