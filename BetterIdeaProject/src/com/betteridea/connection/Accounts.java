@@ -11,4 +11,12 @@ public class Accounts {
 	String query = url.getQuery();
 	System.out.println(query);
 	}
+	public static int getCredits(){
+		//TODO: Get Credits from DB
+		int i = 0;
+		return i;
+	}
+	public static void changeCredits(int change){
+		//TODO: Change Credits on DB
+	}
 }
