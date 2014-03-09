@@ -1,41 +1,87 @@
 package com.betteridea.connection;
+import com.google.api.client.http.ByteArrayContent;
+import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.HttpContent;
+import com.google.api.client.http.HttpRequest;
+import com.google.api.client.http.HttpResponse;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.http.json.JsonHttpContent;
+import com.google.api.client.http.xml.atom.AtomContent;
+import com.google.api.client.json.jackson.JacksonFactory;
+import com.google.api.client.xml.XmlNamespaceDictionary;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class Database extends SQLiteOpenHelper {
 
-  public static final String TABLE_COMMENTS = "comments";
-  public static final String COLUMN_ID = "_id";
-  public static final String COLUMN_COMMENT = "comment";
+public class Database {
 
-  private static final String DATABASE_NAME = "commments.db";
-  private static final int DATABASE_VERSION = 1;
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
 
-  // Database creation sql statement
-  private static final String DATABASE_CREATE = "create table "
-      + TABLE_COMMENTS + "(" + COLUMN_ID
-      + " integer primary key autoincrement, " + COLUMN_COMMENT
-      + " text not null);";
+		try {
+			byte text = (byte)1;
+			getRequest("http://space-labs.appspot.com/repo/2185003/ideas/api/idea.sjs");
+			putRequest("http://space-labs.appspot.com/repo/2185003/ideas/api/idea.sjs", text);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-  public Database(Context context) {
-    super(context, DATABASE_NAME, null, DATABASE_VERSION);
-  }
+	}
 
-  @Override
-  public void onCreate(SQLiteDatabase database) {
-    database.execSQL(DATABASE_CREATE);
-  }
+	static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
+	
+    public static void getRequest(String reqUrl) throws IOException {
+        GenericUrl url = new GenericUrl(reqUrl);
+        HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildGetRequest(url);
+        HttpResponse response = request.execute();
+        System.out.println(response.getStatusCode());
+        InputStream is = response.getContent();
+        int ch;
+        while ((ch = is.read()) != -1) {
+            System.out.print((char) ch);
+        }
+        response.disconnect();
+    }
+	static HttpContent httpContent = new HttpContent() {
+		
+		@Override
+		public void writeTo(OutputStream arg0) throws IOException {
+			
+		}
+		
+		@Override
+		public boolean retrySupported() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+		@Override
+		public String getType() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+		@Override
+		public long getLength() throws IOException {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+	};
+    static void putRequest(String reqUrl, Object data) throws IOException{
+    	GenericUrl url1 = new GenericUrl(reqUrl); 
+    	JsonHttpContent content = new JsonHttpContent(null, data);
+    	HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildPutRequest(url1, content);
+        String response = request.execute().parseAsString();
+        System.out.println(response);
+    }
 
-  @Override
-  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    Log.w(Database.class.getName(),
-        "Upgrading database from version " + oldVersion + " to "
-            + newVersion + ", which will destroy all old data");
-    db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMMENTS);
-    onCreate(db);
-  }
-
-} 
+    
+}
