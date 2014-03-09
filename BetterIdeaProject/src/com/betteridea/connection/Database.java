@@ -1,5 +1,4 @@
 package com.betteridea.connection;
-import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;
 import com.google.api.client.http.HttpRequest;
@@ -7,15 +6,10 @@ import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.http.json.JsonHttpContent;
-import com.google.api.client.http.xml.atom.AtomContent;
-import com.google.api.client.json.jackson.JacksonFactory;
-import com.google.api.client.xml.XmlNamespaceDictionary;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 
 
 public class Database {
