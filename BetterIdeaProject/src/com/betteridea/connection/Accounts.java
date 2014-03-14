@@ -16,7 +16,9 @@ public class Accounts {
 		int i = 0;
 		return i;
 	}
-	public static void changeCredits(int change){
-		//TODO: Change Credits on DB
+	public static void changeCredits(int change) throws IOException{
+		int value = getCredits();
+		value += change;
+		com.betteridea.connection.Database.databaseInterface(1, "credit", "post", value, null, null, null);
 	}
 }
