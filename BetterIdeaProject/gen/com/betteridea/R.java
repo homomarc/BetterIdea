@@ -251,48 +251,51 @@ containing a value of this type.
         public static final int TextView04=0x7f050010;
         public static final int TextView05=0x7f050011;
         public static final int TextView06=0x7f05000f;
-        public static final int action_add=0x7f050020;
-        public static final int action_logout=0x7f050022;
-        public static final int action_search1=0x7f05001f;
-        public static final int action_settings=0x7f050021;
-        public static final int calendarView1=0x7f05001e;
-        public static final int content_frame=0x7f050013;
+        public static final int action_add=0x7f050022;
+        public static final int action_logout=0x7f050024;
+        public static final int action_search1=0x7f050021;
+        public static final int action_settings=0x7f050023;
+        public static final int calendarView1=0x7f050020;
+        public static final int content_frame=0x7f050015;
         public static final int divide=0x7f05000b;
-        public static final int drawer_layout=0x7f050012;
-        public static final int email_adress_edit=0x7f05001c;
+        public static final int drawer_layout=0x7f050014;
+        public static final int edittext_topic_description=0x7f050013;
+        public static final int edittext_topic_title=0x7f050012;
+        public static final int email_adress_edit=0x7f05001e;
         public static final int hybrid=0x7f050004;
-        public static final int imageView1=0x7f050015;
-        public static final int imageView2=0x7f050019;
+        public static final int imageView1=0x7f050017;
+        public static final int imageView2=0x7f05001b;
         public static final int lastIdeas=0x7f05000e;
-        public static final int left_drawer=0x7f050014;
-        public static final int login_button=0x7f050018;
+        public static final int left_drawer=0x7f050016;
+        public static final int login_button=0x7f05001a;
         public static final int main=0x7f050005;
         public static final int myThemes=0x7f050009;
         public static final int newTheme=0x7f050006;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int password_edit=0x7f050017;
-        public static final int register_account_button=0x7f05001d;
-        public static final int register_button=0x7f05001b;
+        public static final int password_edit=0x7f050019;
+        public static final int register_account_button=0x7f05001f;
+        public static final int register_button=0x7f05001d;
         public static final int satellite=0x7f050002;
-        public static final int sign_in_button=0x7f05001a;
+        public static final int sign_in_button=0x7f05001c;
         public static final int terrain=0x7f050003;
         public static final int textView1=0x7f050007;
         public static final int textView2=0x7f050008;
-        public static final int user_edit=0x7f050016;
+        public static final int user_edit=0x7f050018;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int drawer_layout=0x7f030001;
-        public static final int home_screen_marc=0x7f030002;
-        public static final int login_activity=0x7f030003;
-        public static final int navigation_list_item=0x7f030004;
-        public static final int options_activity=0x7f030005;
-        public static final int register_activity=0x7f030006;
-        public static final int setting_activity=0x7f030007;
+        public static final int create_topic_layout=0x7f030001;
+        public static final int drawer_layout=0x7f030002;
+        public static final int home_screen_marc=0x7f030003;
+        public static final int login_activity=0x7f030004;
+        public static final int navigation_list_item=0x7f030005;
+        public static final int options_activity=0x7f030006;
+        public static final int register_activity=0x7f030007;
+        public static final int setting_activity=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
@@ -330,6 +333,8 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
+        public static final int button_create_topic_discard=0x7f06004d;
+        public static final int button_create_topic_go=0x7f06004c;
         /**  Google Sign+ 
          */
         public static final int circles_title=0x7f06003b;
@@ -407,10 +412,13 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f060013;
         public static final int drawer_close=0x7f06001e;
         public static final int drawer_open=0x7f06001d;
+        public static final int edittext_topic_description=0x7f06004b;
+        public static final int edittext_topic_title=0x7f06004a;
         public static final int email_adress_hint=0x7f06003a;
         public static final int facebook=0x7f060022;
         public static final int google=0x7f060023;
         public static final int hello_world=0x7f06002b;
+        public static final int label_create_topic_headline=0x7f06004e;
         public static final int label_language=0x7f060035;
         public static final int label_options=0x7f060034;
         public static final int last_ideas=0x7f060033;
@@ -479,6 +487,7 @@ containing a value of this type.
          */
         public static final int AppTheme=0x7f0a0001;
         public static final int button_style=0x7f0a0002;
+        public static final int button_style_white=0x7f0a0003;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

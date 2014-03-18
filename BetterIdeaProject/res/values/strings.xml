@@ -58,5 +58,10 @@
     <string name="play_services_error">Google Play services is not available.  This application will close.</string>
     <string name="close">Close</string>
     <string name="profile_picture">User\'s profile picture.</string>
+    <string name="edittext_topic_title">Thema</string>
+    <string name="edittext_topic_description">Beschreibung</string>
+    <string name="button_create_topic_go">LOS GEHT\'S</string>
+    <string name="button_create_topic_discard">VERWERFEN</string>
+    <string name="label_create_topic_headline">Neues Thema</string>
     
 </resources>
