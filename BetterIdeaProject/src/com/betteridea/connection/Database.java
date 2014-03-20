@@ -23,41 +23,6 @@ public class Database{
 	 * @throws NoSuchFieldException 
 	 * @throws JSONException 
 	 */
-	public static void main(String[] args) throws IOException, JSONException {
-//			String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/idea.sjs";
-//			String reqUrl1 = "http://space-labs.appspot.com/repo/2185003/ideas/api/ideaDel.sjs";
-//			
-//			JsonObject myString = new JsonObject();
-// 			myString.addProperty("id", 3475009);
-//			myString.addProperty("ideaID", 500);
-//			myString.addProperty("authorID", 1);
-//			myString.addProperty("text", "asd");
-//			myString.addProperty("date", "asd");
-//			myString.addProperty("description", "asd");
-//			myString.addProperty("archived", "FALSE");
-//			myString.addProperty("openComments", 1);
-//			
-//			String del = "3465013";
-//			String key = "ideaID";
-//			String content = "500";
-
-			String resp = getNextIdeaID();
-//			String resp = ideaInterface("get", "1", null, null, null, null, 0);
-			System.out.println("Next free ideaID: " + resp);
-			
-			
-//			String resp = ideaInterface("post", "1", "1", "texttexttext", "description of this", "false", 10);
-//			System.out.println(resp);
-//			putRequest(reqUrl, myString);
-//			JSONArray obj = getRequest(reqUrl, key, content);
-//			System.out.println("___");
-//			System.out.println(obj);
-//			System.out.println("_____");
-//			System.out.println(obj);
-//			postRequest(reqUrl, myString);
-//			deleteRequest(reqUrl1, del);
-	}
-	
 	public static String ideaInterface(String method, String ideaID, String authorID, String text, String desc, String archived, int openComments) throws IOException, JSONException{
 		String reqUrl = null;
 		String reqUrl1 = null;

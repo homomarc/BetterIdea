@@ -19,6 +19,5 @@ public class Accounts {
 	public static void changeCredits(int change) throws IOException{
 		int value = getCredits();
 		value += change;
-		com.betteridea.connection.Database.databaseInterface(1, "credit", "post", value, null, null, null);
 	}
 }

@@ -251,11 +251,12 @@ containing a value of this type.
         public static final int TextView04=0x7f050010;
         public static final int TextView05=0x7f050011;
         public static final int TextView06=0x7f05000f;
-        public static final int action_add=0x7f050022;
-        public static final int action_logout=0x7f050024;
-        public static final int action_search1=0x7f050021;
-        public static final int action_settings=0x7f050023;
-        public static final int calendarView1=0x7f050020;
+        public static final int action_add=0x7f050024;
+        public static final int action_logout=0x7f050026;
+        public static final int action_search1=0x7f050023;
+        public static final int action_settings=0x7f050025;
+        public static final int button1=0x7f050020;
+        public static final int calendarView1=0x7f050022;
         public static final int content_frame=0x7f050015;
         public static final int divide=0x7f05000b;
         public static final int drawer_layout=0x7f050014;
@@ -279,6 +280,7 @@ containing a value of this type.
         public static final int satellite=0x7f050002;
         public static final int sign_in_button=0x7f05001c;
         public static final int terrain=0x7f050003;
+        public static final int test_db_textview=0x7f050021;
         public static final int textView1=0x7f050007;
         public static final int textView2=0x7f050008;
         public static final int user_edit=0x7f050018;
@@ -449,6 +451,9 @@ containing a value of this type.
         public static final int status_sign_in_required=0x7f06003e;
         public static final int status_signed_out=0x7f060042;
         public static final int status_signing_in=0x7f060041;
+        /**  test DB 
+         */
+        public static final int test_db_text=0x7f06004f;
         public static final int test_text=0x7f060029;
         public static final int title_activity_login=0x7f06002a;
         public static final int title_activity_register=0x7f060037;

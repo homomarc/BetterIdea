@@ -50,4 +50,22 @@
         android:text="@string/register_account"
         android:onClick="register" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp" >
+
+        <TextView
+            android:id="@+id/test_db_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_db_text" />
+    </FrameLayout>
+
 </LinearLayout>

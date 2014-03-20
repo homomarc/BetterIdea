@@ -64,4 +64,6 @@
     <string name="button_create_topic_discard">VERWERFEN</string>
     <string name="label_create_topic_headline">Neues Thema</string>
     
+    <!-- test DB -->
+    <string name="test_db_text">test</string>
 </resources>
