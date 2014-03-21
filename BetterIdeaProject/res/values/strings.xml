@@ -66,4 +66,5 @@
     
     <!-- test DB -->
     <string name="test_db_text">test</string>
+    <string name="test_db_text2">test2</string>
 </resources>

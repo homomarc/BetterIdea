@@ -3,7 +3,6 @@ package com.betteridea.connection;
 import java.io.IOException;
 import java.util.Locale;
 import org.json.JSONException;
-import org.json.JSONObject;
 import com.google.gson.JsonObject;
 
 public class Services {
@@ -31,9 +30,22 @@ public class Services {
 		return bool;
 	}
 	
-	public JSONObject getUserData(String userMail){
-		
-		return null;
+	static String myInput = "";
+	public static String getUserData(final String userMail){
+	    new Thread(new Runnable() {
+	        public void run() {
+	            try {
+	        		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/idea.sjs";
+	        		String arr = com.betteridea.connection.Database.getRequest(reqUrl);
+	    			myInput = arr;
+	    			myInput += userMail;
+	    		} catch (Exception e) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		} 
+	        }
+	    }).start();
+		return myInput;
 	}
 
 }

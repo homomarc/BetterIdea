@@ -84,12 +84,13 @@ int id TextView03 0x7f05000a
 int id TextView04 0x7f050010
 int id TextView05 0x7f050011
 int id TextView06 0x7f05000f
-int id action_add 0x7f050024
-int id action_logout 0x7f050026
-int id action_search1 0x7f050023
-int id action_settings 0x7f050025
+int id action_add 0x7f050026
+int id action_logout 0x7f050028
+int id action_search1 0x7f050025
+int id action_settings 0x7f050027
 int id button1 0x7f050020
-int id calendarView1 0x7f050022
+int id button2 0x7f050021
+int id calendarView1 0x7f050024
 int id content_frame 0x7f050015
 int id divide 0x7f05000b
 int id drawer_layout 0x7f050014
@@ -113,7 +114,8 @@ int id register_button 0x7f05001d
 int id satellite 0x7f050002
 int id sign_in_button 0x7f05001c
 int id terrain 0x7f050003
-int id test_db_textview 0x7f050021
+int id test_db_textview 0x7f050022
+int id test_db_textview2 0x7f050023
 int id textView1 0x7f050007
 int id textView2 0x7f050008
 int id user_edit 0x7f050018
@@ -205,6 +207,7 @@ int string status_sign_in_required 0x7f06003e
 int string status_signed_out 0x7f060042
 int string status_signing_in 0x7f060041
 int string test_db_text 0x7f06004f
+int string test_db_text2 0x7f060050
 int string test_text 0x7f060029
 int string title_activity_login 0x7f06002a
 int string title_activity_register 0x7f060037

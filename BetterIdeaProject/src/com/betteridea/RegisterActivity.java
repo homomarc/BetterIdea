@@ -1,6 +1,5 @@
 package com.betteridea;
 
-import java.util.concurrent.ExecutionException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,25 +15,24 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
         Button myButton = (Button)findViewById(R.id.button1);
+        Button myButton2 = (Button)findViewById(R.id.button2);
+        
+        final TextView myText = (TextView)findViewById(R.id.test_db_textview);
+        final TextView myText1 = (TextView)findViewById(R.id.test_db_textview2);
+        
         myButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-				String str = null;
-				String result = null;
-				try {
-					result = new DatabaseTest().execute(str).get();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-    	        final TextView myText = (TextView)findViewById(R.id.test_db_textview);
-    	        
-				myText.setText(result);
-            }
+        	public void onClick(View arg0) {
+        		String myInput = com.betteridea.connection.Services.getUserData("mail");
+        	    myText.setText(myInput);
+        	}
         });
+                
+        myButton2.setOnClickListener(new OnClickListener() {
+        	public void onClick(View arg0) {
+        		String myInput = com.betteridea.connection.Services.getUserData("mail");
+        	    myText1.setText(myInput);
+        	}
+        });
+
     }
 }

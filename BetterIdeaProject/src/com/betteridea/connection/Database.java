@@ -21,7 +21,7 @@ public class Database{
         return response;
     }
     // To update object
-    static String postRequest(String reqUrl, JsonObject json) throws IOException{
+    public static String postRequest(String reqUrl, JsonObject json) throws IOException{
     	GenericUrl url1 = new GenericUrl(reqUrl); 
     	HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildPostRequest(url1, ByteArrayContent.fromString("application/json", json.toString()));
         String response = request.execute().parseAsString();
@@ -34,7 +34,7 @@ public class Database{
         return falsch;
     }   
     // To create new object
-    static String putRequest(String reqUrl, JsonObject json) throws IOException{
+    public static String putRequest(String reqUrl, JsonObject json) throws IOException{
     	GenericUrl url1 = new GenericUrl(reqUrl); 
     	HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildPutRequest(url1, ByteArrayContent.fromString("application/json", json.toString()));
         String response = request.execute().parseAsString();
@@ -47,7 +47,7 @@ public class Database{
         return falsch;
     }  
     // To delete object
-	static String deleteRequest(String reqUrl) throws IOException{
+    public static String deleteRequest(String reqUrl) throws IOException{
     	GenericUrl url1 = new GenericUrl(reqUrl); 
     	HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildDeleteRequest(url1);
         String response = request.execute().parseAsString();
