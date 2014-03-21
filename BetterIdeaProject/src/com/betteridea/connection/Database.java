@@ -17,7 +17,7 @@ public class Database{
         GenericUrl url = new GenericUrl(reqUrl);
         HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildGetRequest(url);
         String response = request.execute().parseAsString();
-        System.out.println(response);
+        System.out.println("GET: " + response);
         return response;
     }
     // To update object
