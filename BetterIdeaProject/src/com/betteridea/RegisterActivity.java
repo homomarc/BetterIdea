@@ -22,15 +22,23 @@ public class RegisterActivity extends Activity {
         
         myButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View arg0) {
-        		String myInput = com.betteridea.connection.Services.getUserData("mail");
-        	    myText.setText(myInput);
+				try {
+					com.betteridea.connection.Services.getUserData("s.grabaum@gmx.de", myText);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	}
         });
                 
         myButton2.setOnClickListener(new OnClickListener() {
-        	public void onClick(View arg0) {
-        		String myInput = com.betteridea.connection.Services.getUserData("mail");
-        	    myText1.setText(myInput);
+        	public void onClick(View arg1) {
+				try {
+					com.betteridea.connection.Services.getUserData("lisa.schmidt@thomascookag.com", myText1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	}
         });
 
