@@ -26,7 +26,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 
 	  //Logcat Tag
 	  private static final String TAG = "LoginActivity";
-	  //abc
+	  
 	  private static final int RC_SIGN_IN = 0;
 
 	  // GoogleApiClient 
