@@ -226,23 +226,25 @@ containing a value of this type.
         public static final int facebook=0x7f020019;
         public static final int google=0x7f02001a;
         public static final int ic_action_search=0x7f02001b;
-        public static final int ic_drawer=0x7f02001c;
-        public static final int ic_launcher=0x7f02001d;
-        public static final int ic_plusone_medium_off_client=0x7f02001e;
-        public static final int ic_plusone_small_off_client=0x7f02001f;
-        public static final int ic_plusone_standard_off_client=0x7f020020;
-        public static final int ic_plusone_tall_off_client=0x7f020021;
-        public static final int logo=0x7f020022;
-        public static final int logo_new=0x7f020023;
-        public static final int logobig=0x7f020024;
-        public static final int lupe=0x7f020025;
-        public static final int note=0x7f020026;
-        public static final int note_footer=0x7f020027;
-        public static final int note_header=0x7f020028;
-        public static final int options=0x7f020029;
-        public static final int zettel1=0x7f02002a;
-        public static final int zettel2=0x7f02002b;
-        public static final int zettel3=0x7f02002c;
+        public static final int ic_action_share=0x7f02001c;
+        public static final int ic_drawer=0x7f02001d;
+        public static final int ic_launcher=0x7f02001e;
+        public static final int ic_plusone_medium_off_client=0x7f02001f;
+        public static final int ic_plusone_small_off_client=0x7f020020;
+        public static final int ic_plusone_standard_off_client=0x7f020021;
+        public static final int ic_plusone_tall_off_client=0x7f020022;
+        public static final int logo=0x7f020023;
+        public static final int logo_new=0x7f020024;
+        public static final int logobig=0x7f020025;
+        public static final int lupe=0x7f020026;
+        public static final int note=0x7f020027;
+        public static final int note_footer=0x7f020028;
+        public static final int note_header=0x7f020029;
+        public static final int options=0x7f02002a;
+        public static final int topic_background=0x7f02002b;
+        public static final int zettel1=0x7f02002c;
+        public static final int zettel2=0x7f02002d;
+        public static final int zettel3=0x7f02002e;
     }
     public static final class id {
         public static final int TextView01=0x7f05000d;
@@ -251,22 +253,30 @@ containing a value of this type.
         public static final int TextView04=0x7f050010;
         public static final int TextView05=0x7f050011;
         public static final int TextView06=0x7f05000f;
-        public static final int action_add=0x7f050026;
-        public static final int action_logout=0x7f050028;
-        public static final int action_search1=0x7f050025;
-        public static final int action_settings=0x7f050027;
-        public static final int button1=0x7f050020;
-        public static final int button2=0x7f050021;
-        public static final int calendarView1=0x7f050024;
+        public static final int action_add=0x7f050030;
+        public static final int action_logout=0x7f050032;
+        public static final int action_search1=0x7f05002f;
+        public static final int action_settings=0x7f050031;
+        public static final int archived_description=0x7f05001f;
+        public static final int archived_description2=0x7f050024;
+        public static final int archived_title=0x7f05001e;
+        public static final int archived_title2=0x7f050023;
+        public static final int button1=0x7f05002a;
+        public static final int button2=0x7f05002b;
+        public static final int button_share1=0x7f050021;
+        public static final int button_share2=0x7f050026;
+        public static final int calendarView1=0x7f05002e;
         public static final int content_frame=0x7f050015;
         public static final int divide=0x7f05000b;
         public static final int drawer_layout=0x7f050014;
         public static final int edittext_topic_description=0x7f050013;
         public static final int edittext_topic_title=0x7f050012;
-        public static final int email_adress_edit=0x7f05001e;
+        public static final int email_adress_edit=0x7f050028;
         public static final int hybrid=0x7f050004;
         public static final int imageView1=0x7f050017;
         public static final int imageView2=0x7f05001b;
+        public static final int info_leiste1=0x7f050020;
+        public static final int info_leiste2=0x7f050025;
         public static final int lastIdeas=0x7f05000e;
         public static final int left_drawer=0x7f050016;
         public static final int login_button=0x7f05001a;
@@ -276,15 +286,17 @@ containing a value of this type.
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int password_edit=0x7f050019;
-        public static final int register_account_button=0x7f05001f;
+        public static final int register_account_button=0x7f050029;
         public static final int register_button=0x7f05001d;
         public static final int satellite=0x7f050002;
         public static final int sign_in_button=0x7f05001c;
         public static final int terrain=0x7f050003;
-        public static final int test_db_textview=0x7f050022;
-        public static final int test_db_textview2=0x7f050023;
+        public static final int test_db_textview=0x7f05002c;
+        public static final int test_db_textview2=0x7f05002d;
         public static final int textView1=0x7f050007;
         public static final int textView2=0x7f050008;
+        public static final int trennlinie1=0x7f050022;
+        public static final int trennlinie2=0x7f050027;
         public static final int user_edit=0x7f050018;
     }
     public static final class integer {
@@ -296,10 +308,11 @@ containing a value of this type.
         public static final int drawer_layout=0x7f030002;
         public static final int home_screen_marc=0x7f030003;
         public static final int login_activity=0x7f030004;
-        public static final int navigation_list_item=0x7f030005;
-        public static final int options_activity=0x7f030006;
-        public static final int register_activity=0x7f030007;
-        public static final int setting_activity=0x7f030008;
+        public static final int main_layout=0x7f030005;
+        public static final int navigation_list_item=0x7f030006;
+        public static final int options_activity=0x7f030007;
+        public static final int register_activity=0x7f030008;
+        public static final int setting_activity=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
@@ -337,12 +350,12 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
-        public static final int button_create_topic_discard=0x7f06004d;
-        public static final int button_create_topic_go=0x7f06004c;
+        public static final int button_create_topic_discard=0x7f060053;
+        public static final int button_create_topic_go=0x7f060052;
         /**  Google Sign+ 
          */
-        public static final int circles_title=0x7f06003b;
-        public static final int close=0x7f060048;
+        public static final int circles_title=0x7f060041;
+        public static final int close=0x7f06004e;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -416,54 +429,60 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f060013;
         public static final int drawer_close=0x7f06001e;
         public static final int drawer_open=0x7f06001d;
-        public static final int edittext_topic_description=0x7f06004b;
-        public static final int edittext_topic_title=0x7f06004a;
-        public static final int email_adress_hint=0x7f06003a;
+        public static final int edittext_topic_description=0x7f060051;
+        public static final int edittext_topic_title=0x7f060050;
+        public static final int email_adress_hint=0x7f060040;
         public static final int facebook=0x7f060022;
         public static final int google=0x7f060023;
         public static final int hello_world=0x7f06002b;
-        public static final int label_create_topic_headline=0x7f06004e;
-        public static final int label_language=0x7f060035;
-        public static final int label_options=0x7f060034;
-        public static final int last_ideas=0x7f060033;
+        public static final int label_create_topic_headline=0x7f060054;
+        public static final int label_language=0x7f06003b;
+        public static final int label_options=0x7f06003a;
+        public static final int label_share_topic=0x7f060034;
+        public static final int label_timestamp1=0x7f060035;
+        public static final int label_topic_example_archived_description=0x7f060033;
+        public static final int label_topic_example_archived_title=0x7f060032;
+        public static final int label_topic_example_description=0x7f060031;
+        public static final int label_topic_example_title=0x7f060030;
+        public static final int last_ideas=0x7f060039;
         public static final int login=0x7f06001f;
         public static final int logo=0x7f060021;
         public static final int logo_image=0x7f060026;
         public static final int my_topics=0x7f06002f;
         /**  navigation items 
          */
-        public static final int navigation_home=0x7f060030;
-        public static final int navigation_logout=0x7f060032;
-        public static final int navigation_mygames=0x7f060031;
+        public static final int navigation_home=0x7f060036;
+        public static final int navigation_logout=0x7f060038;
+        public static final int navigation_mygames=0x7f060037;
         public static final int new_thema=0x7f06002e;
         public static final int password_hint=0x7f06002d;
-        public static final int play_services_error=0x7f060047;
-        public static final int profile_picture=0x7f060049;
+        public static final int play_services_error=0x7f06004d;
+        public static final int profile_picture=0x7f06004f;
         public static final int register=0x7f060020;
-        public static final int register_account=0x7f060039;
-        public static final int revoke_access_button_name=0x7f06003d;
+        public static final int register_account=0x7f06003f;
+        public static final int revoke_access_button_name=0x7f060043;
         public static final int search_image=0x7f060028;
-        public static final int search_text=0x7f060036;
-        public static final int sign_out_button_name=0x7f06003c;
-        public static final int signed_in_as=0x7f060045;
-        public static final int status_loading=0x7f060040;
-        public static final int status_revoke_access=0x7f060043;
-        public static final int status_revoke_access_error=0x7f060044;
-        public static final int status_sign_in_error=0x7f06003f;
-        public static final int status_sign_in_required=0x7f06003e;
-        public static final int status_signed_out=0x7f060042;
-        public static final int status_signing_in=0x7f060041;
+        public static final int search_text=0x7f06003c;
+        public static final int sign_out_button_name=0x7f060042;
+        public static final int signed_in_as=0x7f06004b;
+        public static final int status_loading=0x7f060046;
+        public static final int status_revoke_access=0x7f060049;
+        public static final int status_revoke_access_error=0x7f06004a;
+        public static final int status_sign_in_error=0x7f060045;
+        public static final int status_sign_in_required=0x7f060044;
+        public static final int status_signed_out=0x7f060048;
+        public static final int status_signing_in=0x7f060047;
         /**  test DB 
          */
-        public static final int test_db_text=0x7f06004f;
-        public static final int test_db_text2=0x7f060050;
+        public static final int test_db_text=0x7f060055;
+        public static final int test_db_text2=0x7f060056;
         public static final int test_text=0x7f060029;
         public static final int title_activity_login=0x7f06002a;
-        public static final int title_activity_register=0x7f060037;
-        public static final int title_activity_settings=0x7f060038;
+        public static final int title_activity_register=0x7f06003d;
+        public static final int title_activity_settings=0x7f06003e;
         /**  Used if there was an error loading the signed in user's name. 
          */
-        public static final int unknown_person=0x7f060046;
+        public static final int unknown_person=0x7f06004c;
         public static final int user_hint=0x7f06002c;
     }
     public static final class style {
@@ -534,7 +553,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adSize
+          @attr name com.betteridea:adSize
         */
         public static final int AdsAttrs_adSize = 0;
         /**
@@ -554,7 +573,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adSizes
+          @attr name com.betteridea:adSizes
         */
         public static final int AdsAttrs_adSizes = 1;
         /**
@@ -570,7 +589,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:adUnitId
+          @attr name com.betteridea:adUnitId
         */
         public static final int AdsAttrs_adUnitId = 2;
         /** Attributes that can be used with a MapAttrs.
@@ -626,7 +645,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraBearing
+          @attr name com.betteridea:cameraBearing
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
@@ -640,7 +659,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLat
+          @attr name com.betteridea:cameraTargetLat
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
@@ -654,7 +673,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLng
+          @attr name com.betteridea:cameraTargetLng
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
@@ -668,7 +687,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTilt
+          @attr name com.betteridea:cameraTilt
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
@@ -682,7 +701,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraZoom
+          @attr name com.betteridea:cameraZoom
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
@@ -702,7 +721,7 @@ containing a value of this type.
 <tr><td><code>terrain</code></td><td>3</td><td></td></tr>
 <tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name android:mapType
+          @attr name com.betteridea:mapType
         */
         public static final int MapAttrs_mapType = 0;
         /**
@@ -716,7 +735,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiCompass
+          @attr name com.betteridea:uiCompass
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
@@ -730,7 +749,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiRotateGestures
+          @attr name com.betteridea:uiRotateGestures
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
@@ -744,7 +763,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiScrollGestures
+          @attr name com.betteridea:uiScrollGestures
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
@@ -758,7 +777,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiTiltGestures
+          @attr name com.betteridea:uiTiltGestures
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
@@ -772,7 +791,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomControls
+          @attr name com.betteridea:uiZoomControls
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
@@ -786,7 +805,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomGestures
+          @attr name com.betteridea:uiZoomGestures
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
@@ -800,7 +819,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:useViewLifecycle
+          @attr name com.betteridea:useViewLifecycle
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
@@ -814,7 +833,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:zOrderOnTop
+          @attr name com.betteridea:zOrderOnTop
         */
         public static final int MapAttrs_zOrderOnTop = 13;
     };

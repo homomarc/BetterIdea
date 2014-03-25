@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    android:scrollbars="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+    
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:background="#dddddd"
+	    android:scrollbars="horizontal" >
+	    
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:background="#343434">
+	        
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="200dp"
+	            android:orientation="vertical"
+	            android:background="#feed5f"
+	            android:layout_margin="15dp"
+	            android:padding="10dp">
+	            
+		        <TextView 
+		            android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+		            android:text="@string/label_topic_example_title"
+		            android:textStyle="bold"
+		            android:fontFamily="sans-serif-thin"
+		            android:textSize="12pt" />
+		       
+		        <TextView 
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/label_topic_example_description"
+		            android:fontFamily="sans-serif-thin"
+		            android:textSize="9pt" />
+		        
+	        </LinearLayout>
+	    </LinearLayout>
+	    
+	    <Space 
+	        android:layout_width="fill_parent"
+	        android:layout_height="15dp"/>
+	    
+	   	<RelativeLayout
+	        android:layout_height="200dp"
+	        android:layout_width="match_parent"
+	        android:layout_marginLeft="5dp"
+	        android:layout_marginRight="5dp"
+	        android:orientation="vertical"
+	        android:background="@drawable/topic_background">
+	        
+	        <TextView
+	            android:id="@+id/archived_title"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/label_topic_example_archived_title"
+	            android:textSize="12pt"
+	            android:textStyle="bold"
+	            android:fontFamily="sans-serif-thin"
+	            android:layout_margin="10dp" />
+	        
+	        <TextView 
+	            android:id="@+id/archived_description"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/label_topic_example_archived_description"
+	            android:layout_below="@id/archived_title"
+	            android:textStyle="bold"
+	            android:textSize="9pt"
+	            android:fontFamily="sans-serif-thin"
+	            android:layout_margin="10dp" />
+	        
+		     <RelativeLayout android:id="@+id/info_leiste1"
+		         android:layout_width="match_parent"
+		         android:layout_height="20dp"
+		         android:orientation="horizontal"
+		         android:layout_alignParentBottom="true"
+		         android:layout_margin="10dp">
+		        
+		         <ImageView android:id="@+id/button_share1"
+		             android:layout_width="20dp"
+		             android:layout_height="match_parent"
+		             android:background="@drawable/ic_action_share"
+		             android:contentDescription="share_icon"
+		             android:layout_centerVertical="true"/>
+		         
+		         <TextView 
+		             android:layout_width="wrap_content"
+		             android:layout_height="wrap_content"
+		             android:text="@string/label_share_topic"
+		             android:textColor="#888"
+		             android:layout_toRightOf="@id/button_share1"/>
+		         
+		         <TextView 
+		             android:layout_width="wrap_content"
+		             android:layout_height="match_parent"
+		             android:text="@string/label_timestamp1"
+		             android:textColor="#888"
+		             android:layout_alignParentRight="true"
+		             android:layout_centerVertical="true" />
+		     </RelativeLayout>
+	     
+		     <View 
+		         	android:id="@+id/trennlinie1"
+		     	    android:layout_width="match_parent"
+		     	    android:layout_height="1dp"
+		     	    android:background="@color/grey"
+		     	    android:layout_above="@id/info_leiste1"
+		     	    android:layout_margin="10dp" />
+	
+	            
+	    </RelativeLayout>
+	    
+	   	<Space 
+	        android:layout_width="fill_parent"
+	        android:layout_height="5dp"/>
+	   	
+	   
+	   	
+	    <RelativeLayout
+	        android:layout_height="200dp"
+	        android:layout_width="match_parent"
+	        android:layout_marginLeft="5dp"
+	        android:layout_marginRight="5dp"
+	        android:orientation="vertical"
+	        android:background="@drawable/topic_background">
+	        
+	        <TextView
+	            android:id="@+id/archived_title2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/label_topic_example_archived_title"
+	            android:textSize="12pt"
+	            android:textStyle="bold"
+	            android:fontFamily="sans-serif-thin"
+	            android:layout_margin="10dp" />
+	        
+	        <TextView 
+	            android:id="@+id/archived_description2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/label_topic_example_archived_description"
+	            android:layout_below="@id/archived_title2"
+	            android:textStyle="bold"
+	            android:textSize="9pt"
+	            android:fontFamily="sans-serif-thin"
+	            android:layout_margin="10dp" />
+	        
+		     <RelativeLayout android:id="@+id/info_leiste2"
+		         android:layout_width="match_parent"
+		         android:layout_height="20dp"
+		         android:orientation="horizontal"
+		         android:layout_alignParentBottom="true"
+		         android:layout_margin="10dp">
+		        
+		         <ImageView android:id="@+id/button_share2"
+		             android:layout_width="20dp"
+		             android:layout_height="match_parent"
+		             android:background="@drawable/ic_action_share"
+		             android:contentDescription="share_icon"
+		             android:layout_centerVertical="true"/>
+		         
+		         <TextView 
+		             android:layout_width="wrap_content"
+		             android:layout_height="wrap_content"
+		             android:text="@string/label_share_topic"
+		             android:textColor="#888"
+		             android:layout_toRightOf="@id/button_share2"/>
+		         
+		         <TextView 
+		             android:layout_width="wrap_content"
+		             android:layout_height="match_parent"
+		             android:text="@string/label_timestamp1"
+		             android:textColor="#888"
+		             android:layout_alignParentRight="true"
+		             android:layout_centerVertical="true" />
+		     </RelativeLayout>
+	     
+		     <View 
+		         	android:id="@+id/trennlinie2"
+		     	    android:layout_width="match_parent"
+		     	    android:layout_height="1dp"
+		     	    android:background="@color/grey"
+		     	    android:layout_above="@id/info_leiste2"
+		     	    android:layout_margin="10dp" />
+	
+	            
+	    </RelativeLayout>
+	       
+	    <Space 
+	        android:layout_width="fill_parent"
+	        android:layout_height="5dp"/>
+	
+	</LinearLayout>
+</ScrollView>

@@ -23,6 +23,12 @@
     <string name="password_hint">Passwort</string>
 	<string name="new_thema">Neues Thema</string>
 	<string name="my_topics">Meine Themen</string>
+	<string name="label_topic_example_title">Ideenmanagementapp für die Mobile Vorlesung entwickeln</string>
+	<string name="label_topic_example_description">Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.</string>
+	<string name="label_topic_example_archived_title">Übungen für Handballtraining</string>
+	<string name="label_topic_example_archived_description">Ich suche Handballtrainingsübung zum Aufwärmen.</string>
+	<string name="label_share_topic">Teilen</string>
+	<string name="label_timestamp1">Letztes Update: 14:43, 03.03.2014</string>
 	
 	<!-- navigation items -->
 	<string name="navigation_home">Startseite</string>
