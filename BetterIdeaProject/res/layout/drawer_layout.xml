@@ -15,7 +15,7 @@
     	    android:layout_height="match_parent"
     	    android:layout_gravity="start"
     	    android:choiceMode="singleChoice"
-    	    android:background="#343434"
+    	    android:background="@color/navigation_background"
     	    android:divider="#000"
     	    android:dividerHeight="1dp" />
     	    <!-- android:divider="@android:color/transparent"

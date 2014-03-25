@@ -10,6 +10,7 @@ package com.betteridea;
 public final class R {
     public static final class array {
         public static final int navigation_entries=0x7f080000;
+        public static final int navigation_icons=0x7f080001;
     }
     public static final class attr {
         /** 
@@ -179,9 +180,10 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000d;
-        public static final int common_signin_btn_text_light=0x7f04000e;
+        public static final int common_signin_btn_text_dark=0x7f04000e;
+        public static final int common_signin_btn_text_light=0x7f04000f;
         public static final int grey=0x7f04000c;
+        public static final int navigation_background=0x7f04000d;
         public static final int red=0x7f04000b;
         /**   Corporate Colors Better Idea
          */
@@ -233,18 +235,21 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f020020;
         public static final int ic_plusone_standard_off_client=0x7f020021;
         public static final int ic_plusone_tall_off_client=0x7f020022;
-        public static final int logo=0x7f020023;
-        public static final int logo_new=0x7f020024;
-        public static final int logobig=0x7f020025;
-        public static final int lupe=0x7f020026;
-        public static final int note=0x7f020027;
-        public static final int note_footer=0x7f020028;
-        public static final int note_header=0x7f020029;
-        public static final int options=0x7f02002a;
-        public static final int topic_background=0x7f02002b;
-        public static final int zettel1=0x7f02002c;
-        public static final int zettel2=0x7f02002d;
-        public static final int zettel3=0x7f02002e;
+        public static final int list_selector=0x7f020023;
+        public static final int logo=0x7f020024;
+        public static final int logo_new=0x7f020025;
+        public static final int logobig=0x7f020026;
+        public static final int lupe=0x7f020027;
+        public static final int navigation_list_item_normal=0x7f020028;
+        public static final int navigation_list_item_pressed=0x7f020029;
+        public static final int note=0x7f02002a;
+        public static final int note_footer=0x7f02002b;
+        public static final int note_header=0x7f02002c;
+        public static final int options=0x7f02002d;
+        public static final int topic_background=0x7f02002e;
+        public static final int zettel1=0x7f02002f;
+        public static final int zettel2=0x7f020030;
+        public static final int zettel3=0x7f020031;
     }
     public static final class id {
         public static final int TextView01=0x7f05000d;
@@ -253,25 +258,25 @@ containing a value of this type.
         public static final int TextView04=0x7f050010;
         public static final int TextView05=0x7f050011;
         public static final int TextView06=0x7f05000f;
-        public static final int action_add=0x7f050030;
-        public static final int action_logout=0x7f050032;
-        public static final int action_search1=0x7f05002f;
-        public static final int action_settings=0x7f050031;
+        public static final int action_add=0x7f050032;
+        public static final int action_logout=0x7f050034;
+        public static final int action_search1=0x7f050031;
+        public static final int action_settings=0x7f050033;
         public static final int archived_description=0x7f05001f;
         public static final int archived_description2=0x7f050024;
         public static final int archived_title=0x7f05001e;
         public static final int archived_title2=0x7f050023;
-        public static final int button1=0x7f05002a;
-        public static final int button2=0x7f05002b;
+        public static final int button1=0x7f05002c;
+        public static final int button2=0x7f05002d;
         public static final int button_share1=0x7f050021;
         public static final int button_share2=0x7f050026;
-        public static final int calendarView1=0x7f05002e;
+        public static final int calendarView1=0x7f050030;
         public static final int content_frame=0x7f050015;
         public static final int divide=0x7f05000b;
         public static final int drawer_layout=0x7f050014;
         public static final int edittext_topic_description=0x7f050013;
         public static final int edittext_topic_title=0x7f050012;
-        public static final int email_adress_edit=0x7f050028;
+        public static final int email_adress_edit=0x7f05002a;
         public static final int hybrid=0x7f050004;
         public static final int imageView1=0x7f050017;
         public static final int imageView2=0x7f05001b;
@@ -282,17 +287,19 @@ containing a value of this type.
         public static final int login_button=0x7f05001a;
         public static final int main=0x7f050005;
         public static final int myThemes=0x7f050009;
+        public static final int navigation_list_item_icon=0x7f050028;
+        public static final int navigation_list_item_title=0x7f050029;
         public static final int newTheme=0x7f050006;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int password_edit=0x7f050019;
-        public static final int register_account_button=0x7f050029;
+        public static final int register_account_button=0x7f05002b;
         public static final int register_button=0x7f05001d;
         public static final int satellite=0x7f050002;
         public static final int sign_in_button=0x7f05001c;
         public static final int terrain=0x7f050003;
-        public static final int test_db_textview=0x7f05002c;
-        public static final int test_db_textview2=0x7f05002d;
+        public static final int test_db_textview=0x7f05002e;
+        public static final int test_db_textview2=0x7f05002f;
         public static final int textView1=0x7f050007;
         public static final int textView2=0x7f050008;
         public static final int trennlinie1=0x7f050022;
@@ -427,6 +434,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
+        public static final int desc_list_item_icon=0x7f060057;
         public static final int drawer_close=0x7f06001e;
         public static final int drawer_open=0x7f06001d;
         public static final int edittext_topic_description=0x7f060051;

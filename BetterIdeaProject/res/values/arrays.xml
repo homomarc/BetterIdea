@@ -11,4 +11,10 @@
                 @string/navigation_logout
             </item>
         </string-array>
+        
+        <array name="navigation_icons">
+            <item>@drawable/addidea</item>
+            <item>@drawable/logo</item>
+            <item>@drawable/options</item>
+        </array>
     </resources>

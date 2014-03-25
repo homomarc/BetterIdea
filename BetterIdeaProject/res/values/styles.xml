@@ -33,4 +33,5 @@
      <color name="yellow">#FFFF82</color>
      <color name="red">#BA5041</color>
      <color name="grey">#ADADAD</color>
+     <color name="navigation_background">#343434</color>
 </resources>
