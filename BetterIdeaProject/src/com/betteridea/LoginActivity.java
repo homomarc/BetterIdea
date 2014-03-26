@@ -2,6 +2,7 @@ package com.betteridea;
 
 import java.util.ArrayList;
 
+import com.betteridea.connection.Services;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
@@ -143,19 +144,26 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	        // Get user's information
 	        if(getProfileInformation()==true){
 	        	// Update the UI after signin
-		        updateUI(true);
+		        try {
+					updateUI(true);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	        }
 	    }
 	 
 	    /**
 	     * Updating the UI, showing/hiding buttons and profile layout
+	     * @throws InterruptedException 
 	     * */
-	    private void updateUI(boolean isSignedIn) {
+	    private void updateUI(boolean isSignedIn) throws InterruptedException {
 	        if (isSignedIn) {
-	        	Toast.makeText(this, personName, Toast.LENGTH_LONG).show();
-	            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-	            intent.putExtra("email", email.toString());
-	            startActivity(intent);
+	        	Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+	        	com.betteridea.connection.Services.service.login(email, intent);
+//	            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//	            intent.putExtra("email", email);
+//	            startActivity(intent);
 	        } else {
 	            //Do nothing?
 	        }
@@ -191,7 +199,12 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    @Override
 	    public void onConnectionSuspended(int arg0) {
 	        mGoogleApiClient.connect();
-	        updateUI(false);
+	        try {
+				updateUI(false);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    }
 	    
 //	  @Override
@@ -215,8 +228,9 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	  
 	  /**
 	   * Sign-out from google wird momentan nicht verwendet
+	 * @throws InterruptedException 
 	   * */
-	  public void signOutFromGplus() {
+	  public void signOutFromGplus() throws InterruptedException {
 	      if (mGoogleApiClient.isConnected()) {
 	          Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
 	          mGoogleApiClient.disconnect();

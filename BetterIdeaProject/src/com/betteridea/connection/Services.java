@@ -5,12 +5,20 @@ import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.widget.TextView;
 
+import com.betteridea.LoginActivity;
+import com.betteridea.MainActivity;
 import com.google.gson.JsonObject;
 
-public class Services {
+public class Services extends Activity {
+	
+	public static Services service = new Services();
+	
 
 	// need to be in separate thread
 	public String insertUserData(String userName, String userMail) throws IOException, JSONException{
@@ -63,6 +71,38 @@ public class Services {
             		text.setText(myInput);
             	}	            
 	            });	            
+	        }
+	    }).start();
+	}
+	
+	static String userData = null;
+	static Intent intent1  = null;
+	static String arr = null;
+	public void login(String userMail, Intent intent)throws InterruptedException{
+		mail = userMail;
+		intent1 = intent;
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	        		reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/getUserData.sjs";
+	        		reqUrl += "?mail=";
+	        		reqUrl += mail;
+	        		arr = com.betteridea.connection.Database.getRequest(reqUrl);
+	        		if(arr != "false"){
+	        			userData = arr;
+	        		}
+	        		
+	    		} catch (Exception e) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		}
+	            if(arr != "false"){
+		            text.post(new Runnable(){
+	            	public void run(){
+	            		startActivity(intent1);
+	            	}	            
+		            });	
+	            }
 	        }
 	    }).start();
 	}
