@@ -1,7 +1,9 @@
 package com.betteridea;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
+import com.betteridea.connection.Login;
 import com.betteridea.connection.Services;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -24,6 +26,9 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity implements OnClickListener,
 ConnectionCallbacks, OnConnectionFailedListener {
+	
+	  //Instanz
+	public static LoginActivity loginactivity = new LoginActivity();
 
 	  //Logcat Tag
 	  private static final String TAG = "LoginActivity";
@@ -147,7 +152,8 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		        try {
 					updateUI(true);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
 					e.printStackTrace();
 				}
 	        }
@@ -156,16 +162,22 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    /**
 	     * Updating the UI, showing/hiding buttons and profile layout
 	     * @throws InterruptedException 
+	     * @throws ExecutionException 
 	     * */
-	    private void updateUI(boolean isSignedIn) throws InterruptedException {
+	    private void updateUI(boolean isSignedIn) throws InterruptedException, ExecutionException {
 	        if (isSignedIn) {
-	        	Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-	        	com.betteridea.connection.Services.service.login(email, intent);
-//	            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//	            intent.putExtra("email", email);
-//	            startActivity(intent);
+	    		String result = new Login().execute(email).get();
+	    		if(result != null){
+	    			System.out.println("Sign in succeeded.");
+	    			Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+	    			startActivity(intent);
+	    		}else{
+	    			System.out.println("Invalid email!");
+	    			Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+	    			startActivity(intent);
+	    		}
 	        } else {
-	            //Do nothing?
+	        	//TODO: Do nothing?
 	        }
 	    }
 	 
@@ -202,7 +214,8 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	        try {
 				updateUI(false);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
 				e.printStackTrace();
 			}
 	    }
@@ -229,8 +242,9 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	  /**
 	   * Sign-out from google wird momentan nicht verwendet
 	 * @throws InterruptedException 
+	 * @throws ExecutionException 
 	   * */
-	  public void signOutFromGplus() throws InterruptedException {
+	  public void signOutFromGplus() throws InterruptedException, ExecutionException {
 	      if (mGoogleApiClient.isConnected()) {
 	          Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
 	          mGoogleApiClient.disconnect();

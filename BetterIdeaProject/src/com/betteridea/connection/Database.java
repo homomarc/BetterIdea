@@ -21,30 +21,20 @@ public class Database{
         return response;
     }
     // To update object
-    public static String postRequest(String reqUrl, JsonObject json) throws IOException{
+    public static String postRequest(String reqUrl, JSONObject userData) throws IOException{
     	GenericUrl url1 = new GenericUrl(reqUrl); 
-    	HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildPostRequest(url1, ByteArrayContent.fromString("application/json", json.toString()));
+    	HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildPostRequest(url1, ByteArrayContent.fromString("application/json", userData.toString()));
         String response = request.execute().parseAsString();
         System.out.println("POST: " + response);
-        if(response == "true"){
-        	String wahr = "true";
-        	return wahr;
-        }
-        String falsch = "false";
-        return falsch;
+        return response;
     }   
     // To create new object
-    public static String putRequest(String reqUrl, JsonObject json) throws IOException{
+    public static String putRequest(String reqUrl, JSONObject json) throws IOException{
     	GenericUrl url1 = new GenericUrl(reqUrl); 
     	HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildPutRequest(url1, ByteArrayContent.fromString("application/json", json.toString()));
         String response = request.execute().parseAsString();
         System.out.println("PUT: " + response);
-        if(response == "true"){
-        	String wahr = "true";
-        	return wahr;
-        }
-        String falsch = "false";
-        return falsch;
+        return response;
     }  
     // To delete object
     public static String deleteRequest(String reqUrl) throws IOException{
@@ -52,11 +42,6 @@ public class Database{
     	HttpRequest request = HTTP_TRANSPORT.createRequestFactory().buildDeleteRequest(url1);
         String response = request.execute().parseAsString();
         System.out.println("DELETE: " + response);
-        if(response == "true"){
-        	String wahr = "true";
-        	return wahr;
-        }
-        String falsch = "false";
-        return falsch;
+        return response;
 	}
 }
