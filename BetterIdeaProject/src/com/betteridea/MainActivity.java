@@ -1,14 +1,17 @@
 package com.betteridea;
 
+import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,16 +20,27 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.betteridea.adapter.NavDrawerListAdapter;
+import com.betteridea.models.NavDrawerItem;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
-	private String[] navigation;
 	private DrawerLayout drawerLayout;
 	private ListView navigationList;
 	private FragmentManager fragmentManager;
 	private ActionBarDrawerToggle drawerToggle;
+	
+//	NavigationDrawer Items (Icons, Entries)
+	private String[] navigationEntries;
+	private TypedArray navigationIcons;
+	
+//	NavigationItem
+	private ArrayList<NavDrawerItem> navigationItems;
+	
+//	Navigation Adapter
+	private NavDrawerListAdapter adapter;
 	
 	private GoogleApiClient mGoogleApiClient;
 	
@@ -42,10 +56,25 @@ public class MainActivity extends Activity {
         	.add(R.id.content_frame,fragment)
         	.commit();
         
-        navigation = getResources().getStringArray(R.array.navigation_entries);
+//        Load navigation entries
+        navigationEntries = getResources().getStringArray(R.array.navigation_entries);
+ 
+//        Load navigation icons
+        navigationIcons = getResources().obtainTypedArray(R.array.navigation_icons);
+        
+//        Instantiate drawerLayout and navigationList
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationList = (ListView) findViewById(R.id.left_drawer);        
-        navigationList.setAdapter(new ArrayAdapter<String>(this,R.layout.navigation_list_item,navigation));
+        
+//        Instantiate and fill drawerItems (consisting of icon and text)
+        navigationItems = new ArrayList<NavDrawerItem>();
+        navigationItems.add(new NavDrawerItem("Home",navigationIcons.getResourceId(0,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[1],navigationIcons.getResourceId(1,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[2],navigationIcons.getResourceId(2,-1)));
+        
+        adapter = new NavDrawerListAdapter(getApplicationContext(), navigationItems);
+        
+        navigationList.setAdapter(adapter);
         navigationList.setItemChecked(0,true);
         navigationList.setOnItemClickListener(new NavigationItemClickListener());
         
@@ -56,10 +85,12 @@ public class MainActivity extends Activity {
         		R.string.drawer_close){
         	public void onDrawerClosed(View view){
         		super.onDrawerClosed(view);
+        		invalidateOptionsMenu();
         	}
         	
         	public void onDrawerOpened(View view){
         		super.onDrawerOpened(view);
+        		invalidateOptionsMenu();
         	}
         };
         
@@ -98,7 +129,7 @@ public class MainActivity extends Activity {
 					.commit();
 			
 			navigationList.setItemChecked(position, true);
-			getActionBar().setTitle(navigation[position]);
+			getActionBar().setTitle(navigationEntries[position]);
 			drawerLayout.closeDrawer(navigationList);
 			switch(position){
 				case 0:

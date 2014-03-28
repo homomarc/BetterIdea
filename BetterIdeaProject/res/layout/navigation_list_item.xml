@@ -5,7 +5,7 @@
     android:background="@drawable/list_selector">
     
     <ImageView
-        android:id="@+id/navigation_list_item_icon"
+        android:id="@+id/icon"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -16,10 +16,10 @@
         android:layout_centerVertical="true" />
     
     <TextView
-        android:id="@+id/navigation_list_item_title"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@id/navigation_list_item_icon"
+        android:layout_toRightOf="@id/icon"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="#fff"
