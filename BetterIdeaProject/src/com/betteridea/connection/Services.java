@@ -2,65 +2,66 @@ package com.betteridea.connection;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.concurrent.CountDownLatch;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.widget.TextView;
 
-import com.betteridea.LoginActivity;
-import com.betteridea.MainActivity;
-import com.betteridea.RegisterActivity;
-import com.google.gson.JsonObject;
-
-import com.betteridea.*;
 
 public class Services extends Service {
 	
 	public static Services service = new Services();
 	
-	static JSONObject userData = null;
+	public static JSONObject userData = null;
 	
+	static String name = null;
 	static String mail = null;
 	static String reqUrl = null;
-	static TextView text = null;
 	static String arr = null;
-	
+	static TextView text = null;
 	
 
-	// seperater thread
-	public String insertUserData(String userName, String userMail) throws IOException, JSONException{
-		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/insertUserData.sjs";
-		
-		String userID = Database.getRequest(reqUrl);
-		
-		java.util.Date now = new java.util.Date();
-		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
-		String date = sdf.format(now);
-		
-		JSONObject json= new JSONObject();
-		json.put("userID", userID);
-		json.put("userName", userName);
-		json.put("mail", userMail);
-		json.put("date", date);
-		json.put("credits", 250);
-		json.put("score", 0);
-		json.put("ideaCount", 0);
-		json.put("topicCount", 0);
-		
-		String bool = Database.putRequest(reqUrl, json);
-		return bool;
+	// Erstellen eines neuen Accounts
+	public void createUserData(String userName, String userMail) throws IOException, JSONException{
+		name = userName;
+		mail = userMail;
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	        		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/insertUserData.sjs";
+	        		String userID = Database.getRequest(reqUrl);
+	        		java.util.Date now = new java.util.Date();
+	        		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
+	        		String date = sdf.format(now);
+	        		
+	        		JSONObject json= new JSONObject();
+	        		json.put("userID", userID);
+	        		json.put("userName", name);
+	        		json.put("mail", mail);
+	        		json.put("date", date);
+	        		json.put("credits", 250);
+	        		json.put("score", 0);
+	        		json.put("ideaCount", 0);
+	        		json.put("topicCount", 0);
+	        		json.put("spamCount", 0);
+	        		
+	        		userData = json;
+	        		Database.putRequest(reqUrl, json);
+	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
+	    			e.printStackTrace();
+	    		}            
+	        }
+	    }).start();
 	}
 	
 	// Evtl. für Einstellungen --> Accountdaten ändern
 	public void getUserData(String userMail, TextView myText) throws InterruptedException{
 		mail = userMail;
-		reqUrl = null;
 		text = myText;
 	    new Thread(new Runnable(){
 	        public void run(){
@@ -68,8 +69,9 @@ public class Services extends Service {
 	        		reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/getUserData.sjs";
 	        		reqUrl += "?mail=";
 	        		reqUrl += mail;
-	        		arr = com.betteridea.connection.Database.getRequest(reqUrl);
+	        		arr = Database.getRequest(reqUrl);
 	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
 	    			e.printStackTrace();
 	    		}
 	            text.post(new Runnable(){
@@ -88,10 +90,14 @@ public class Services extends Service {
 	    new Thread(new Runnable(){
 	        public void run(){
 	            try {
-	        		reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs";
-
-	        		arr = com.betteridea.connection.Database.postRequest(reqUrl, userData);
+	            	String creditString = userData.getString("credits");
+	            	int creditState = Integer.valueOf(creditString);
+	            	creditState += credits;
+	            	userData.put("credits", creditState);
+	            	reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs";
+	        		arr = Database.postRequest(reqUrl, userData);
 	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
 	    			e.printStackTrace();
 	    		}            
 	        }
@@ -102,17 +108,55 @@ public class Services extends Service {
 	    new Thread(new Runnable(){
 	        public void run(){
 	            try {
-	        		reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs";
-	        		arr = com.betteridea.connection.Database.getRequest(reqUrl);
+	            	int id = userData.getInt("id");
+	        		reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs?id=";
+	        		reqUrl += id;
+	        		arr = Database.getRequest(reqUrl);
+	    			int length = arr.length();
+	    			String arr1 = arr.substring(1, length-1);
+	    			int credit = Integer.valueOf(arr1);
+	    			userData.put("credits", credit);
 	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
 	    			e.printStackTrace();
-	    		}            
+	    		}
 	        }
 	    }).start();
 	}
 
 
-
+	public static void addSpam() throws IOException{
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	        		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/insertUserData.sjs";
+	            	String spamString = userData.getString("spamCount");
+	            	int spamState = Integer.valueOf(spamString);
+	            	spamState += 1;
+	            	userData.put("spamCount", spamState);
+	        		Database.postRequest(reqUrl, userData);
+	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
+	    			e.printStackTrace();
+	    		}
+	        }
+	    }).start();
+	}
+	
+	static int topic = 0;
+	public static void showTopic(int topicID) throws IOException{
+		topic = topicID;
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	            	//TODO
+	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
+	    			e.printStackTrace();
+	    		}
+	        }
+	    }).start();
+	}
 	
 
 
@@ -121,7 +165,7 @@ public class Services extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
+		// TODO Bind a Service-Call to the specific Service
 		return null;
 	}
 
