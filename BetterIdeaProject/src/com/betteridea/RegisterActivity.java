@@ -1,11 +1,13 @@
 package com.betteridea;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.betteridea.connection.Login;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.betteridea.logic.*;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,7 +27,8 @@ public class RegisterActivity extends Activity {
         
         
         
-        
+
+		
         
         
         // Tests für die DB...
@@ -44,12 +47,24 @@ public class RegisterActivity extends Activity {
         final TextView myText1 = (TextView)findViewById(R.id.test_db_textview2);
         
 
+		try {
+			TopicRoulette.loadTopicCache();
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
                 
         myButton2.setOnClickListener(new OnClickListener() {
         	public void onClick(View arg1) {
 				try {
-					com.betteridea.connection.Services.service.getUserData("lisa.schmidt@thomascookag.com", myText1);
-				} catch (InterruptedException e) {
+					JSONObject obj = com.betteridea.logic.TopicRoulette.getNextTopic();
+					myText1.setText(obj.toString());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

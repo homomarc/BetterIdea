@@ -6,7 +6,7 @@ import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.betteridea.logic.CreditSystem;
+import com.betteridea.logic.*;
 
 import android.app.Service;
 import android.content.Intent;
@@ -61,7 +61,7 @@ public class Services extends Service {
 	    }).start();
 	}
 	
-	// Evtl. für Einstellungen --> Accountdaten ändern
+	// Evtl. für Einstellungen --> Accountdaten beziehen
 	public void getUserData(String userMail, TextView myText) throws InterruptedException{
 		mail = userMail;
 		text = myText;
@@ -156,7 +156,7 @@ public class Services extends Service {
 	            try {
 	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/topic.sjs?topicID=";
 	            	reqUrl += topic;
-	            	String topic = Database.getRequest(reqUrl);
+	            	String result = Database.getRequest(reqUrl);
 	            	String reqUrl1 = "http://space-labs.appspot.com/repo/2185003/ideas/api/ideas.sjs?topicID=";
 	            	reqUrl += topic;
 	            	String ideas = Database.getRequest(reqUrl);
@@ -168,6 +168,21 @@ public class Services extends Service {
 	    }).start();
 	}
 	
+	public static void getNewRandTopic() throws IOException{
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/topicRoulette.sjs";
+	            	String result = Database.getRequest(reqUrl);
+	            	JSONObject jsObject = new JSONObject(result);
+	            	TopicRoulette.setTopicCache(jsObject);
+	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
+	    			e.printStackTrace();
+	    		}
+	        }
+	    }).start();
+	}
 
 
 
