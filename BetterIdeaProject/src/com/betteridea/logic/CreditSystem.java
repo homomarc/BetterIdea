@@ -8,21 +8,21 @@ import com.betteridea.connection.Services;
 
 public class CreditSystem {
 
-	int newIdea = -100;
-	int pushIdea = -300;
-	int goodComment = 50;
-	int validComment = 10;
-	int spamComments = -100;
-	int showComment = -25;
+	static int newIdea = -100;
+	static int pushIdea = -300;
+	static int goodComment = 50;
+	static int validComment = 10;
+	static int spamComments = -100;
+	static int showComment = -25;
 	
 
-	public void validComment() throws IOException{
+	public static void validComment() throws IOException{
 		com.betteridea.connection.Services.changeCredits(validComment);
 	}
-	public void goodComment() throws IOException{
+	public static void goodComment() throws IOException{
 		com.betteridea.connection.Services.changeCredits(goodComment);
 	}
-	public void createIdea() throws IOException, JSONException{
+	public static void createIdea() throws IOException, JSONException{
 		com.betteridea.connection.Services.getCredits();
     	String creditString = Services.userData.getString("credits");
     	int credit = Integer.valueOf(creditString);
@@ -33,7 +33,7 @@ public class CreditSystem {
 			//TODO: Error-Message (zu wenig Credits)
 		}
 	}
-	public void pushIdea() throws IOException, JSONException{
+	public static void pushIdea() throws IOException, JSONException{
 		com.betteridea.connection.Services.getCredits();
     	String creditString = Services.userData.getString("credits");
     	int credit = Integer.valueOf(creditString);
@@ -44,7 +44,7 @@ public class CreditSystem {
 			//TODO: Error-Message (zu wenig Credits)
 		}
 	}
-	public void showComment() throws IOException, JSONException{
+	public static void showComment() throws IOException, JSONException{
 		com.betteridea.connection.Services.getCredits();
     	String creditString = Services.userData.getString("credits");
     	int credit = Integer.valueOf(creditString);
@@ -55,7 +55,7 @@ public class CreditSystem {
 			//TODO: Error-Message (zu wenig Credits)
 		}
 	}
-	public void spamComment() throws IOException{
+	public static void spamComment() throws IOException{
 			com.betteridea.connection.Services.changeCredits(spamComments);
 	}
 }

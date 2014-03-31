@@ -6,6 +6,8 @@ import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.betteridea.logic.CreditSystem;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -132,9 +134,12 @@ public class Services extends Service {
 	        		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/insertUserData.sjs";
 	            	String spamString = userData.getString("spamCount");
 	            	int spamState = Integer.valueOf(spamString);
-	            	spamState += 1;
+	            	spamState++;
 	            	userData.put("spamCount", spamState);
 	        		Database.postRequest(reqUrl, userData);
+	        		if(spamState % 5 == 0){
+	        			CreditSystem.spamComment();
+	        		}
 	    		} catch (Exception e) {
 	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
 	    			e.printStackTrace();
@@ -149,7 +154,12 @@ public class Services extends Service {
 	    new Thread(new Runnable(){
 	        public void run(){
 	            try {
-	            	//TODO
+	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/topic.sjs?topicID=";
+	            	reqUrl += topic;
+	            	String topic = Database.getRequest(reqUrl);
+	            	String reqUrl1 = "http://space-labs.appspot.com/repo/2185003/ideas/api/ideas.sjs?topicID=";
+	            	reqUrl += topic;
+	            	String ideas = Database.getRequest(reqUrl);
 	    		} catch (Exception e) {
 	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
 	    			e.printStackTrace();
