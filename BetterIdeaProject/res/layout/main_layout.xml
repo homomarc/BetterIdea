@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView 
-    android:scrollbars="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scrollbars="vertical" 
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:layout_width="fill_parent"> -->
     
-	<LinearLayout
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
 	    android:background="#dddddd"
 	    android:scrollbars="horizontal" >
 	    
-	    <LinearLayout
+	    <!-- <LinearLayout
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:orientation="vertical"
@@ -41,13 +41,34 @@
 		            android:textSize="9pt" />
 		        
 	        </LinearLayout>
-	    </LinearLayout>
+	    </LinearLayout> -->
 	    
 	    <Space 
 	        android:layout_width="fill_parent"
-	        android:layout_height="15dp"/>
+	        android:layout_height="10dp"/>
+
 	    
-	   	<RelativeLayout
+	    <ListView android:id="@+id/list_topic_feed"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp"
+	        android:layout_width="match_parent"
+	        android:layout_gravity="start"
+	        android:layout_height="match_parent"
+	        android:background="#fff"
+	        android:divider="#dddddd"
+	        android:dividerHeight="10dp" />
+	    
+	  <!--<ListView android:id="@+id/left_drawer"
+    	    android:layout_width="240dp"
+    	    android:layout_height="match_parent"
+    	    android:layout_gravity="start"
+    	    android:choiceMode="singleChoice"
+    	    android:background="@color/navigation_background"
+    	    android:listSelector="@drawable/list_selector"
+    	    android:divider="#000"
+    	    android:dividerHeight="1dp" /> -->
+	    
+	   	<!-- <RelativeLayout
 	        android:layout_height="200dp"
 	        android:layout_width="match_parent"
 	        android:layout_marginLeft="5dp"
@@ -191,11 +212,12 @@
 		     	    android:layout_margin="10dp" />
 	
 	            
-	    </RelativeLayout>
+	    </RelativeLayout>-->
+	   
 	       
 	    <Space 
 	        android:layout_width="fill_parent"
-	        android:layout_height="5dp"/>
+	        android:layout_height="5dp"/> -->
 	
 	</LinearLayout>
-</ScrollView>
+<!-- </ScrollView> -->

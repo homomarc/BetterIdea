@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
         
 //        Instantiate and fill drawerItems (consisting of icon and text)
         navigationItems = new ArrayList<NavDrawerItem>();
-        navigationItems.add(new NavDrawerItem("Home",navigationIcons.getResourceId(0,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[0],navigationIcons.getResourceId(0,-1)));
         navigationItems.add(new NavDrawerItem(navigationEntries[1],navigationIcons.getResourceId(1,-1)));
         navigationItems.add(new NavDrawerItem(navigationEntries[2],navigationIcons.getResourceId(2,-1)));
         

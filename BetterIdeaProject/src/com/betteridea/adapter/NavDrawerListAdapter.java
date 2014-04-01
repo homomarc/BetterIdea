@@ -46,6 +46,12 @@ public class NavDrawerListAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.navigation_list_item, null);
 		}
 		
+		TextView titleView = (TextView) convertView.findViewById(R.id.text_navigation_entry);
+		ImageView iconView = (ImageView) convertView.findViewById(R.id.image_icon);
+		
+		titleView.setText(navDrawerItems.get(position).getTitle()); 
+		iconView.setImageResource(navDrawerItems.get(position).getIcon());
+		
 		return convertView;
 	}
 }
