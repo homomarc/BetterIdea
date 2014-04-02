@@ -22,7 +22,7 @@
             <corners android:radius="4dp" />
         </shape>
     </item>
-    <item>
+   <!--  <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
             <solid android:color="#15000000" />
@@ -42,7 +42,7 @@
             <solid android:color="#25000000" />
             <corners android:radius="1dp" />
         </shape>
-    </item>
+    </item>-->
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />

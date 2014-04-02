@@ -4,11 +4,21 @@ public class TopicItem {
 	private String title;
 	private String description;
 	private String timestamp;
+	private boolean isRouletteItem;
 	
-	public TopicItem(String title, String description, String timestamp){
+	public TopicItem(String title, String description, String timestamp, boolean isRouletteItem){
 		this.title = title;
 		this.description = description;
 		this.timestamp = timestamp;
+		this.isRouletteItem = isRouletteItem;
+	}
+	
+	public boolean isRouletteItem(){
+		return isRouletteItem;
+	}
+	
+	public void setRouletteItem(boolean isRouletteItem){
+		this.isRouletteItem = isRouletteItem;
 	}
 	
 	public String getTitle(){
