@@ -8,18 +8,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.betteridea.R;
+import com.betteridea.R.id;
 import com.betteridea.models.TopicItem;
 
 public class TopicItemAdapter extends BaseAdapter {
 	private ArrayList<TopicItem> topicItems;
+	private TopicItem rouletteItem;
 	private Context context;
 	
 	public TopicItemAdapter(Context context, ArrayList<TopicItem> topicItems){
 		this.context = context;
 		this.topicItems = topicItems;
+	}
+	
+	public TopicItemAdapter(Context context, ArrayList<TopicItem> topicItems, TopicItem rouletteItem){
+		this.context = context;
+		this.topicItems = topicItems;
+		this.rouletteItem = rouletteItem;
 	}
 	
 	@Override
@@ -42,24 +51,35 @@ public class TopicItemAdapter extends BaseAdapter {
 		// Instantiate View
 		if(view == null){
 			if(position == 0){
-			
+				LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+				view = inflater.inflate(R.layout.topic_roulette_layout, null);
+
+				TextView titleView = (TextView) view.findViewById(R.id.topic_roulette_title);
+				TextView descriptionView = (TextView) view.findViewById(R.id.topic_roulette_description);
+				
+				titleView.setText(rouletteItem.getTitle());
+				descriptionView.setText(rouletteItem.getDescription());
+				
 			}else{
 				LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 				view = inflater.inflate(R.layout.topic_item_layout, null);
+				
+				// Get Resources
+				TextView titleView = (TextView) view.findViewById(R.id.topic_feed_title);
+				TextView descriptionView = (TextView) view.findViewById(R.id.topic_feed_description);
+				TextView timestampView = (TextView) view.findViewById(R.id.topic_feed_timestamp);
+				
+				// set contents to resources
+				titleView.setText(topicItems.get(position-1).getTitle());
+				descriptionView.setText(topicItems.get(position-1).getDescription());
+				timestampView.setText(topicItems.get(position-1).getTimestamp());
 			}
-		}
-		
-		// Get Resources
-		TextView titleView = (TextView) view.findViewById(R.id.topic_feed_title);
-		TextView descriptionView = (TextView) view.findViewById(R.id.topic_feed_description);
-		TextView timestampView = (TextView) view.findViewById(R.id.topic_feed_timestamp);
-		
-		// set contents to resources
-		titleView.setText(topicItems.get(position).getTitle());
-		descriptionView.setText(topicItems.get(position).getDescription());
-		timestampView.setText(topicItems.get(position).getTimestamp());
+		}		
 		
 		return view;
 	}
-
+	
+	public void setRouletteItem(TopicItem rouletteItem){
+		this.rouletteItem = rouletteItem;
+	}
 }

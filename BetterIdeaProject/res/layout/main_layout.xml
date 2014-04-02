@@ -6,11 +6,7 @@
 	    android:background="#dddddd"
 	    android:scrollbars="horizontal" >
 	   
-
-	    
 	    <ListView android:id="@+id/list_topic_feed"
-	        android:layout_marginLeft="10dp"
-	        android:layout_marginRight="10dp"
 	        android:layout_width="match_parent"
 	        android:layout_gravity="start"
 	        android:layout_height="match_parent"

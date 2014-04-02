@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="horizontal"
+    android:background="#343434">
+
+    <LinearLayout
+        android:layout_height="180dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@color/yellow">
+        
+        <TextView
+            android:id="@+id/topic_roulette_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_topic_example_archived_title"
+            android:textSize="12pt"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-thin"
+            android:layout_margin="10dp" />
+    
+   	 	<TextView 
+            android:id="@+id/topic_roulette_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_topic_example_archived_description"
+            android:textStyle="bold"
+            android:textSize="9pt"
+            android:fontFamily="sans-serif-thin"
+            android:layout_margin="10dp" />
+    </LinearLayout>
+    
+</LinearLayout>
