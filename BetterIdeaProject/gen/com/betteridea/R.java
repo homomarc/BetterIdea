@@ -249,9 +249,10 @@ containing a value of this type.
         public static final int note_header=0x7f02002e;
         public static final int options=0x7f02002f;
         public static final int topic_background=0x7f020030;
-        public static final int zettel1=0x7f020031;
-        public static final int zettel2=0x7f020032;
-        public static final int zettel3=0x7f020033;
+        public static final int topic_roulette_layout=0x7f020031;
+        public static final int zettel1=0x7f020032;
+        public static final int zettel2=0x7f020033;
+        public static final int zettel3=0x7f020034;
     }
     public static final class id {
         public static final int action_add=0x7f050023;
@@ -260,7 +261,7 @@ containing a value of this type.
         public static final int action_settings=0x7f050024;
         public static final int button1=0x7f050017;
         public static final int button2=0x7f050018;
-        public static final int button_share2=0x7f05001f;
+        public static final int button_share=0x7f050020;
         public static final int calendarView1=0x7f05001b;
         public static final int content_frame=0x7f050008;
         public static final int drawer_layout=0x7f050007;
@@ -271,7 +272,7 @@ containing a value of this type.
         public static final int imageView1=0x7f05000a;
         public static final int imageView2=0x7f05000e;
         public static final int image_icon=0x7f050012;
-        public static final int info_leiste2=0x7f05001e;
+        public static final int info_leiste2=0x7f05001f;
         public static final int left_drawer=0x7f050009;
         public static final int list_topic_feed=0x7f050011;
         public static final int login_button=0x7f05000d;
@@ -288,9 +289,9 @@ containing a value of this type.
         public static final int textView1=0x7f050014;
         public static final int text_navigation_entry=0x7f050013;
         public static final int topic_feed_description=0x7f05001d;
-        public static final int topic_feed_timestamp=0x7f050020;
+        public static final int topic_feed_timestamp=0x7f050021;
         public static final int topic_feed_title=0x7f05001c;
-        public static final int trennlinie2=0x7f050021;
+        public static final int trennlinie2=0x7f05001e;
         public static final int user_edit=0x7f05000b;
     }
     public static final class integer {

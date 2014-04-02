@@ -41,8 +41,12 @@ public class TopicItemAdapter extends BaseAdapter {
 	public View getView(int position, View view, ViewGroup group) {
 		// Instantiate View
 		if(view == null){
-			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.topic_item_layout, null);
+			if(position == 0){
+			
+			}else{
+				LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+				view = inflater.inflate(R.layout.topic_item_layout, null);
+			}
 		}
 		
 		// Get Resources
