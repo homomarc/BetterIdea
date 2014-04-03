@@ -17,10 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.betteridea.adapter.NavDrawerListAdapter;
+import com.betteridea.fragments.HomeFragment;
+import com.betteridea.fragments.TopicFragment;
 import com.betteridea.models.NavDrawerItem;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
@@ -50,7 +51,8 @@ public class MainActivity extends Activity {
 //        setContentView(R.layout.activity_main);
         setContentView(R.layout.drawer_layout);
         
-        Fragment fragment = new MainFragment();
+        Fragment fragment = new HomeFragment();
+//        Fragment fragment = new TopicFragment();
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
         	.add(R.id.content_frame,fragment)
@@ -121,7 +123,7 @@ public class MainActivity extends Activity {
 		}
 		
 		private void selectItem(int position){
-			Fragment fragment = new MainFragment();
+			Fragment fragment = new HomeFragment();
 			
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()

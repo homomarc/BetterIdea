@@ -178,6 +178,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    		}
 	        } else {
 	        	//TODO: Do nothing?
+	        	
 	        }
 	    }
 	 
@@ -255,16 +256,34 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	  
   	//onClick Login Button
 	public void login(View view){
-		Intent intent = new Intent(this,MainActivity.class);
+		Intent intent;
 		//		Check Password
 		EditText user = (EditText) findViewById(R.id.user_edit);
 		EditText password = (EditText) findViewById(R.id.password_edit);
 		
-		if(checkPassword(user.getText().toString(),password.getText().toString()))
-			startActivity(intent);
-		else
-			cancelLogin();
+		try{
+		String result = new Login().execute("rene.kirchhoff90@googlemail.com").get();
+		
+			if(result != null){
+				System.out.println("Sign in succeeded.");
+				intent = new Intent(LoginActivity.this,MainActivity.class);
+	//			startActivity(intent);
+			}else{
+				System.out.println("Invalid email!");
+				intent = new Intent(LoginActivity.this,RegisterActivity.class);
+	//			startActivity(intent);
+			}
+		
+		
+			if(checkPassword(user.getText().toString(),password.getText().toString()))
+				startActivity(intent);
+			else
+				cancelLogin();
+		}catch(Exception ex){
+			Log.v("test",ex.toString());
+		}
 	}
+	
 	private boolean checkPassword(String user, String password){
 		return true;
 	}

@@ -1,6 +1,11 @@
 package com.betteridea.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class TopicItem {
+	private int id;
+	private int topicID;
 	private String title;
 	private String description;
 	private String timestamp;
@@ -11,6 +16,15 @@ public class TopicItem {
 		this.description = description;
 		this.timestamp = timestamp;
 		this.isRouletteItem = isRouletteItem;
+	}
+	
+	public TopicItem(JSONObject jsobject){
+		try{
+			this.title = jsobject.getString("title");
+			this.description = jsobject.getString("description");
+		}catch(JSONException ex){
+			
+		}
 	}
 	
 	public boolean isRouletteItem(){

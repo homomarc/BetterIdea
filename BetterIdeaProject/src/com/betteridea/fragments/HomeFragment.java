@@ -1,6 +1,9 @@
-package com.betteridea;
+package com.betteridea.fragments;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.json.JSONException;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,11 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.betteridea.R;
+import com.betteridea.R.id;
+import com.betteridea.R.layout;
 import com.betteridea.adapter.TopicItemAdapter;
+import com.betteridea.logic.TopicRoulette;
 import com.betteridea.models.TopicItem;
 
-public class MainFragment extends Fragment {
+public class HomeFragment extends Fragment {
 	ListView topicList;
 	TopicItemAdapter adapter;
 
@@ -27,9 +35,21 @@ public class MainFragment extends Fragment {
 		topicItems.add(new TopicItem("Ideenmanagementapp für die Mobile Vorlesung entwickeln","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",false));
 		topicItems.add(new TopicItem("Thema 3","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",false));
 		
-		TopicItem topicRouletteItem = new TopicItem("Ideenmanagementapp für die Mobile Vorlesung entwickeln","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","",true);
+		TopicItem topicRouletteItem = null;
+		try{
+			TopicRoulette.loadTopicCache();
+			topicRouletteItem = new TopicItem(TopicRoulette.getNextTopic());
+		}catch(IOException ex){
+			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT);
+		}catch(JSONException ex){
+			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT);
+		}
+//		TopicRoulette.getNextTopic() -> JSONObject
+		
+		//TopicItem topicRouletteItem = new TopicItem("Ideenmanagementapp für die Mobile Vorlesung entwickeln","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","",true);
 
-		adapter = new TopicItemAdapter(getActivity().getApplicationContext(), topicItems, topicRouletteItem);
+		if(topicRouletteItem != null)
+			adapter = new TopicItemAdapter(getActivity().getApplicationContext(), topicItems, topicRouletteItem);
 		
 		topicList.setAdapter(adapter);
 		
