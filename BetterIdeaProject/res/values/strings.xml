@@ -30,12 +30,14 @@
 	<string name="label_topic_example_archived_description">Ich suche Handballtrainingsübung zum Aufwärmen.</string>
 	<string name="label_share_topic">Teilen</string>
 	<string name="label_timestamp1">Letztes Update: 14:43, 03.03.2014</string>
+	<string name="label_stats">Meine Stats</string>
 	
 	<!-- navigation items -->
 	<string name="navigation_home">Startseite</string>
 	<string name="navigation_mygames">Meine Themen</string>
 	<string name="navigation_logout">Abmelden</string>
 	<string name="navigation_settings">Einstellungen</string>
+	<string name="navigation_stats">Meine Stats</string>
 	
 	<string name="last_ideas">Letzte Ideen</string>
 	<string name="label_options">Einstellungen</string>

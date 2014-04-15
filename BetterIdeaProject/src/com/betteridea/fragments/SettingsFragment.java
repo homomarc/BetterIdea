@@ -11,9 +11,7 @@ import com.betteridea.R;
 public class SettingsFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
-		View view = inflater.inflate(R.layout.main_layout, container, false);
-		
-		
+		View view = inflater.inflate(R.layout.settings_layout, container, false);
 		
 		return view;
 	}

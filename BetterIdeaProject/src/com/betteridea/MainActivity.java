@@ -21,6 +21,7 @@ import android.widget.ListView;
 
 import com.betteridea.adapter.NavDrawerListAdapter;
 import com.betteridea.fragments.HomeFragment;
+import com.betteridea.fragments.SettingsFragment;
 import com.betteridea.fragments.TopicFragment;
 import com.betteridea.models.NavDrawerItem;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -74,6 +75,7 @@ public class MainActivity extends Activity {
         navigationItems.add(new NavDrawerItem(navigationEntries[1],navigationIcons.getResourceId(1,-1)));
         navigationItems.add(new NavDrawerItem(navigationEntries[2],navigationIcons.getResourceId(2,-1)));
         navigationItems.add(new NavDrawerItem(navigationEntries[3],navigationIcons.getResourceId(3,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[4],navigationIcons.getResourceId(4,-1)));
         
         adapter = new NavDrawerListAdapter(getApplicationContext(), navigationItems);
         
@@ -134,6 +136,7 @@ public class MainActivity extends Activity {
 			navigationList.setItemChecked(position, true);
 			getActionBar().setTitle(navigationEntries[position]);
 			drawerLayout.closeDrawer(navigationList);
+			Intent intent = new Intent();
 			switch(position){
 				case 0:
 					break;
@@ -147,11 +150,18 @@ public class MainActivity extends Activity {
 					break;
 				//LOGOUT
 				case 2:
-				//TODO: Überprüfen ob mit G+ oder FB oder Mailaccount eingeloggt
-					
-					//Zurückkehren zu LoginActivity
-					Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
-					startActivity(logoutIntent);
+					intent = new Intent(MainActivity.this,StatsActivity.class);
+	    			startActivity(intent);
+					break;
+				case 3:
+					intent = new Intent(MainActivity.this,LoginActivity.class);
+	    			startActivity(intent);
+	    			break;
+				case 4:
+					fragment = new SettingsFragment();
+					fragmentManager.beginTransaction()
+					.replace(R.id.content_frame, fragment)
+					.commit();
 					break;
 			}
 		}
