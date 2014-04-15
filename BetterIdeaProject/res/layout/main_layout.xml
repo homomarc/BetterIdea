@@ -5,6 +5,13 @@
 	    android:orientation="vertical"
 	    android:background="#dddddd"
 	    android:scrollbars="horizontal" >
+	    
+    	<Button android:id="@+id/load_topics"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="100dp"
+    	    android:onClick="loadTopics"
+    	    android:layout_margin="15dp"
+    	    android:text="Topics laden"/>
 	   
 	    <ListView android:id="@+id/list_topic_feed"
 	        android:layout_width="match_parent"

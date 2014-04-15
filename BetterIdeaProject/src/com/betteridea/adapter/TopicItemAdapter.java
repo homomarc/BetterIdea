@@ -49,7 +49,7 @@ public class TopicItemAdapter extends BaseAdapter {
 	public View getView(int position, View view, ViewGroup group) {
 		// Instantiate View
 
-		if(position == 0){
+		if(position == 0 && topicItems.get(position).isRouletteItem()){
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(R.layout.topic_roulette_layout, null);
 
@@ -82,7 +82,6 @@ public class TopicItemAdapter extends BaseAdapter {
 			topicItems.set(0,rouletteItem);
 		else
 			topicItems.add(0,rouletteItem);
-	}
-	
+	}	
 
 }

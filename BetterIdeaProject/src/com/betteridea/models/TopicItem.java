@@ -3,6 +3,8 @@ package com.betteridea.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class TopicItem extends Item{
 	private int id;
 	private int topicID;
@@ -19,11 +21,16 @@ public class TopicItem extends Item{
 	}
 	
 	public TopicItem(JSONObject jsobject){
+		Log.v("test", "TopicItem");
 		try{
-			this.title = jsobject.getString("title");
+			this.title = jsobject.getString("titel");
+			Log.v("test", "Title: " + title);
 			this.description = jsobject.getString("description");
+			Log.v("test", "Description: " + description);
+			this.isRouletteItem = true;
+			this.timestamp = "Test";
 		}catch(JSONException ex){
-			
+			Log.v("test", "JSONException: " + ex.toString());
 		}
 	}
 	

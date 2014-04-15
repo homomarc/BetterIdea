@@ -1,6 +1,9 @@
 package com.betteridea;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.json.JSONException;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,6 +16,7 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +24,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.betteridea.adapter.NavDrawerListAdapter;
+import com.betteridea.adapter.TopicItemAdapter;
 import com.betteridea.fragments.HomeFragment;
 import com.betteridea.fragments.SettingsFragment;
 import com.betteridea.fragments.TopicFragment;
+import com.betteridea.logic.TopicRoulette;
 import com.betteridea.models.NavDrawerItem;
+import com.betteridea.models.TopicItem;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
 
@@ -43,6 +50,7 @@ public class MainActivity extends Activity {
 	
 //	Navigation Adapter
 	private NavDrawerListAdapter adapter;
+	private TopicItemAdapter topicItemAdapter;
 	
 	private GoogleApiClient mGoogleApiClient;
 	
@@ -52,8 +60,8 @@ public class MainActivity extends Activity {
 //        setContentView(R.layout.activity_main);
         setContentView(R.layout.drawer_layout);
         
-//        Fragment fragment = new HomeFragment();
-        Fragment fragment = new TopicFragment();
+        Fragment fragment = new HomeFragment();
+//        Fragment fragment = new TopicFragment();
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
         	.add(R.id.content_frame,fragment)
@@ -201,6 +209,24 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed() {
     }
+    
+	public void loadTopics(View view){
+		Log.v("test", "Start loadTopics");
+		
+		try{
+			TopicItem topicItem = new TopicItem(TopicRoulette.getNextTopic());
+			topicItemAdapter.setRouletteItem(topicItem);
+			topicItemAdapter.notifyDataSetChanged();
+		}catch(IOException ex){
+			Log.v("test", "IOException: " + ex.toString());
+		}catch(JSONException ex){
+			Log.v("test", "JSONException: " + ex.toString());
+		}
+	}
+	
+	public TopicItemAdapter getTopicItemAdapter(){
+		return topicItemAdapter;
+	}
     
 }
 

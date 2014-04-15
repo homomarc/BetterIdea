@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutionException;
 
 import com.betteridea.connection.Login;
 import com.betteridea.connection.Services;
+import com.betteridea.logic.TopicRoulette;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
@@ -262,7 +263,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		EditText password = (EditText) findViewById(R.id.password_edit);
 		
 		try{
-		String result = new Login().execute("rene.kirchhoff90@googlemail.com").get();
+			String result = new Login().execute("rene.kirchhoff90@googlemail.com").get();
 		
 			if(result != null){
 				System.out.println("Sign in succeeded.");
@@ -273,7 +274,6 @@ ConnectionCallbacks, OnConnectionFailedListener {
 				intent = new Intent(LoginActivity.this,RegisterActivity.class);
 	//			startActivity(intent);
 			}
-		
 		
 			if(checkPassword(user.getText().toString(),password.getText().toString()))
 				startActivity(intent);

@@ -25,7 +25,7 @@ public class Services extends Service {
 	static String reqUrl = null;
 	static String arr = null;
 	static TextView text = null;
-	
+	public static boolean ready = false;
 
 	// Erstellen eines neuen Accounts
 	public void createUserData(String userName, String userMail) throws IOException, JSONException{
