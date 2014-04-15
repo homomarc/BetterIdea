@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_margin="10dp"
-        android:background="@color/yellow">
+        android:background="@color/yellow"
+        android:onClick="openTopic">
         
         <TextView
             android:id="@+id/topic_roulette_title"

@@ -18,6 +18,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -53,6 +54,8 @@ public class MainActivity extends Activity {
 	private TopicItemAdapter topicItemAdapter;
 	
 	private GoogleApiClient mGoogleApiClient;
+	
+	private boolean menuIsInitialized = false;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,7 +181,8 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+       
         return true;
     }
     
@@ -232,5 +236,11 @@ public class MainActivity extends Activity {
 		this.topicItemAdapter = topicItemAdapter;
 	}
     
+	public void openTopic(View view){
+		Fragment fragment = new TopicFragment();
+		fragmentManager.beginTransaction()
+    	.replace(R.id.content_frame,fragment)
+    	.commit();
+	}
 }
 

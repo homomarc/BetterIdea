@@ -59,8 +59,18 @@
 	             android:text="@string/label_share_topic"
 	             android:textColor="#888"/>
 	         
-	         <View android:layout_width="150dp"
-	             android:layout_height="match_parent"/>
+	         <View 
+	             android:layout_width="0dp"
+	             android:layout_height="0dp"
+	             android:layout_weight="1"
+	         />
+	         
+	         <ImageView 
+	             android:layout_width="15dp"
+	             android:layout_height="15dp"
+	        	 android:background="@drawable/clock"
+	        	 android:layout_marginRight="5dp"     
+	         />
 	         
 	         <TextView android:id="@+id/topic_feed_timestamp"
 	             android:layout_width="wrap_content"
