@@ -83,4 +83,6 @@ public class TopicItemAdapter extends BaseAdapter {
 		else
 			topicItems.add(0,rouletteItem);
 	}
+	
+
 }

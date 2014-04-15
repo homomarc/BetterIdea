@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+      
+   <item android:id="@+id/favorite_topic"
+       android:icon="@drawable/favorise_heart"
+       android:title="@string/favorite_topic"
+       android:showAsAction="always" />
+   
+   <item android:id="@+id/action_add_button"
+          android:icon="@drawable/addidea"
+          android:title="@string/action_add"
+          android:showAsAction="always" />     
+
+</menu>

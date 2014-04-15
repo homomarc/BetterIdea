@@ -3,7 +3,7 @@ package com.betteridea.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class TopicItem {
+public class TopicItem extends Item{
 	private int id;
 	private int topicID;
 	private String title;

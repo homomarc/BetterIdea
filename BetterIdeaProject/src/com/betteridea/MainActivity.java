@@ -51,8 +51,8 @@ public class MainActivity extends Activity {
 //        setContentView(R.layout.activity_main);
         setContentView(R.layout.drawer_layout);
         
-        Fragment fragment = new HomeFragment();
-//        Fragment fragment = new TopicFragment();
+//        Fragment fragment = new HomeFragment();
+        Fragment fragment = new TopicFragment();
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
         	.add(R.id.content_frame,fragment)
@@ -73,6 +73,7 @@ public class MainActivity extends Activity {
         navigationItems.add(new NavDrawerItem(navigationEntries[0],navigationIcons.getResourceId(0,-1)));
         navigationItems.add(new NavDrawerItem(navigationEntries[1],navigationIcons.getResourceId(1,-1)));
         navigationItems.add(new NavDrawerItem(navigationEntries[2],navigationIcons.getResourceId(2,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[3],navigationIcons.getResourceId(3,-1)));
         
         adapter = new NavDrawerListAdapter(getApplicationContext(), navigationItems);
         
@@ -159,7 +160,7 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
     
@@ -170,17 +171,17 @@ public class MainActivity extends Activity {
     		fragment.show(getFragmentManager(),"createtopic");
     		return true;
     	}
-    	if(item.getItemId()==R.id.action_logout){
+    	/*if(item.getItemId()==R.id.action_logout){
     		Intent intent = new Intent(this,LoginActivity.class);
     		startActivity(intent);
     		return true;
-    	}
-    	if(item.getItemId()==R.id.action_settings){
+    	}*/
+    	/*if(item.getItemId()==R.id.action_settings){
     		Intent intent1 = new Intent(this,SettingsActivity.class);
     		startActivity(intent1);
     		System.out.println("Test");
     		return true;
-    	}
+    	}*/
     	if(drawerToggle.onOptionsItemSelected(item)){
     		return true;
     	}

@@ -35,21 +35,23 @@ public class HomeFragment extends Fragment {
 		topicItems.add(new TopicItem("Ideenmanagementapp für die Mobile Vorlesung entwickeln","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",false));
 		topicItems.add(new TopicItem("Thema 3","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",false));
 		
-		TopicItem topicRouletteItem = null;
-		try{
-			TopicRoulette.loadTopicCache();
-			topicRouletteItem = new TopicItem(TopicRoulette.getNextTopic());
-		}catch(IOException ex){
-			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT);
-		}catch(JSONException ex){
-			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT);
-		}
-//		TopicRoulette.getNextTopic() -> JSONObject
+//		TopicItem topicRouletteItem = null;
+//		try{
+//			TopicRoulette.loadTopicCache();
+//			topicRouletteItem = new TopicItem(TopicRoulette.getNextTopic());
+//		}catch(IOException ex){
+//			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT);
+//		}catch(JSONException ex){
+//			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT);
+//		}
+////		TopicRoulette.getNextTopic() -> JSONObject
+//		
+//		//TopicItem topicRouletteItem = new TopicItem("Ideenmanagementapp für die Mobile Vorlesung entwickeln","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","",true);
+//
+//		if(topicRouletteItem != null)
+//			adapter = new TopicItemAdapter(getActivity().getApplicationContext(), topicItems, topicRouletteItem);
 		
-		//TopicItem topicRouletteItem = new TopicItem("Ideenmanagementapp für die Mobile Vorlesung entwickeln","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","",true);
-
-		if(topicRouletteItem != null)
-			adapter = new TopicItemAdapter(getActivity().getApplicationContext(), topicItems, topicRouletteItem);
+		adapter = new TopicItemAdapter(getActivity(), topicItems, new TopicItem("Übungen für Handballtraining","Ich suche Handballtrainingsübung zum Aufwärmen.","14:43, 01.04.2014",false));
 		
 		topicList.setAdapter(adapter);
 		
