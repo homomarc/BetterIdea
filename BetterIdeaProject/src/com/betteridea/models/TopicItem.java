@@ -8,10 +8,13 @@ import android.util.Log;
 public class TopicItem extends Item{
 	private int id;
 	private int topicID;
+	private boolean archived;
+	private String updated;
 	private String title;
 	private String description;
 	private String timestamp;
 	private boolean isRouletteItem;
+	private int authorID;
 	
 	public TopicItem(String title, String description, String timestamp, boolean isRouletteItem){
 		this.title = title;
@@ -21,19 +24,29 @@ public class TopicItem extends Item{
 	}
 	
 	public TopicItem(JSONObject jsobject){
-		Log.v("test", "TopicItem");
+		Log.v("test", "JSONObject:  " + jsobject.toString());
 		try{
+//			JSONObject auslesen
+			this.setID(jsobject.getInt("id"));
+			this.setArchived(jsobject.getBoolean("archived"));
+			this.setUpdated(jsobject.getString("updated"));
 			this.title = jsobject.getString("titel");
-			Log.v("test", "Title: " + title);
 			this.description = jsobject.getString("description");
-			Log.v("test", "Description: " + description);
+			this.setTopicID(jsobject.getInt("topicID"));
+			this.timestamp = jsobject.getString("date");
+			this.setAuthorID(jsobject.getInt("authorID"));
+			
+//			Wichtige Information für Adapter: Ist das Element ein RouletteItem?
 			this.isRouletteItem = true;
-			this.timestamp = "Test";
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
 		}
 	}
 	
+	
+	/*
+	 * GETTER & SETTER
+	 */
 	public boolean isRouletteItem(){
 		return isRouletteItem;
 	}
@@ -64,5 +77,45 @@ public class TopicItem extends Item{
 	
 	public void setTimestamp(String timestamp){
 		this.timestamp = timestamp;
+	}
+
+	public int getID() {
+		return id;
+	}
+
+	public void setID(int id) {
+		this.id = id;
+	}
+
+	public int getTopicID() {
+		return topicID;
+	}
+
+	public void setTopicID(int topicID) {
+		this.topicID = topicID;
+	}
+
+	public boolean isArchived() {
+		return archived;
+	}
+
+	public void setArchived(boolean archived) {
+		this.archived = archived;
+	}
+
+	public String getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(String updated) {
+		this.updated = updated;
+	}
+
+	public int getAuthorID() {
+		return authorID;
+	}
+
+	public void setAuthorID(int authorID) {
+		this.authorID = authorID;
 	}
 }
