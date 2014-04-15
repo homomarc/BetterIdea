@@ -227,6 +227,10 @@ public class MainActivity extends Activity {
 	public TopicItemAdapter getTopicItemAdapter(){
 		return topicItemAdapter;
 	}
+	
+	public void setTopicItemAdapter(TopicItemAdapter topicItemAdapter){
+		this.topicItemAdapter = topicItemAdapter;
+	}
     
 }
 

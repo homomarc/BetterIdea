@@ -61,6 +61,8 @@ public class HomeFragment extends Fragment {
 		
 		adapter = new TopicItemAdapter(getActivity(), topicItems,new TopicItem("Thema 3","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",true));
 		
+		mainActivity.setTopicItemAdapter(adapter);
+		
 		topicList.setAdapter(adapter);
 		
 		return view;
