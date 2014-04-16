@@ -22,7 +22,8 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
     			Service.addSpam();
     		}else if(data[0] == "showTopic"){
     			// Data1 = TopicID
-    			Service.showTopic(data[1]);
+//    			Service.showTopic(data[1]);
+    			return "TestAsynchron";
     		}else if(data[0] == "newRandTopic"){
     			Service.getNewRandTopic();
     		}else if(data[0] == "rankList"){
