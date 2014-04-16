@@ -222,6 +222,45 @@ public class Services extends Service {
 	    }).start();
 	}
 
+	// Fügt dem IdeaConut des Users 1 hinzu 
+	public static void addIdeaCount() throws IOException{
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	            	String ideas = userData.getString("ideaCount");
+	            	int ideaCount = Integer.valueOf(ideas);
+	            	ideaCount++;
+	            	userData.put("ideaCount", ideaCount);
+	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/users.sjs";
+	            	Database.postRequest(reqUrl, userData);
+	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
+	    			e.printStackTrace();
+	    		}
+	        }
+	    }).start();
+	}
+
+	
+	// Fügt dem TopicConut des Users 1 hinzu
+	public static void addTopicCount() throws IOException{
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	            	String topics = userData.getString("topicCount");
+	            	int topicCount = Integer.valueOf(topics);
+	            	topicCount++;
+	            	userData.put("topicCount", topicCount);
+	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/users.sjs";
+	            	Database.postRequest(reqUrl, userData);
+	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
+	    			e.printStackTrace();
+	    		}
+	        }
+	    }).start();
+	}
+
 
 
 	@Override
