@@ -85,8 +85,10 @@
 		     </LinearLayout>
 	    </LinearLayout>    
 	</LinearLayout>
+
 	<LinearLayout
-	    android:layout_height="15dp"
 	    android:layout_width="match_parent"
-	   	android:background="@drawable/roulette_bg_zacke"></LinearLayout>
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/roulette_bg" >
+</LinearLayout>
 </LinearLayout>

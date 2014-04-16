@@ -259,8 +259,8 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	public void login(View view){
 		Intent intent;
 		//		Check Password
-		EditText user = (EditText) findViewById(R.id.user_edit);
-		EditText password = (EditText) findViewById(R.id.password_edit);
+		/*EditText user = (EditText) findViewById(R.id.user_edit);
+		EditText password = (EditText) findViewById(R.id.password_edit);*/
 		
 		try{
 			String result = new Login().execute("rene.kirchhoff90@googlemail.com").get();
@@ -275,10 +275,10 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	//			startActivity(intent);
 			}
 		
-			if(checkPassword(user.getText().toString(),password.getText().toString()))
+			/*if(checkPassword(user.getText().toString(),password.getText().toString()))*/
 				startActivity(intent);
-			else
-				cancelLogin();
+			/*else
+				cancelLogin();*/
 		}catch(Exception ex){
 			Log.v("test",ex.toString());
 		}
@@ -291,10 +291,11 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		
 	}
 	//	onClick Register Button
+	/*
 	public void register(View view){
 		Intent intent = new Intent(this,RegisterActivity.class);
 		startActivity(intent);
-	}
+	}*/
   
 
 }

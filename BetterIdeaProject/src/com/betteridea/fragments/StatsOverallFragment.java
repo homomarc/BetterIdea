@@ -16,6 +16,10 @@ public class StatsOverallFragment extends Fragment{
  
         View rootView = inflater.inflate(R.layout.stats_fragment_overall, container, false);
          
+        /*"[{'score'=650,'name'=Stephan Grabaum},{'score'=500,'name'=Axel Ludwig},
+         * {'score'=450,'name'=Marc Boeckle},{'score'=350,'name'=Rene Kirchhof}]"
+         */
+        
         return rootView;
     }
 }
