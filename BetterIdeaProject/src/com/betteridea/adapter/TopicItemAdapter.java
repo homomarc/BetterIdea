@@ -34,6 +34,10 @@ public class TopicItemAdapter extends BaseAdapter {
 	public int getCount() {
 		return topicItems.size();
 	}
+	
+	public TopicItem getRouletteItem(){
+		return topicItems.get(0).isRouletteItem() ? topicItems.get(0) : null;
+	}
 
 	@Override
 	public Object getItem(int position) {
@@ -55,9 +59,11 @@ public class TopicItemAdapter extends BaseAdapter {
 
 			TextView titleView = (TextView) view.findViewById(R.id.topic_roulette_title);
 			TextView descriptionView = (TextView) view.findViewById(R.id.topic_roulette_description);
+			TextView timestampView = (TextView) view.findViewById(R.id.topic_roulette_timestamp);
 			
 			titleView.setText(topicItems.get(position).getTitle());
 			descriptionView.setText(topicItems.get(position).getDescription());
+			timestampView.setText(topicItems.get(position).getTimestamp());
 			
 		}else{
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);

@@ -16,7 +16,6 @@ public class TopicRoulette {
 	private static int counter = 0;
 	private static int arrayLength = 0;
 	
-	
 	public static void loadTopicCache() throws IOException{
 		for(int i=0; i<5; i++){
 			Services.getNewRandTopic();

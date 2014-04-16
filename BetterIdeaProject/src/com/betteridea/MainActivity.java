@@ -237,10 +237,12 @@ public class MainActivity extends Activity {
 	}
     
 	public void openTopic(View view){
-		Fragment fragment = new TopicFragment();
-		fragmentManager.beginTransaction()
-    	.replace(R.id.content_frame,fragment)
-    	.commit();
+		if(topicItemAdapter.getRouletteItem() != null){
+			Fragment fragment = new TopicFragment(topicItemAdapter.getRouletteItem());
+			fragmentManager.beginTransaction()
+	    	.replace(R.id.content_frame,fragment)
+	    	.commit();
+		}
 	}
 }
 

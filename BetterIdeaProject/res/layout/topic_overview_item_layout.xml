@@ -13,7 +13,7 @@
         android:orientation="vertical">
         
         <TextView
-            android:id="@+id/topic_feed_title"
+            android:id="@+id/topic_overview_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_topic_example_archived_title"
@@ -23,7 +23,7 @@
             android:layout_margin="10dp" />
     
    	 	<TextView 
-            android:id="@+id/topic_feed_description"
+            android:id="@+id/topic_overview_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_topic_example_archived_description"
@@ -65,7 +65,7 @@
 	             android:layout_weight="1"
 	          />
 	         
-	         <TextView android:id="@+id/topic_feed_timestamp"
+	         <TextView android:id="@+id/topic_overview_timestamp"
 	             android:layout_width="wrap_content"
 	             android:layout_height="match_parent"
 	             android:text="@string/label_timestamp1"

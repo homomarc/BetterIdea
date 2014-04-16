@@ -8,7 +8,7 @@ public class IdeaItem extends Item{
 	
 	public IdeaItem(String text, String user, String date){
 		this.text = text;
-		this.user = user;
+		this.user  = user;
 		this.date = date;
 	}
 	

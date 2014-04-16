@@ -1,37 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
-    android:orientation="horizontal"
-    android:background="#343434">
-
-    <LinearLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:background="@color/yellow"
-        android:onClick="openTopic">
-        
-        <TextView
-            android:id="@+id/topic_roulette_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_topic_example_archived_title"
-            android:textSize="12pt"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-thin"
-            android:layout_margin="10dp" />
-    
-   	 	<TextView 
-            android:id="@+id/topic_roulette_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_topic_example_archived_description"
-            android:textStyle="bold"
-            android:textSize="9pt"
-            android:fontFamily="sans-serif-thin"
-            android:layout_margin="10dp" />
-    </LinearLayout>
-    
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+   
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="220dp"
+	    android:orientation="horizontal"
+	    android:background="@drawable/topic_roulette_background">
+	
+	    <LinearLayout
+	        android:layout_height="match_parent"
+	        android:layout_width="match_parent"
+	        android:orientation="vertical"
+	        android:layout_margin="10dp"
+	        android:background="@color/yellow"
+	        android:onClick="openTopic">
+	        
+	        <TextView
+	            android:id="@+id/topic_roulette_title"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/label_topic_example_archived_title"
+	            android:textSize="12pt"
+	            android:textStyle="bold"
+	            android:fontFamily="sans-serif-thin"
+	            android:layout_margin="10dp" />
+	    
+	   	 	<TextView 
+	            android:id="@+id/topic_roulette_description"
+	            android:layout_width="match_parent"
+	            android:layout_height="150dp"
+	            android:text="@string/label_topic_example_archived_description"
+	            android:textStyle="bold"
+	            android:textSize="9pt"
+	            android:fontFamily="sans-serif-thin"
+	            android:layout_margin="10dp" />
+	   	 	
+	   	 	<View 
+		         	android:id="@+id/trennlinie2"
+		     	    android:layout_width="match_parent"
+		     	    android:layout_height="1dp"
+		     	    android:background="@color/grey"
+		     	    android:layout_marginLeft="10dp"
+		     	    android:layout_marginRight="10dp" />
+	    
+	    <LinearLayout android:id="@+id/info_leiste"
+		         android:layout_width="match_parent"
+		         android:layout_height="19dp"
+		         android:orientation="horizontal"
+		         android:layout_margin="10dp">
+		        
+		         <ImageView android:id="@+id/button_share"
+		             android:layout_width="20dp"
+		             android:layout_height="match_parent"
+		             android:background="@drawable/ic_action_share"
+		             android:contentDescription="buttonShare" />
+		         
+		         <TextView 
+		             android:layout_width="wrap_content"
+		             android:layout_height="wrap_content"
+		             android:text="@string/label_share_topic"
+		             android:textColor="#888"/>
+		         
+		         <View 
+		             android:layout_width="0dp"
+		             android:layout_height="0dp"
+		             android:layout_weight="1"
+		         />
+		         
+		         <ImageView 
+		             android:layout_width="15dp"
+		             android:layout_height="15dp"
+		        	 android:background="@drawable/clock"
+		        	 android:layout_marginRight="5dp"     
+		         />
+		         
+		         <TextView android:id="@+id/topic_roulette_timestamp"
+		             android:layout_width="wrap_content"
+		             android:layout_height="match_parent"
+		             android:text="@string/label_timestamp1"
+		             android:textColor="#888" />
+		     </LinearLayout>
+	    </LinearLayout>    
+	</LinearLayout>
+	<LinearLayout
+	    android:layout_height="15dp"
+	    android:layout_width="match_parent"
+	   	android:background="@drawable/roulette_bg_zacke"></LinearLayout>
 </LinearLayout>
