@@ -21,6 +21,7 @@ public class Services extends Service {
 	
 	public static JSONObject userData = null;
 	public static JSONArray rankList = null;
+	public static JSONArray topicContent = null;
 	
 	static String name = null;
 	static String mail = null;
@@ -156,12 +157,11 @@ public class Services extends Service {
 	    new Thread(new Runnable(){
 	        public void run(){
 	            try {
-	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/topic.sjs?topicID=";
+	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/topicIdeas.sjs?filter=topicID&value=";
 	            	reqUrl += topic;
 	            	String result = Database.getRequest(reqUrl);
-	            	String reqUrl1 = "http://space-labs.appspot.com/repo/2185003/ideas/api/ideas.sjs?topicID=";
-	            	reqUrl += topic;
-	            	String ideas = Database.getRequest(reqUrl);
+	            	JSONArray resArray = new JSONArray(result);
+	            	topicContent = resArray;
 	    		} catch (Exception e) {
 	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
 	    			e.printStackTrace();
