@@ -47,13 +47,13 @@ public class RegisterActivity extends Activity {
         final TextView myText1 = (TextView)findViewById(R.id.test_db_textview2);
         
 
-		try {
-			TopicRoulette.loadTopicCache();
-
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		try {
+////			TopicRoulette.loadTopicCache();
+//
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
         
                 
         myButton2.setOnClickListener(new OnClickListener() {

@@ -37,9 +37,13 @@ public class IdeaItemAdapter extends BaseAdapter{
 		for(int i=0;i<jsonObjects.length();i++){
 			try {
 				JSONObject obj = jsonObjects.getJSONObject(i);
-				Log.v("test", "JSONObject: " + obj.toString());
+//				Log.v("test", "JSONObject: " + obj.toString());
+				
+				items.add(new IdeaItem(obj));
 			} catch (JSONException e) {
 				Log.v("test", "JSONException: " + e.toString());
+			} catch (Exception ex){
+				Log.v("test", "Exception: " + ex.toString());
 			}
 		}
 	}
@@ -88,7 +92,7 @@ public class IdeaItemAdapter extends BaseAdapter{
 			IdeaItem item = (IdeaItem) items.get(position);
 			
 			text.setText(item.getText());
-			userText.setText(item.getUser());
+			userText.setText(item.getAuthorID());
 			
 			return view;
 		}

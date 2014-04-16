@@ -2,6 +2,7 @@ package com.betteridea.fragments;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -41,6 +42,11 @@ public class HomeFragment extends Fragment {
 			TopicRoulette.loadTopicCache();
 		}catch(IOException ex){
 			Log.v("test", "IOException: " + ex.toString());
+		}catch(ExecutionException ex){
+			Log.v("test", "WxexException: " + ex.toString());
+		}catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 //			Log.v("test","loadTopicCache() durch");
 //			topicRouletteItem = new TopicItem(TopicRoulette.getNextTopic());

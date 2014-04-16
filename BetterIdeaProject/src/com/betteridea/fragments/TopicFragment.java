@@ -1,5 +1,7 @@
 package com.betteridea.fragments;
 
+import org.json.JSONArray;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.betteridea.R;
+import com.betteridea.adapter.IdeaItemAdapter;
 import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.models.TopicItem;
 
@@ -27,12 +30,21 @@ public class TopicFragment extends Fragment{
 	 	 
 	 	ListView ideaList = (ListView) view.findViewById(R.id.list_topic_overview);
 	 	 
+	 	JSONArray jsonArray = null;
+	 	
 	 	try{
-	 		String testAsynchron = new ServiceExecuter().execute("showTopic", rouletteItem.getTopicID()+"").get();
-	 		Log.v("test", "Asynchrones Ergebnis: " + testAsynchron);
+	 		String jsonString = new ServiceExecuter().execute("showTopic", new String(rouletteItem.getTopicID()+"")).get();
+	 		jsonArray = new JSONArray(jsonString);
+//	 		Log.v("test", "Asynchrones Ergebnis: " + jsonArray);
+	 		IdeaItemAdapter adapter = new IdeaItemAdapter(getActivity(),jsonArray,rouletteItem);
+	 		ideaList.setAdapter(adapter);
 	 	}catch(Exception ex){
 	 		Log.v("test", "AsynchronException: " + ex.toString());
 	 	}
+	 	
+//	 	if(jsonArray!=null){
+	 		
+//	 	}
 	 	
 	 	//IdeaItemAdapter adapter = new IdeaItemAdapter(getActivity(),Service.topicContent,rouletteItem);
 	 	//ideaList.setAdapter(adapter);

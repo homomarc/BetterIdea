@@ -257,7 +257,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	  
   	//onClick Login Button
 	public void login(View view){
-		Intent intent;
+		Intent intent = null;
 		//		Check Password
 		/*EditText user = (EditText) findViewById(R.id.user_edit);
 		EditText password = (EditText) findViewById(R.id.password_edit);*/

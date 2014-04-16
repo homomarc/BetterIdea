@@ -44,7 +44,15 @@ public class TopicRoulette {
 		
 		counter++;
 		if(arrayLength - counter == 2){
-			loadTopicCache();
+			try {
+				loadTopicCache();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return nextObject;
 	}
