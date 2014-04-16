@@ -25,7 +25,6 @@ public class Services extends Service {
 	
 	static String name = null;
 	static String mail = null;
-	static String reqUrl = null;
 	static String arr = null;
 	static TextView text = null;
 	public static boolean ready = false;
@@ -64,31 +63,25 @@ public class Services extends Service {
 	    }).start();
 	}
 	
-	// Evtl. für Einstellungen --> Accountdaten beziehen
-	public void getUserData(String userMail, TextView myText) throws InterruptedException{
-		mail = userMail;
-		text = myText;
+	// Ändert den Usernamen eines Users
+	static String username = "";
+	public static void changeUsername(String newUserName) throws IOException{
+		username = newUserName;
 	    new Thread(new Runnable(){
 	        public void run(){
 	            try {
-	        		reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/getUserData.sjs";
-	        		reqUrl += "?mail=";
-	        		reqUrl += mail;
-	        		arr = Database.getRequest(reqUrl);
+	            	userData.put("userName", username);
+	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/users.sjs";
+	            	Database.postRequest(reqUrl, userData);
 	    		} catch (Exception e) {
 	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
 	    			e.printStackTrace();
-	    		}
-	            text.post(new Runnable(){
-            	public void run(){
-            		text.setText(arr);
-            	}	            
-	            });	            
+	    		}            
 	        }
 	    }).start();
 	}
 	
-	
+	// Ändert die Credits eines Users
 	static int credits = 0;
 	public static void changeCredits(int change) throws IOException{
 		credits = change;
@@ -99,7 +92,7 @@ public class Services extends Service {
 	            	int creditState = Integer.valueOf(creditString);
 	            	creditState += credits;
 	            	userData.put("credits", creditState);
-	            	reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs";
+	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs";
 	        		arr = Database.postRequest(reqUrl, userData);
 	    		} catch (Exception e) {
 	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
@@ -109,12 +102,13 @@ public class Services extends Service {
 	    }).start();
 	}
 	
+	// Aktualisiert die Credits im User-Objekt
 	public static void getCredits() throws IOException{
 	    new Thread(new Runnable(){
 	        public void run(){
 	            try {
 	            	int id = userData.getInt("id");
-	        		reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs?id=";
+	        		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs?id=";
 	        		reqUrl += id;
 	        		arr = Database.getRequest(reqUrl);
 	    			int length = arr.length();
@@ -129,7 +123,7 @@ public class Services extends Service {
 	    }).start();
 	}
 
-
+	// Erhöht den Spamcounter des Users um 1 und verringert die Credits bei einem Spamcount von 5
 	public static void addSpam() throws IOException{
 	    new Thread(new Runnable(){
 	        public void run(){
@@ -151,6 +145,7 @@ public class Services extends Service {
 	    }).start();
 	}
 	
+	// Gibt alle Ideen zu einer Topic in das Array topicContent zurück
 	static int topic = 0;
 	public static void showTopic(int topicID) throws IOException{
 		topic = topicID;
@@ -170,6 +165,7 @@ public class Services extends Service {
 	    }).start();
 	}
 	
+	// Bezieht eine neue und zufällige Topic
 	public static void getNewRandTopic() throws IOException{
 	    new Thread(new Runnable(){
 	        public void run(){
@@ -186,6 +182,7 @@ public class Services extends Service {
 	    }).start();
 	}
 	
+	// Bezieht die Top-Rangliste 
 	public static void getRankingList() throws IOException{
 	    new Thread(new Runnable(){
 	        public void run(){
@@ -203,14 +200,32 @@ public class Services extends Service {
 	    }).start();
 	}
 	
-
-
+	// Berechnet den Score des Users 
+	public static void setUserScore() throws IOException{
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	            	String ideas = userData.getString("ideaCount");
+	            	String topics = userData.getString("topicCount");
+	            	int ideaCount = Integer.valueOf(ideas);
+	            	int topicCount = Integer.valueOf(topics);
+	            	int score = ideaCount*50;
+	            	score += topicCount*100;
+	            	userData.put("score", score);
+	            	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/users.sjs";
+	            	Database.postRequest(reqUrl, userData);
+	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
+	    			e.printStackTrace();
+	    		}
+	        }
+	    }).start();
+	}
 
 
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Bind a Service-Call to the specific Service
 		return null;
 	}
 

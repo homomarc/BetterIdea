@@ -8,12 +8,12 @@ import com.betteridea.connection.Services;
 
 public class CreditSystem {
 
-	static int newIdea = -100;
-	static int pushIdea = -300;
-	static int goodComment = 50;
-	static int validComment = 10;
-	static int spamComments = -100;
-	static int showComment = -25;
+	private static int newIdea = -100;
+	private static int pushIdea = -300;
+	private static int goodComment = 50;
+	private static int validComment = 10;
+	private static int spamComments = -100;
+	private static int showComment = -25;
 	
 
 	public static void validComment() throws IOException{
