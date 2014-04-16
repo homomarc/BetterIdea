@@ -9,31 +9,30 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
         try {
     		if(data[0] == "createUser"){
     			// Data1 = Username / Data2 = Usermail
-    			Service.createUserData(data[1], data[2]);
+    			check = Service.createUserData(data[1], data[2]);
     		}else if(data[0] == "changeName"){
     			// Data1 = Username
-    			Service.changeUsername(data[1]);
+    			check = Service.changeUsername(data[1]);
     		}else if(data[0] == "changeCredits"){
     			// Data1 = Credits to change
-    			Service.changeCredits(data[1]);
+    			check = Service.changeCredits(data[1]);
     		}else if(data[0] == "getCredits"){
-    			Service.getCredits();
+    			check = Service.getCredits();
     		}else if(data[0] == "addSpam"){
-    			Service.addSpam();
+    			check = Service.addSpam();
     		}else if(data[0] == "showTopic"){
     			// Data1 = TopicID
-//    			Service.showTopic(data[1]);
-    			return "TestAsynchron";
+    			check = Service.showTopic(data[1]);
     		}else if(data[0] == "newRandTopic"){
-    			Service.getNewRandTopic();
+    			check = Service.getNewRandTopic();
     		}else if(data[0] == "rankList"){
-    			Service.getRankingList();
+    			check = Service.getRankingList();
     		}else if(data[0] == "setScore"){
-    			Service.setUserScore();
+    			check = Service.setUserScore();
     		}else if(data[0] == "addIdeaCount"){
-    			Service.addIdeaCount();
+    			check = Service.addIdeaCount();
     		}else if(data[0] == "addTopicCount"){
-    			Service.addTopicCount();
+    			check = Service.addTopicCount();
     		}
         } catch (Exception e) {
 			e.printStackTrace();

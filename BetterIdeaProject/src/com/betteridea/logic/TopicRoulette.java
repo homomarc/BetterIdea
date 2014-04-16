@@ -1,6 +1,7 @@
 package com.betteridea.logic;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,11 +17,12 @@ public class TopicRoulette {
 	private static int counter = 0;
 	private static int arrayLength = 0;
 	
-	public static void loadTopicCache() throws IOException{
+	public static String loadTopicCache() throws IOException, InterruptedException, ExecutionException{
+		String check = null;
 		for(int i=0; i<5; i++){
-			new ServiceExecuter().execute("newRandTopic");
+			check = new ServiceExecuter().execute("newRandTopic").get();
 		}
-
+		return check;
 	}
 	
 	public static JSONObject getNextTopic() throws IOException, JSONException{
