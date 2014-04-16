@@ -3,7 +3,8 @@ package com.betteridea.fragments;
 import org.json.JSONException;
 
 import com.betteridea.R;
-import com.betteridea.connection.Services;
+import com.betteridea.connection.Login;
+import com.betteridea.connection.Service;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ public class StatsOverviewFragment extends Fragment {
         
         try {
         	TextView userName = (TextView)rootView.findViewById(R.id.textViewUserName); 
-        	userName.setText(Services.userData.getString("userName"));
+        	userName.setText(Service.userData.getString("userName"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

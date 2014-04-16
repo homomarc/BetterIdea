@@ -18,7 +18,7 @@ public class TopicRoulette {
 	
 	public static void loadTopicCache() throws IOException{
 		for(int i=0; i<5; i++){
-			Services.getNewRandTopic();
+			new ServiceExecuter().execute("newRandTopic");
 		}
 
 	}

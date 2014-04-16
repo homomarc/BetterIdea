@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import com.betteridea.connection.Login;
-import com.betteridea.connection.Services;
+import com.betteridea.connection.Service;
 import com.betteridea.logic.TopicRoulette;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;

@@ -27,8 +27,8 @@ import android.os.AsyncTask;
 		
 		static void formatUserData(String userObject) throws JSONException{
 			JSONObject userObj = new JSONObject(userObject);
-			Services.userData = userObj;	
-			System.out.println("User Daten als Json: " + Services.userData);
+			Service.userData = userObj;	
+			System.out.println("User Daten als Json: " + Service.userData);
 		}
 	}
 	
