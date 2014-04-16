@@ -3,6 +3,7 @@ package com.betteridea.connection;
 import java.io.IOException;
 import java.util.Locale;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,6 +20,7 @@ public class Services extends Service {
 	public static Services service = new Services();
 	
 	public static JSONObject userData = null;
+	public static JSONArray rankList = null;
 	
 	static String name = null;
 	static String mail = null;
@@ -183,6 +185,24 @@ public class Services extends Service {
 	        }
 	    }).start();
 	}
+	
+	public static void getRankingList() throws IOException{
+	    new Thread(new Runnable(){
+	        public void run(){
+	            try {
+	        		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/rankList.sjs?sort=score";
+	        		String result = Database.getRequest(reqUrl);
+	        		String result2  = result.substring(1, result.length()-1);
+	        		JSONArray jsArray = new JSONArray(result2);
+	        		rankList = jsArray;
+	    		} catch (Exception e) {
+	    			//TODO: Error-Message (Übertragung fehlgeschlagen.)
+	    			e.printStackTrace();
+	    		}
+	        }
+	    }).start();
+	}
+	
 
 
 
