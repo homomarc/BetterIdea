@@ -24,6 +24,8 @@ public class StatsOverviewFragment extends Fragment {
         try {
         	TextView userName = (TextView)rootView.findViewById(R.id.textViewUserName); 
         	userName.setText(Service.userData.getString("userName"));
+        	TextView score = (TextView)rootView.findViewById(R.id.textViewScore); 
+        	score.setText(Service.userData.getString("score"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -13,8 +13,16 @@
         android:contentDescription="@string/logo_image"
         android:src="@drawable/logobig" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/label_register_header"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <EditText
-        android:id="@+id/user_edit"
+        android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -23,22 +31,6 @@
 
         <requestFocus />
     </EditText>
-
-    <EditText
-        android:id="@+id/password_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/password_hint" />
-	
-    <EditText
-        android:id="@+id/email_adress_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email_adress_hint" />
     
     <Button
         android:id="@+id/register_account_button"
@@ -50,43 +42,9 @@
         android:text="@string/register_account"
         android:onClick="register" />
 
-            <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-    <Button
-        android:layout_weight="1"
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TestDB"
-        android:onClick="gointoMain" />
-
-    <Button
-        android:layout_weight="1"
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TestDB2" />
-
-    </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-        
-        <TextView
-            android:layout_weight="1"
-        android:id="@+id/test_db_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/test_db_text" />
-    
-        <TextView
-            android:layout_weight="1"
-        android:id="@+id/test_db_textview2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/test_db_text2" />
         </LinearLayout>
 
 </LinearLayout>

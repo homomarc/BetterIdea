@@ -41,7 +41,8 @@
         </activity>
         <activity
             android:name="com.betteridea.StatsActivity"
-            android:label="@string/title_activity_settings" >
+            android:parentActivityName="com.betteridea.MainActivity"
+            android:label="@string/title_activity_stats" >
         </activity>
         <activity
             android:name="com.betteridea.SplashScreenActivity"

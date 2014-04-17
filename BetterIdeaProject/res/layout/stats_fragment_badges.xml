@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#dbd9d9">
+    android:background="@drawable/badge_sample_bg">
      
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="See your claimed badges"
+        android:text="See your claimed badges\n (available in future release...)"
+        android:textColor="#FFFFFF"
         android:textSize="20dp"
+        android:background="#80000000"
         android:layout_centerInParent="true"/>
      
  

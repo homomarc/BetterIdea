@@ -5,14 +5,6 @@
     android:background="#dbd9d9"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_vertical"
-        android:text="Overview"
-        android:textSize="20dp" />
-
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
@@ -24,35 +16,59 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-            
-            <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:src="@drawable/person" />
-            
+            android:layout_marginTop="10px" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="10px"
+                android:src="@drawable/person" />
+
             <TextView
                 android:id="@+id/textViewUserName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Username"
                 android:gravity="center_vertical"
+                android:text="Username"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-            
         </LinearLayout>
-
-        
     </LinearLayout>
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="2dip"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
         android:layout_marginTop="3px"
+        android:layout_marginBottom="5px"
         android:background="#FF0099CC" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1" >
+
+        <TextView
+            android:id="@+id/textViewScoreDescr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginRight="10px"
+            android:layout_marginLeft="10px"
+            android:text="@string/score" />
+        
+        <TextView
+            android:id="@+id/textViewScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Score" />
+
+    </LinearLayout>
 
 </RelativeLayout>

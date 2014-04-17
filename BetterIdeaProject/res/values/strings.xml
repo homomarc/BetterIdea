@@ -31,6 +31,7 @@
 	<string name="label_share_topic">Teilen</string>
 	<string name="label_timestamp1">Letztes Update: 14:43, 03.03.2014</string>
 	<string name="label_stats">Meine Stats</string>
+	<string name="label_register_header">Du hast noch keinen Account?\nGib einen Benutzernamen ein.</string>
 	
 	<!-- navigation items -->
 	<string name="navigation_home">Startseite</string>
@@ -45,9 +46,12 @@
 	<string name="search_text">Suchbegriff</string>
 	<string name="title_activity_register">Registrieren</string>
 	<string name="title_activity_settings">Einstellungen</string>
+	<string name="title_activity_stats">Meine Stats</string>
 	<string name="register_account">Register Account</string>
 	<string name="email_adress_hint">mail@example.com</string>
 	
+	<!-- Stats -->
+	<string name="score">Dein Score:</string>
 	<!-- Google Sign+ -->
 	
     <string name="circles_title">Visible circles:</string>

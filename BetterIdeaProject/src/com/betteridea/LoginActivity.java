@@ -175,6 +175,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    		}else{
 	    			System.out.println("Invalid email!");
 	    			Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+	    			intent.putExtra("EMAIL", email);
 	    			startActivity(intent);
 	    		}
 	        } else {
@@ -261,9 +262,10 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		//		Check Password
 		/*EditText user = (EditText) findViewById(R.id.user_edit);
 		EditText password = (EditText) findViewById(R.id.password_edit);*/
-		
+		//TODO: TESTEMAIL!
+		String email = "HerrPalinski@googlemail.com";
 		try{
-			String result = new Login().execute("rene.kirchhoff90@googlemail.com").get();
+			String result = new Login().execute(email).get();
 			if(result != null){
 				String check = TopicRoulette.loadTopicCache();
 				if(check != "false"){
@@ -274,6 +276,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 			}else{
 				System.out.println("Invalid email!");
 				intent = new Intent(LoginActivity.this,RegisterActivity.class);
+				intent.putExtra("EMAIL", email);
 	//			startActivity(intent);
 			}
 		

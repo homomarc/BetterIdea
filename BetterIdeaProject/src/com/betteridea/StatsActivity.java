@@ -27,7 +27,6 @@ public class StatsActivity extends FragmentActivity implements ActionBar.TabList
         mAdapter = new StatsAdapter(getSupportFragmentManager());
  
         viewPager.setAdapter(mAdapter);
-        actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
  
         // Adding Tabs

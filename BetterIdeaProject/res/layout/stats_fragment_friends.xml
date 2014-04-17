@@ -8,8 +8,9 @@
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Stats of your friends"
+        android:text="Stats of your friends\n (available in future release...)"
         android:textSize="20dp"
+        android:background="#48000000"
         android:layout_centerInParent="true"/>
      
  
