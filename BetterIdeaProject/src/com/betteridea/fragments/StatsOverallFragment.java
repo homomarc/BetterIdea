@@ -1,5 +1,8 @@
 package com.betteridea.fragments;
 
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import com.betteridea.R;
@@ -23,15 +26,28 @@ public class StatsOverallFragment extends Fragment{
  
 		
         View rootView = inflater.inflate(R.layout.stats_fragment_overall, container, false);
-         
-        new ServiceExecuter().execute("rankList");
+        
+        String jsString;
+        JSONArray jsArray = null;
+        try {
+        	jsString = new ServiceExecuter().execute("rankList").get();
+			jsArray = new JSONArray(jsString);
+			System.out.println("TEST json Array for RankList: "+jsArray.toString());
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			e1.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
         
         try {
         	String[] scoreName = new String[10];
         	String[] scorePoints = new String[10];
         	for(int i=1;i<4;i++){
-        		scoreName[i] = Service.rankList.getJSONObject(i).getString("name");
-        		scorePoints[i] = Service.rankList.getJSONObject(i).getString("score");
+        		
+				scoreName[i] = jsArray.getJSONObject(i).getString("name");
+        		scorePoints[i] = jsArray.getJSONObject(i).getString("score");
         	}
         	 // use your custom layout
     		ListView scoreList = (ListView) rootView.findViewById(R.id.listView);

@@ -25,7 +25,9 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
     			// Data1 = TopicID
     			check = Service.showTopic(data[1]);
     		}else if(data[0] == "newRandTopic"){
-    			check = Service.getNewRandTopic();
+    			for(int i=0; i<5; i++){
+    				check = Service.getNewRandTopic();
+    			}
     		}else if(data[0] == "rankList"){
     			check = Service.getRankingList();
     		}else if(data[0] == "setScore"){

@@ -18,9 +18,7 @@ public class TopicRoulette {
 	
 	public static String loadTopicCache() throws IOException, InterruptedException, ExecutionException{
 		String check = null;
-		for(int i=0; i<5; i++){
-			check = new ServiceExecuter().execute("newRandTopic").get();
-		}
+		check = new ServiceExecuter().execute("newRandTopic").get();
 		return check;
 	}
 	
