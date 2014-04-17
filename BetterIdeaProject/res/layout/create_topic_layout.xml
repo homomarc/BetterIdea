@@ -26,13 +26,15 @@
 		    android:layout_marginRight="5dp"
 		    android:layout_height="wrap_content"
 		    style="@style/button_style_white"
-		    android:text="@string/button_create_topic_discard"/>
+		    android:text="@string/button_create_topic_discard"
+		    android:onClick="close"/>
 		<Button
 	    	android:layout_width="0dp"
 	    	android:layout_weight="1"
 	    	android:layout_height="wrap_content"
 	   	 	style="@style/button_style"
-	    	android:text="@string/button_create_topic_go"/>
+	    	android:text="@string/button_create_topic_go"
+	    	android:onClick="submit"/>
 	</LinearLayout>
 	
 </LinearLayout>

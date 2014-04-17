@@ -24,12 +24,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.betteridea.adapter.NavDrawerListAdapter;
 import com.betteridea.adapter.TopicItemAdapter;
+import com.betteridea.connection.Login;
+import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.fragments.HomeFragment;
 import com.betteridea.fragments.SettingsFragment;
 import com.betteridea.fragments.TopicFragment;
+import com.betteridea.logic.CreditSystem;
 import com.betteridea.logic.TopicRoulette;
 import com.betteridea.models.NavDrawerItem;
 import com.betteridea.models.TopicItem;
@@ -243,6 +247,26 @@ public class MainActivity extends Activity {
 			fragmentManager.beginTransaction()
 	    	.replace(R.id.content_frame,fragment)
 	    	.commit();
+		}
+	}
+	public void close(View view){
+		CreateTopicDialog.alert.dismiss();
+		System.out.println("CLOSE");
+	}
+	public void submit(View view) throws InterruptedException, ExecutionException, IOException, JSONException{
+		TextView topicTitle = (TextView) findViewById(R.id.edittext_topic_title);
+		String titleString = topicTitle.getText().toString();
+		
+		TextView topicDesc = (TextView) findViewById(R.id.edittext_topic_description);
+		String descString = topicDesc.getText().toString();
+		
+		System.out.println("title: " + titleString + "desc: " + descString);	
+		
+		String result1 = CreditSystem.newTopic();
+		if(!result1.equals("toLess")){
+			String result = new ServiceExecuter().execute("addTopic", titleString, descString).get();
+			String result2 = new ServiceExecuter().execute("addTopicCount").get();
+			System.out.println("Add: " + result + "Count: " + result2);	
 		}
 	}
 }

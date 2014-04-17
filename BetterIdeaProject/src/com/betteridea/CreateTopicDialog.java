@@ -5,8 +5,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 
 public class CreateTopicDialog extends DialogFragment {
+	public static AlertDialog alert = null;
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -16,7 +18,7 @@ public class CreateTopicDialog extends DialogFragment {
 		builder.setView(inflater.inflate(R.layout.create_topic_layout, null));
 		
 		builder.setTitle(R.string.label_create_topic_headline);
-		
-		return builder.create();
+		alert = builder.create();
+		return alert;
 	}
 }
