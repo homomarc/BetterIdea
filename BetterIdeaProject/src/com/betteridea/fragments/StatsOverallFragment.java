@@ -42,17 +42,14 @@ public class StatsOverallFragment extends Fragment{
 		}
         
         try {
-        	String[] scoreName = new String[10];
-        	String[] scorePoints = new String[10];
-        	for(int i=1;i<4;i++){
-        		
-				scoreName[i] = jsArray.getJSONObject(i).getString("name");
-        		scorePoints[i] = jsArray.getJSONObject(i).getString("score");
+        	String[] scoreListArray = new String[4];
+        	for(int i=0;i<4;i++){
+				scoreListArray[i] = jsArray.getJSONObject(i).getString("name") + " (" + jsArray.getJSONObject(i).getString("score") + ")";
         	}
         	 // use your custom layout
     		ListView scoreList = (ListView) rootView.findViewById(R.id.listView);
     	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-    	        R.layout.stats_fragment_overall_lv, R.id.label, scoreName);
+    	        R.layout.stats_fragment_overall_lv, R.id.label, scoreListArray);
     	    scoreList.setAdapter(adapter);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
