@@ -12,7 +12,6 @@ import com.betteridea.connection.*;
 public class TopicRoulette {
 	
 	public static TopicRoulette topics = new TopicRoulette();
-	
 	private static JSONArray topicCache = new JSONArray();
 	private static int counter = 0;
 	private static int arrayLength = 0;

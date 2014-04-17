@@ -92,7 +92,7 @@ public class IdeaItemAdapter extends BaseAdapter{
 			IdeaItem item = (IdeaItem) items.get(position);
 			
 			text.setText(item.getText());
-			userText.setText(item.getAuthorID());
+//			userText.setText(item.getAuthorID());
 			
 			return view;
 		}

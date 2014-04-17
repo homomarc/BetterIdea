@@ -14,12 +14,13 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
     			// Data1 = Username
     			check = Service.changeUsername(data[1]);
     		}else if(data[0] == "changeCredits"){
-    			// Data1 = Credits to change
-    			check = Service.changeCredits(data[1]);
+    			// Data1 = Credits to change / Data2 = authorID
+    			check = Service.changeCredits(data[1], data[2]);
     		}else if(data[0] == "getCredits"){
     			check = Service.getCredits();
     		}else if(data[0] == "addSpam"){
-    			check = Service.addSpam();
+    			// Data1 = Credits to change / Data2 = authorID
+    			check = Service.addSpam(data[1], data[2]);
     		}else if(data[0] == "showTopic"){
     			// Data1 = TopicID
     			check = Service.showTopic(data[1]);
@@ -33,6 +34,9 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
     			check = Service.addIdeaCount();
     		}else if(data[0] == "addTopicCount"){
     			check = Service.addTopicCount();
+    		}else if(data[0] == "addTopic"){
+    			// Data1 = topicTitle / Data2 = topicDescription
+    			check = Service.addTopic(data[1], data[2]);
     		}
         } catch (Exception e) {
 			e.printStackTrace();

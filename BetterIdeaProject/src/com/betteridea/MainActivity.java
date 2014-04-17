@@ -2,6 +2,7 @@ package com.betteridea;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 
@@ -214,7 +215,7 @@ public class MainActivity extends Activity {
     public void onBackPressed() {
     }
     
-	public void loadTopics(View view){
+	public void loadTopics(View view) throws InterruptedException, ExecutionException{
 		Log.v("test", "Start loadTopics");
 		
 		try{
