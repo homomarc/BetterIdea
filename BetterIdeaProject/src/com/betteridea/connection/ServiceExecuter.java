@@ -40,8 +40,12 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
     			// Data1 = topicTitle / Data2 = topicDescription
     			check = Service.addTopic(data[1], data[2]);
     		}else if(data[0] == "addIdea"){
-    			// Data1 = topicTitle / Data2 = topicDescription
+    			// Data1 = text / Data2 = topicID
     			check = Service.addIdea(data[1], data[2]);
+    		}else if(data[0] == "allUserTopics"){
+    			check = Service.allUserTopic();
+    		}else if(data[0] == "getUserRank"){
+    			check = Service.getUserRank();
     		}
         } catch (Exception e) {
 			e.printStackTrace();

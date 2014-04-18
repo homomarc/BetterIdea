@@ -17,6 +17,7 @@ public class Service {
 	public static JSONObject userData = null;
 	public static JSONArray rankList = null;
 	public static JSONArray topicContent = null;
+	public static JSONArray userTopics = null;
 	
 	// Neuen User anlegen
 	public static String createUserData(String userName, String userMail) throws IOException, JSONException{
@@ -280,6 +281,32 @@ public class Service {
     		json.put("authorID", userData.getString("userID"));
     		Database.putRequest(reqUrl, json);
         	return "true";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "false";
+		}
+	}
+	
+	// Gibt alle Ideen zu einer Topic in das Array topicContent zurück
+	public static String allUserTopic() throws IOException{
+        try {
+        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/topicIdeas.sjs?filter=authorID&value=";
+        	reqUrl += userData.getString("userID");
+        	String result = Database.getRequest(reqUrl);
+        	JSONArray resArray = new JSONArray(result);
+        	userTopics = resArray;
+        	return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "false";
+		}
+	}
+	public static String getUserRank() throws IOException{
+        try {
+        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/getUserRank.sjs?sort=score&id=";
+        	reqUrl += userData.getString("userID");
+        	String rank = Database.getRequest(reqUrl);
+        	return rank;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "false";
