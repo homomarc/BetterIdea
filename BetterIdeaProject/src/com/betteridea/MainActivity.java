@@ -30,6 +30,7 @@ import com.betteridea.adapter.IdeaItemAdapter;
 import com.betteridea.adapter.NavDrawerListAdapter;
 import com.betteridea.adapter.TopicItemAdapter;
 import com.betteridea.connection.ServiceExecuter;
+import com.betteridea.fragments.CreateTopicFragment;
 import com.betteridea.fragments.HomeFragment;
 import com.betteridea.fragments.SettingsFragment;
 import com.betteridea.fragments.TopicFragment;
@@ -196,8 +197,10 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	if(item.getItemId()==R.id.action_add){
-    		DialogFragment fragment = new CreateTopicDialog();
-    		fragment.show(getFragmentManager(),"createtopic");
+    		CreateTopicFragment fragment = new CreateTopicFragment();
+    		fragmentManager.beginTransaction()
+	    	.replace(R.id.content_frame,fragment)
+	    	.commit();
     		return true;
     	}
     	/*if(item.getItemId()==R.id.action_logout){
@@ -260,9 +263,13 @@ public class MainActivity extends Activity {
 		}
 	}
 	public void close(View view){
-		CreateTopicDialog.alert.dismiss();
-		System.out.println("CLOSE");
+//		CreateTopicDialog.alert.dismiss();
+//		System.out.println("CLOSE");
 	}
+	
+	/*
+	 * Create Topic:
+	 */
 	public void submit(View view) throws InterruptedException, ExecutionException, IOException, JSONException{
 		TextView topicTitle = (TextView) findViewById(R.id.edittext_topic_title);
 		String titleString = topicTitle.getText().toString();
@@ -270,13 +277,13 @@ public class MainActivity extends Activity {
 		TextView topicDesc = (TextView) findViewById(R.id.edittext_topic_description);
 		String descString = topicDesc.getText().toString();
 		
-		System.out.println("title: " + titleString + "desc: " + descString);	
+//		System.out.println("title: " + titleString + "desc: " + descString);	
 		
 		String result1 = CreditSystem.newTopic();
 		if(!result1.equals("toLess")){
 			String result = new ServiceExecuter().execute("addTopic", titleString, descString).get();
 			String result2 = new ServiceExecuter().execute("addTopicCount").get();
-			System.out.println("Add: " + result + "Count: " + result2);	
+//			System.out.println("Add: " + result + "Count: " + result2);
 		}
 	}
 	

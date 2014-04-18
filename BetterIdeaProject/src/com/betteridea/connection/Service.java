@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.betteridea.logic.TopicRoulette;
 
 
@@ -104,8 +106,9 @@ public class Service {
 			userData.put("credits", credit);
 			return arr1;
 		} catch (Exception e) {
+			Log.v("test", "Exception in Service.getCredits(): " + e.toString());
 			e.printStackTrace();
-			return "false";
+			return "-100";
 		}
 	}
 

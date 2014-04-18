@@ -5,6 +5,8 @@ import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 
+import android.util.Log;
+
 import com.betteridea.connection.ServiceExecuter;
 
 public class CreditSystem {
@@ -21,6 +23,7 @@ public class CreditSystem {
 
 	public static String newTopic() throws IOException, JSONException, InterruptedException, ExecutionException{   
 		String credits = new ServiceExecuter().execute("getCredits").get();
+		Log.v("test","Credits: " + credits);
     	int credit = Integer.valueOf(credits);
 		if(credit >= newTopic*(-1)){
 			String check = new ServiceExecuter().execute("changeCredits", String.valueOf(newTopic), null).get();

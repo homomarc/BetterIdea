@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <EditText android:id="@+id/edittext_topic_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edittext_topic_title"
+        android:layout_alignParentTop="true" />
+    
+    <EditText android:id="@+id/edittext_topic_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:hint="@string/edittext_topic_description"
+        android:layout_below="@id/edittext_topic_title"
+        android:minLines="4" />
+
+    <LinearLayout 
+        android:layout_alignParentBottom="true"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:layout_margin="5dp">
+	    <Button
+		    android:layout_width="0dp"
+		    android:layout_weight="1"
+		    android:layout_marginRight="5dp"
+		    android:layout_height="wrap_content"
+		    style="@style/button_style_white"
+		    android:text="@string/button_create_topic_discard"
+		    android:onClick="close"/>
+		<Button
+	    	android:layout_width="0dp"
+	    	android:layout_weight="1"
+	    	android:layout_height="wrap_content"
+	   	 	style="@style/button_style"
+	    	android:text="@string/button_create_topic_go"
+	    	android:onClick="submit"/>
+	</LinearLayout>
+</RelativeLayout>
