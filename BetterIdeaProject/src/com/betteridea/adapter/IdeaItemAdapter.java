@@ -88,11 +88,14 @@ public class IdeaItemAdapter extends BaseAdapter{
 			
 			TextView userText = (TextView) view.findViewById(R.id.text_idea_user);
 			TextView text = (TextView) view.findViewById(R.id.text_idea);
+			TextView timeStamp = (TextView) view.findViewById(R.id.topic_feed_timestamp);
 			
 			IdeaItem item = (IdeaItem) items.get(position);
 			
 			text.setText(item.getText());
-//			userText.setText(item.getAuthorID());
+			//TODO: ID und kein Name!!!
+			timeStamp.setText(item.getDate());
+			userText.setText(item.getAuthorID());
 			
 			return view;
 		}

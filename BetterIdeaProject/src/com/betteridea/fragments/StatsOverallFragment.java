@@ -26,12 +26,14 @@ public class StatsOverallFragment extends Fragment{
  
 		
         View rootView = inflater.inflate(R.layout.stats_fragment_overall, container, false);
-        
+        String userRank = null;
         String jsString;
         JSONArray jsArray = null;
         try {
         	jsString = new ServiceExecuter().execute("rankList").get();
 			jsArray = new JSONArray(jsString);
+			userRank = new ServiceExecuter().execute("getUserRank").get();
+			
 			System.out.println("TEST json Array for RankList: "+jsArray.toString());
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
@@ -47,7 +49,8 @@ public class StatsOverallFragment extends Fragment{
         	String[] scoreListArrayOwn = new String[1];
         	String[] rankListArrayOwn = new String[1];
         	scoreListArrayOwn[0] = Service.userData.getString("userName") + " (" + Service.userData.getString("score") + ")";
-        	rankListArrayOwn[0] = "123";
+        	
+        	rankListArrayOwn[0] = userRank;
         	
         	for(int i=0;i<4;i++){
 				scoreListArray[i] = jsArray.getJSONObject(i).getString("name") + " (" + jsArray.getJSONObject(i).getString("score") + ")";
@@ -70,6 +73,7 @@ public class StatsOverallFragment extends Fragment{
     	    ArrayAdapter<String> adapterOwn = new ArrayAdapter<String>(getActivity(),
     	        R.layout.stats_fragment_overall_lv, R.id.label, scoreListArrayOwn);
     	    scoreListOwn.setAdapter(adapterOwn);
+    	    
     	    
     	    //Rank 1.-4.
     	    ListView rankListOwn = (ListView) rootView.findViewById(R.id.listViewOwnRank);

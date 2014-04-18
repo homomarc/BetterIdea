@@ -34,6 +34,7 @@ import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.fragments.CreateTopicFragment;
 import com.betteridea.fragments.HomeFragment;
 import com.betteridea.fragments.SettingsFragment;
+import com.betteridea.fragments.TopicCloseFragment;
 import com.betteridea.fragments.TopicFragment;
 import com.betteridea.logic.CreditSystem;
 import com.betteridea.logic.TopicRoulette;
@@ -69,11 +70,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
         setContentView(R.layout.drawer_layout);
         
         Fragment fragment = new HomeFragment();
-//        Fragment fragment = new TopicFragment();
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
         	.add(R.id.content_frame,fragment)
@@ -161,12 +160,11 @@ public class MainActivity extends Activity {
 				case 0:
 					break;
 				case 1:
-					//TODO: G+ Logout  funktioniert noch nicht, loggt sich gleich wieder ein
-				    if (mGoogleApiClient.isConnected()) {
-				      Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-				      mGoogleApiClient.disconnect();
-				      mGoogleApiClient.connect();
-				    }
+					//TODO: 
+					fragment = new TopicCloseFragment(topicItemAdapter.getRouletteItem());
+					fragmentManager.beginTransaction()
+			    	.replace(R.id.content_frame,fragment)
+			    	.commit();
 					break;
 				//LOGOUT
 				case 2:
@@ -300,12 +298,28 @@ public class MainActivity extends Activity {
 	 */
 	public void sendIdea(View view){
 		EditText ideaText = (EditText) findViewById(R.id.text_enter_idea);
-		Log.v("test", "Idee: " + ideaText.getText().toString());
-		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),"18.04.2014",false,-1,false,-1,-1,-1);
+		String text = ideaText.getText().toString();
+		Log.v("MainActivity (SendIdea)", "Idee: " + ideaText.getText().toString());
+		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),"18.04.2014",false,-1,false,-1,-1,"-1");
 		ideaItemAdapter.addIdea(idea);
 		ideaItemAdapter.notifyDataSetChanged();
 		ideaText.setText("");
 		ListView ideaList = (ListView) findViewById(R.id.list_topic_overview);
+		
+		//An Server senden
+		String result = null;
+		try {
+			result = new ServiceExecuter().execute("addIdea", text, topicItemAdapter.getRouletteItem().getTopicID()+"").get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(result=="true"){
+			Toast.makeText(this, "Idee eingereicht", Toast.LENGTH_SHORT).show();
+		}
 	}
 }
 

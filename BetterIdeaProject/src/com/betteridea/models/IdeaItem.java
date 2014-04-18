@@ -14,9 +14,9 @@ public class IdeaItem extends Item{
 	private boolean uncovered = false;
 	private int ideaID = -1;
 	private int topicID = -1;
-	private int authorID = -1;
+	private String authorID = "-1";
 	
-	public IdeaItem(String text, String date, boolean isValuated, int id, boolean uncovered, int ideaID, int topicID, int authorID){
+	public IdeaItem(String text, String date, boolean isValuated, int id, boolean uncovered, int ideaID, int topicID, String authorID){
 		this.text = text;
 		this.date = date;
 		this.setValuated(isValuated);
@@ -36,7 +36,7 @@ public class IdeaItem extends Item{
 			this.uncovered = obj.getBoolean("uncovered");
 			this.ideaID = obj.getInt("ideaID");
 			this.topicID = obj.getInt("topicID");
-			this.authorID = obj.getInt("authorID");
+			this.authorID = obj.getString("authorID");
 		}catch(JSONException ex){
 			Log.v("text", "JSONException: " + ex.toString());
 		}
@@ -90,11 +90,11 @@ public class IdeaItem extends Item{
 		this.topicID = topicID;
 	}
 
-	public int getAuthorID() {
+	public String getAuthorID() {
 		return authorID;
 	}
 
-	public void setAuthorID(int authorID) {
+	public void setAuthorID(String authorID) {
 		this.authorID = authorID;
 	}
 }
