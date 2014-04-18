@@ -45,12 +45,9 @@ public class HomeFragment extends Fragment {
 		
 //		TopicItem topicRouletteItem = null;
 		try{
-			TopicRoulette.loadTopicCache();
 			String jsonObjString = new ServiceExecuter().execute("newRandTopic").get();
 			TopicItem rouletteItem = new TopicItem(new JSONObject(jsonObjString));
 			topicItems.add(rouletteItem);
-		}catch(IOException ex){
-			Log.v("test", "IOException: " + ex.toString());
 		}catch(ExecutionException ex){
 			Log.v("test", "WxexException: " + ex.toString());
 		}catch (InterruptedException e) {
