@@ -17,10 +17,12 @@ public class TopicItemAdapter extends BaseAdapter {
 	// 1. item is rouletteItem
 	private ArrayList<TopicItem> topicItems;
 	private Context context;
+	private boolean ownTopics= false;
 	
 	public TopicItemAdapter(Context context, ArrayList<TopicItem> topicItems){
 		this.context = context;
 		this.topicItems = topicItems;
+		this.ownTopics = true;
 	}
 	
 	public TopicItemAdapter(Context context, ArrayList<TopicItem> topicItems, TopicItem rouletteItem){
@@ -67,8 +69,12 @@ public class TopicItemAdapter extends BaseAdapter {
 			
 		}else{
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.topic_item_layout, null);
-			
+			//Falls eigene Topics --> closable layout wählen
+			if(ownTopics==true){
+				view = inflater.inflate(R.layout.topic_own_item_layout, null);
+			}else{
+				view = inflater.inflate(R.layout.topic_item_layout, null);
+			}
 			// Get Resources
 			TextView titleView = (TextView) view.findViewById(R.id.topic_feed_title);
 			TextView descriptionView = (TextView) view.findViewById(R.id.topic_feed_description);

@@ -43,6 +43,25 @@ public class TopicItem extends Item{
 		}
 	}
 	
+	//Eigene Topics (kommen nicht ins Roulette) 
+	//TODO: Damit aber noch nicht aus dem Roulette gänzlich ausgeschlossen!
+	public TopicItem(JSONObject jsobject, boolean ownTopic){
+		Log.v("test", "JSONObject:  " + jsobject.toString());
+		try{
+//			JSONObject auslesen
+			this.setID(jsobject.getInt("id"));
+			this.title = jsobject.getString("titel");
+			this.setUpdated(jsobject.getString("updated"));
+			this.description = jsobject.getString("description");
+			this.setTopicID(jsobject.getInt("topicID"));
+			this.timestamp = jsobject.getString("date");
+			
+			this.isRouletteItem = false;
+		}catch(JSONException ex){
+			Log.v("test", "JSONException: " + ex.toString());
+		}
+	}
+	
 	
 	/*
 	 * GETTER & SETTER

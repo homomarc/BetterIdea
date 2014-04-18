@@ -36,6 +36,7 @@ import com.betteridea.fragments.HomeFragment;
 import com.betteridea.fragments.SettingsFragment;
 import com.betteridea.fragments.TopicCloseFragment;
 import com.betteridea.fragments.TopicFragment;
+import com.betteridea.fragments.TopicOwnFragment;
 import com.betteridea.logic.CreditSystem;
 import com.betteridea.logic.TopicRoulette;
 import com.betteridea.models.IdeaItem;
@@ -161,7 +162,7 @@ public class MainActivity extends Activity {
 					break;
 				case 1:
 					//TODO: 
-					fragment = new TopicCloseFragment(topicItemAdapter.getRouletteItem());
+					fragment = new TopicOwnFragment();
 					fragmentManager.beginTransaction()
 			    	.replace(R.id.content_frame,fragment)
 			    	.commit();
@@ -256,6 +257,14 @@ public class MainActivity extends Activity {
 	public void openTopic(View view){
 		if(topicItemAdapter.getRouletteItem() != null){
 			Fragment fragment = new TopicFragment(topicItemAdapter.getRouletteItem());
+			fragmentManager.beginTransaction()
+	    	.replace(R.id.content_frame,fragment)
+	    	.commit();
+		}
+	}
+	public void openOwnTopic(View view){
+		if(topicItemAdapter.getRouletteItem() != null){
+			Fragment fragment = new TopicCloseFragment(topicItemAdapter.getRouletteItem());
 			fragmentManager.beginTransaction()
 	    	.replace(R.id.content_frame,fragment)
 	    	.commit();

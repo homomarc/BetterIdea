@@ -267,12 +267,12 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		try{
 			String result = new Login().execute(email).get();
 			if(result != null){
-				String check = TopicRoulette.loadTopicCache();
-				if(check != "false"){
+				//String check = TopicRoulette.loadTopicCache();
+				//if(check != "false"){
 					System.out.println("Sign in succeeded.");
 					intent = new Intent(LoginActivity.this,MainActivity.class);
 		//			startActivity(intent);
-				}
+				//}
 			}else{
 				System.out.println("Invalid email!");
 				intent = new Intent(LoginActivity.this,RegisterActivity.class);

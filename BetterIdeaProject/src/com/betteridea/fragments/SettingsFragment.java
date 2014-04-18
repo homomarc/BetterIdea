@@ -7,6 +7,7 @@ import org.json.JSONException;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,13 @@ import com.betteridea.R;
 import com.betteridea.connection.ServiceExecuter;
 
 public class SettingsFragment extends Fragment{
+	
+	@Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.v("Load saved Instance test","SettingsFragment");
+    }
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
 		final View view = inflater.inflate(R.layout.settings_fragment, container, false);
