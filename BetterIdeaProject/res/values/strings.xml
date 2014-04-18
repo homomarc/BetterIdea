@@ -34,7 +34,8 @@
 	<string name="label_register_header">Du hast noch keinen Account?\nGib einen Benutzernamen ein.</string>
 	<string name="hint_enter_idea">Hier eigene Idee eintragen.</string>
 	<string name="button_send">Senden</string>
-	
+	<string name="change_username">Nutzernamen ändern</string>
+
 	<!-- navigation items -->
 	<string name="navigation_home">Startseite</string>
 	<string name="navigation_mygames">Meine Themen</string>

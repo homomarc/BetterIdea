@@ -43,14 +43,39 @@ public class StatsOverallFragment extends Fragment{
         
         try {
         	String[] scoreListArray = new String[4];
+        	String[] rankListArray = {"1","2","3","4"};
+        	String[] scoreListArrayOwn = new String[1];
+        	String[] rankListArrayOwn = new String[1];
+        	scoreListArrayOwn[0] = Service.userData.getString("userName") + " (" + Service.userData.getString("score") + ")";
+        	rankListArrayOwn[0] = "123";
+        	
         	for(int i=0;i<4;i++){
 				scoreListArray[i] = jsArray.getJSONObject(i).getString("name") + " (" + jsArray.getJSONObject(i).getString("score") + ")";
         	}
-        	 // use your custom layout
-    		ListView scoreList = (ListView) rootView.findViewById(R.id.listView);
+        	//Rank 1.-4.
+    	    ListView rankList = (ListView) rootView.findViewById(R.id.listViewRank);
+    	    ArrayAdapter<String> adapterRank = new ArrayAdapter<String>(getActivity(),
+    	        R.layout.stats_fragment_overall_lv_rank, R.id.label, rankListArray);
+    	    rankList.setAdapter(adapterRank);
+    	    
+        	 // Scorenames
+    		ListView scoreList = (ListView) rootView.findViewById(R.id.listViewName);
     	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
     	        R.layout.stats_fragment_overall_lv, R.id.label, scoreListArray);
     	    scoreList.setAdapter(adapter);
+    	    
+    	    
+    	    // Own Scorename
+    		ListView scoreListOwn = (ListView) rootView.findViewById(R.id.listViewOwnName);
+    	    ArrayAdapter<String> adapterOwn = new ArrayAdapter<String>(getActivity(),
+    	        R.layout.stats_fragment_overall_lv, R.id.label, scoreListArrayOwn);
+    	    scoreListOwn.setAdapter(adapterOwn);
+    	    
+    	    //Rank 1.-4.
+    	    ListView rankListOwn = (ListView) rootView.findViewById(R.id.listViewOwnRank);
+    	    ArrayAdapter<String> adapterOwnRank = new ArrayAdapter<String>(getActivity(),
+    	        R.layout.stats_fragment_overall_lv_rank, R.id.label, rankListArrayOwn);
+    	    rankListOwn.setAdapter(adapterOwnRank);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

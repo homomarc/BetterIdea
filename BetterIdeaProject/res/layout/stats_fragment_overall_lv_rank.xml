@@ -3,23 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="66dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/person" >
-    </ImageView>
-
     <TextView
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"
         android:layout_gravity="center_vertical"
-        android:textSize="20dp" >
+        android:textSize="53dp" >
     </TextView>
 
 </LinearLayout> 
