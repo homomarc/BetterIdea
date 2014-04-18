@@ -64,14 +64,14 @@ public class Service {
 	// Ändert die Credits eines Users
 	public static String changeCredits(String newCredits, String authorID) throws IOException{
         try {
-        	if(authorID == null){
+        	if(authorID.equals("null")){
             	String creditString = userData.getString("credits");
             	int creditState = Integer.valueOf(creditString);
             	int change = Integer.valueOf(newCredits);
             	creditState += change;
+            	userData.put("credits", creditState);
             	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs";
             	Database.postRequest(reqUrl, userData);
-            	userData.put("credits", creditState);
         		return "true";
         	}else{
         		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/users.sjs?filter=userID&value=";

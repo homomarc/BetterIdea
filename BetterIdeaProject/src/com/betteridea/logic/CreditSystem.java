@@ -26,7 +26,7 @@ public class CreditSystem {
 		Log.v("test","Credits: " + credits);
     	int credit = Integer.valueOf(credits);
 		if(credit >= newTopic*(-1)){
-			String check = new ServiceExecuter().execute("changeCredits", String.valueOf(newTopic), null).get();
+			String check = new ServiceExecuter().execute("changeCredits", String.valueOf(newTopic), "null").get();
 			return check;
 		}
 		else{
@@ -37,7 +37,7 @@ public class CreditSystem {
 		String credits = new ServiceExecuter().execute("getCredits").get();
     	int credit = Integer.valueOf(credits);
 		if(credit >= pushTopic*(-1)){
-			String check = new ServiceExecuter().execute("changeCredits", String.valueOf(pushTopic), null).get();
+			String check = new ServiceExecuter().execute("changeCredits", String.valueOf(pushTopic), "null").get();
 			return check;
 		}
 		else{
@@ -48,7 +48,7 @@ public class CreditSystem {
 		String credits = new ServiceExecuter().execute("getCredits").get();
     	int credit = Integer.valueOf(credits);
 		if(credit >= showIdea*(-1)){
-			String check = new ServiceExecuter().execute("changeCredits", String.valueOf(showIdea), null).get();
+			String check = new ServiceExecuter().execute("changeCredits", String.valueOf(showIdea), "null").get();
 			return check;
 		}
 		else{
