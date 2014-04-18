@@ -3,7 +3,7 @@
     android:layout_height="200dp"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/topic_background"
+    android:background="@drawable/topic_overview_item_background"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
     

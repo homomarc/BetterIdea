@@ -97,5 +97,9 @@ public class IdeaItemAdapter extends BaseAdapter{
 			return view;
 		}
 	}
+	
+	public void addIdea(IdeaItem idea){
+		items.add(idea);
+	}
 
 }

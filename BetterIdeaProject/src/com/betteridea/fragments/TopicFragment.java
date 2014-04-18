@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.betteridea.MainActivity;
 import com.betteridea.R;
 import com.betteridea.adapter.IdeaItemAdapter;
 import com.betteridea.connection.ServiceExecuter;
@@ -29,14 +30,17 @@ public class TopicFragment extends Fragment{
 	 	View view = inflater.inflate(R.layout.topic_overview_layout, container, false);
 	 	 
 	 	ListView ideaList = (ListView) view.findViewById(R.id.list_topic_overview);
-	 	 
+	 	
+	 	MainActivity mainActivity = (MainActivity) getActivity();
+	 	IdeaItemAdapter adapter = mainActivity.getIdeaItemAdapter();
+	 	
 	 	JSONArray jsonArray = null;
 	 	
 	 	try{
 	 		String jsonString = new ServiceExecuter().execute("showTopic", new String(rouletteItem.getTopicID()+"")).get();
 	 		jsonArray = new JSONArray(jsonString);
 //	 		Log.v("test", "Asynchrones Ergebnis: " + jsonArray);
-	 		IdeaItemAdapter adapter = new IdeaItemAdapter(getActivity(),jsonArray,rouletteItem);
+	 		adapter = new IdeaItemAdapter(getActivity(),jsonArray,rouletteItem);
 	 		ideaList.setAdapter(adapter);
 	 	}catch(Exception ex){
 	 		Log.v("test", "AsynchronException: " + ex.toString());
@@ -48,6 +52,7 @@ public class TopicFragment extends Fragment{
 	 	
 	 	//IdeaItemAdapter adapter = new IdeaItemAdapter(getActivity(),Service.topicContent,rouletteItem);
 	 	//ideaList.setAdapter(adapter);
+	 	mainActivity.setIdeaItemAdapter(adapter);
 	 	
 	 	setHasOptionsMenu(true);
 	 	 

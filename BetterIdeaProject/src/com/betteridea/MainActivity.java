@@ -19,22 +19,23 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.betteridea.adapter.IdeaItemAdapter;
 import com.betteridea.adapter.NavDrawerListAdapter;
 import com.betteridea.adapter.TopicItemAdapter;
-import com.betteridea.connection.Login;
 import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.fragments.HomeFragment;
 import com.betteridea.fragments.SettingsFragment;
 import com.betteridea.fragments.TopicFragment;
 import com.betteridea.logic.CreditSystem;
 import com.betteridea.logic.TopicRoulette;
+import com.betteridea.models.IdeaItem;
 import com.betteridea.models.NavDrawerItem;
 import com.betteridea.models.TopicItem;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -57,6 +58,7 @@ public class MainActivity extends Activity {
 //	Navigation Adapter
 	private NavDrawerListAdapter adapter;
 	private TopicItemAdapter topicItemAdapter;
+	private IdeaItemAdapter ideaItemAdapter;
 	
 	private GoogleApiClient mGoogleApiClient;
 	
@@ -240,6 +242,14 @@ public class MainActivity extends Activity {
 	public void setTopicItemAdapter(TopicItemAdapter topicItemAdapter){
 		this.topicItemAdapter = topicItemAdapter;
 	}
+	
+	public IdeaItemAdapter getIdeaItemAdapter(){
+		return ideaItemAdapter;
+	}
+	
+	public void setIdeaItemAdapter(IdeaItemAdapter ideaItemAdapter){
+		this.ideaItemAdapter = ideaItemAdapter;
+	}
     
 	public void openTopic(View view){
 		if(topicItemAdapter.getRouletteItem() != null){
@@ -268,6 +278,19 @@ public class MainActivity extends Activity {
 			String result2 = new ServiceExecuter().execute("addTopicCount").get();
 			System.out.println("Add: " + result + "Count: " + result2);	
 		}
+	}
+	
+	/*
+	 * Idee einreichen
+	 */
+	public void sendIdea(View view){
+		EditText ideaText = (EditText) findViewById(R.id.text_enter_idea);
+		Log.v("test", "Idee: " + ideaText.getText().toString());
+		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),"18.04.2014",false,-1,false,-1,-1,-1);
+		ideaItemAdapter.addIdea(idea);
+		ideaItemAdapter.notifyDataSetChanged();
+		ideaText.setText("");
+		ListView ideaList = (ListView) findViewById(R.id.list_topic_overview);
 	}
 }
 

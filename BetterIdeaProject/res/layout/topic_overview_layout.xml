@@ -3,24 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
-	<!-- <LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical">
-	    
-	    
-	    
-	</LinearLayout>-->
-	
 	<ListView android:id="@+id/list_topic_overview"
 	    android:layout_height="wrap_content"
-	    android:layout_width="match_parent"></ListView>
-	
-	<RelativeLayout
 	    android:layout_width="match_parent"
-	    android:layout_height="50dp"
-	    android:background="@color/grey"
+	    android:layout_marginBottom="40dp"></ListView>
+	
+	<LinearLayout android:id="@+id/enter_idea_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
 	    android:layout_alignParentBottom="true">
 	    
-	</RelativeLayout>
+		<EditText android:id="@+id/text_enter_idea"
+		    android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="6"
+		    android:hint="@string/hint_enter_idea"
+		    android:inputType="textAutoCorrect" />
+	
+		<ImageView
+		    android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:src="@drawable/ic_send"
+		    android:layout_marginTop="7dp"
+		    android:onClick="sendIdea"/>
+		
+	</LinearLayout>
+	
+	<View
+		    android:layout_height="1dp"
+		    android:layout_width="match_parent"
+		    android:background="@color/grey"
+		    android:layout_above="@id/enter_idea_layout" />
 </RelativeLayout>

@@ -37,11 +37,11 @@
 	         android:orientation="horizontal"
 	         android:layout_margin="10dp">
 	        
-	         <!-- <ImageView android:id="@+id/button_share"
+	         <ImageView android:id="@+id/button_share"
 	             android:layout_width="20dp"
 	             android:layout_height="match_parent"
 	             android:background="@drawable/ic_action_share"
-	             android:contentDescription="buttonShare" />-->
+	             android:contentDescription="buttonShare" />
 	         
 	         <TextView android:id="@+id/text_idea_user"
 	             android:layout_width="wrap_content"
