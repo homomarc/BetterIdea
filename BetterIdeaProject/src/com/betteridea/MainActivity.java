@@ -270,6 +270,15 @@ public class MainActivity extends Activity {
 	    	.commit();
 		}
 	}
+	public void share(View view){
+		String text = "Marc braucht Hilfe beim proggen ihr Schweine...";
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT,  ""+ text +"\n---------------\n---sent via----\nBetter Idea app, available at: https://play.google.com/store/apps/details?id=com.betteridea");
+		sendIntent.setType("text/plain");
+		startActivity(Intent.createChooser(sendIntent, "Share text with..."));
+	}
+	
 	public void close(View view){
 //		CreateTopicDialog.alert.dismiss();
 //		System.out.println("CLOSE");

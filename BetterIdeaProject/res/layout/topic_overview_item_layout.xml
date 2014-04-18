@@ -51,6 +51,7 @@
 	             android:layout_width="20dp"
 	             android:layout_height="match_parent"
 	             android:background="@drawable/ic_action_share"
+	             android:onClick="share"
 	             android:contentDescription="buttonShare" />
 	         
 	         <TextView 
