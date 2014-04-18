@@ -48,6 +48,7 @@
         android:background="#FF0099CC" />
 
     <LinearLayout
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -69,6 +70,76 @@
             android:textSize="20sp"
             android:text="Score" />
 
+    </LinearLayout>
+        <LinearLayout
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2" >
+
+        <TextView
+            android:id="@+id/textViewCreditDescr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginRight="10px"
+            android:layout_marginLeft="10px"
+            android:text="@string/credit" />
+        
+        <TextView
+            android:id="@+id/textViewCredit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Credit" />
+    </LinearLayout>
+        <LinearLayout
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView3" >
+
+        <TextView
+            android:id="@+id/textViewTopicDescr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginRight="10px"
+            android:layout_marginLeft="10px"
+            android:text="@string/topicsCount" />
+        
+        <TextView
+            android:id="@+id/textViewTopics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Topics" />
+    </LinearLayout>
+    
+        <LinearLayout
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView4" >
+
+        <TextView
+            android:id="@+id/textViewIdeasDescr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginRight="10px"
+            android:layout_marginLeft="10px"
+            android:text="@string/ideasCount" />
+        
+        <TextView
+            android:id="@+id/textViewIdeas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="I" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -32,25 +32,24 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
     			check = Service.getRankingList();
     		}else if(data[0] == "setScore"){
     			check = Service.setUserScore();
-    		}else if(data[0] == "addIdeaCount"){
-    			check = Service.addIdeaCount();
-    		}else if(data[0] == "addTopicCount"){
-    			check = Service.addTopicCount();
     		}else if(data[0] == "addTopic"){
+    			Service.addTopicCount();
     			// Data1 = topicTitle / Data2 = topicDescription
     			check = Service.addTopic(data[1], data[2]);
     		}else if(data[0] == "addIdea"){
     			// Data1 = text / Data2 = topicID
+    			Service.addIdeaCount();
     			check = Service.addIdea(data[1], data[2]);
     		}else if(data[0] == "allUserTopics"){
     			check = Service.allUserTopic();
     		}else if(data[0] == "getUserRank"){
     			check = Service.getUserRank();
     		}
+    		return check;
         } catch (Exception e) {
 			e.printStackTrace();
+			return "false";
 		}
-		return check;
 	}
 }
 

@@ -28,6 +28,10 @@ public class StatsOverviewFragment extends Fragment {
         	score.setText(Service.userData.getString("score"));
         	TextView credit = (TextView)rootView.findViewById(R.id.textViewCredit); 
         	credit.setText(Service.userData.getString("credits"));
+        	TextView topic = (TextView)rootView.findViewById(R.id.textViewTopics); 
+        	topic.setText(Service.userData.getString("topicCount"));
+        	TextView ideas = (TextView)rootView.findViewById(R.id.textViewIdeas); 
+        	ideas.setText(Service.userData.getString("ideaCount"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

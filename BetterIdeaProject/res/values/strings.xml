@@ -59,6 +59,9 @@
 	
 	<!-- Stats -->
 	<string name="score">Dein Score:</string>
+	<string name="credit">Deine Credits:</string>
+	<string name="topicsCount">Anzahl Topics:</string>
+	<string name="ideasCount">Anzahl Ideen:</string>
 	<!-- Google Sign+ -->
 	
     <string name="circles_title">Visible circles:</string>
