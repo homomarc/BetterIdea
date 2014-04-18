@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.betteridea.adapter.IdeaItemAdapter;
 import com.betteridea.adapter.NavDrawerListAdapter;
@@ -186,13 +187,13 @@ public class MainActivity extends Activity {
 		}
     }
     
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//       
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+       
+        return true;
+    }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -282,8 +283,15 @@ public class MainActivity extends Activity {
 		String result1 = CreditSystem.newTopic();
 		if(!result1.equals("toLess")){
 			String result = new ServiceExecuter().execute("addTopic", titleString, descString).get();
-			String result2 = new ServiceExecuter().execute("addTopicCount").get();
-//			System.out.println("Add: " + result + "Count: " + result2);
+			if(result.equals("true")){
+				Fragment fragment = new HomeFragment();
+				fragmentManager = getFragmentManager();fragmentManager.beginTransaction().add(R.id.content_frame,fragment).commit();
+				Toast.makeText(this, "Thema angelegt.", Toast.LENGTH_SHORT).show();
+			}else{
+				Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
+			}
+		}else{
+			Toast.makeText(this, "Zu wenig Credits.", Toast.LENGTH_SHORT).show();
 		}
 	}
 	

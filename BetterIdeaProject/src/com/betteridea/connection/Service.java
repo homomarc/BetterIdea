@@ -96,19 +96,18 @@ public class Service {
 	// Aktualisiert die Credits im User-Objekt
 	public static String getCredits() throws IOException{
         try {
-        	int id = userData.getInt("id");
+        	String id = userData.getString("id");
     		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/userCredits.sjs?id=";
     		reqUrl += id;
-    		String arr = Database.getRequest(reqUrl);
-			int length = arr.length();
-			String arr1 = arr.substring(1, length-1);
-			int credit = Integer.valueOf(arr1);
-			userData.put("credits", credit);
+    		String userJson = Database.getRequest(reqUrl);
+    		JSONObject json = new JSONObject(userJson);
+    		String arr1 = json.getString("credits");
+			userData.put("credits", arr1);
 			return arr1;
 		} catch (Exception e) {
 			Log.v("test", "Exception in Service.getCredits(): " + e.toString());
 			e.printStackTrace();
-			return "-100";
+			return "-999";
 		}
 	}
 
@@ -254,6 +253,31 @@ public class Service {
     		json.put("updated", "");
     		json.put("description", descripction);
     		json.put("archived", "false");
+    		Database.putRequest(reqUrl, json);
+        	return "true";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "false";
+		}
+	}
+	
+	public static String addIdea(String text, String topicID) throws IOException{
+        try {
+    		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/insertIdea.sjs";
+    		String ideaID = Database.getRequest(reqUrl);
+    		
+    		java.util.Date now = new java.util.Date();
+    		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
+    		String date = sdf.format(now);
+    		
+    		JSONObject json = new JSONObject();
+    		json.put("isValuated", "false");
+    		json.put("text", text);
+    		json.put("uncovered", "false");
+			json.put("ideaID", ideaID);
+    		json.put("topicID", topicID);
+    		json.put("date", date);
+    		json.put("authorID", userData.getString("userID"));
     		Database.putRequest(reqUrl, json);
         	return "true";
 		} catch (Exception e) {
