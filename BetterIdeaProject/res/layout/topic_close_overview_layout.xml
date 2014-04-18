@@ -2,25 +2,57 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-	<!-- <LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical">
-	    
-	    
-	    
-	</LinearLayout>-->
-	
-	<ListView android:id="@+id/list_topic_overview"
-	    android:layout_height="wrap_content"
-	    android:layout_width="match_parent"></ListView>
-	
-	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="50dp"
-	    android:background="@color/grey"
-	    android:layout_alignParentBottom="true">
-	    
-	</RelativeLayout>
+
+    <ListView
+        android:id="@+id/list_topic_overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10px"
+                android:src="@drawable/uncover_ideas" />
+
+            <TextView
+                android:id="@+id/textBadgeCount"
+                android:layout_width="20sp"
+                android:layout_height="15sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/imageView1"
+                android:layout_marginTop="3px"
+                android:background="@drawable/uncover_ideas_button_badge_circle"
+                android:text="10"
+                android:textColor="#FFF"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_marginLeft="20px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/relativeLayout1"
+            android:src="@drawable/close_topic" />
+    </RelativeLayout>
+
 </RelativeLayout>

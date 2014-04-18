@@ -35,6 +35,10 @@
 	<string name="hint_enter_idea">Hier eigene Idee eintragen.</string>
 	<string name="button_send">Senden</string>
 	<string name="change_username">Nutzernamen ändern</string>
+	
+	<!-- close topic -->
+	<string name="uncover_all">Alle aufdecken</string>
+	<string name="close_topic">Topic schließen</string>
 
 	<!-- navigation items -->
 	<string name="navigation_home">Startseite</string>
