@@ -290,7 +290,8 @@ public class Service {
 	// Gibt alle Ideen zu einer Topic in das Array topicContent zurück
 	public static String allUserTopic() throws IOException{
         try {
-        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/topic.sjs";
+        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/topic.sjs?filter=authorID&value=";
+        	reqUrl += userData.getString("userID");
         	String result = Database.getRequest(reqUrl);
         	JSONArray resArray = new JSONArray(result);
         	userTopics = resArray;

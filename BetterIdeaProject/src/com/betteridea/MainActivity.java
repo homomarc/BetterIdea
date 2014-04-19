@@ -300,9 +300,14 @@ public class MainActivity extends Activity {
 		if(!result1.equals("toLess")){
 			String result = new ServiceExecuter().execute("addTopic", titleString, descString).get();
 			if(result.equals("true")){
-				Fragment fragment = new HomeFragment();
-				fragmentManager = getFragmentManager();fragmentManager.beginTransaction().add(R.id.content_frame,fragment).commit();
-				Toast.makeText(this, "Thema angelegt.", Toast.LENGTH_SHORT).show();
+				String result2 = new ServiceExecuter().execute("setScore").get();
+				if(result2.equals("true")){
+					Fragment fragment = new HomeFragment();
+					fragmentManager = getFragmentManager();fragmentManager.beginTransaction().add(R.id.content_frame,fragment).commit();
+					Toast.makeText(this, "Thema angelegt.", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
+				}
 			}else{
 				Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
 			}
@@ -314,7 +319,7 @@ public class MainActivity extends Activity {
 	/*
 	 * Idee einreichen
 	 */
-	public void sendIdea(View view){
+	public void sendIdea(View view) throws InterruptedException, ExecutionException{
 		EditText ideaText = (EditText) findViewById(R.id.text_enter_idea);
 		String text = ideaText.getText().toString();
 		Log.v("MainActivity (SendIdea)", "Idee: " + ideaText.getText().toString());
@@ -328,6 +333,7 @@ public class MainActivity extends Activity {
 		String result = null;
 		try {
 			result = new ServiceExecuter().execute("addIdea", text, topicItemAdapter.getRouletteItem().getTopicID()+"").get();
+			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -336,7 +342,14 @@ public class MainActivity extends Activity {
 			e.printStackTrace();
 		}
 		if(result=="true"){
-			Toast.makeText(this, "Idee eingereicht", Toast.LENGTH_SHORT).show();
+			String result1 = new ServiceExecuter().execute("setScore").get();
+			if(result1=="true"){
+				Toast.makeText(this, "Idee eingereicht", Toast.LENGTH_SHORT).show();
+			}else{
+				Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
+			}
+		}else{
+			Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
 		}
 	}
 }
