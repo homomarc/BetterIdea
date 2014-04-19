@@ -123,4 +123,17 @@ public class TopicCloseFragment extends Fragment{
 		}
 		
 	}
+	public static void closeTopic(View v) {
+		String id = item.getID();
+		try {
+			System.out.println("Topic mit ID: " +id+" schlieﬂen");
+			new ServiceExecuter().execute("closeTopic", id).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

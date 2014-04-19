@@ -263,7 +263,8 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		/*EditText user = (EditText) findViewById(R.id.user_edit);
 		EditText password = (EditText) findViewById(R.id.password_edit);*/
 		//TODO: TESTEMAIL!
-		String email = "HerrPalinski@googlemail.com";
+		EditText emailText = (EditText) findViewById(R.id.user_edit);
+		String email = emailText.getText().toString();
 		try{
 			String result = new Login().execute(email).get();
 			if(result != null){

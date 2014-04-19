@@ -267,6 +267,14 @@ public class MainActivity extends Activity {
 	public void uncoverIdea(View v){
 	    TopicCloseFragment.uncoverIdea(v);
 	}
+	public static void closeTopic(View v){
+		Fragment fragment = new CloseTopicDialog();
+		fragmentManager.beginTransaction()
+    	.replace(R.id.content_frame,fragment)
+    	.commit();
+		TopicCloseFragment.closeTopic(v);
+	    
+	}
 	public static void refreshTopicCloseFragment(TopicItem item){
 		Fragment fragment = new TopicCloseFragment(item);
 		fragmentManager.beginTransaction()

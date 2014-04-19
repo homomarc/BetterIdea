@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.app.FragmentManager;
 
 import com.betteridea.MainActivity;
@@ -51,7 +52,13 @@ public class TopicOwnFragment extends Fragment {
 		try{
 			String jsonObjString = new ServiceExecuter().execute("allUserTopics").get();
 			JSONArray jsArray = new JSONArray(jsonObjString);
+			//Keine eigenen Themen vorhanden?
+			if(jsArray.length()<1){
+				TextView textViewInfo = (TextView) view.findViewById(R.id.textViewInfo);
+				textViewInfo.setText("Du hast noch keine Themen erstellt.");
+			}
 			
+			//Eigene Themen hinzufügen
 			for(int i=0;i<jsArray.length();i++){
 				TopicItem rouletteItem = new TopicItem(jsArray.getJSONObject(i), true);
 				topicItems.add(rouletteItem);

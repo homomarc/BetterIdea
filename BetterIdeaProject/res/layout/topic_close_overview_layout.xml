@@ -47,12 +47,13 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/closeTopic"
             android:layout_marginLeft="20px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/relativeLayout1"
+            android:onClick="closeTopic"
             android:src="@drawable/close_topic" />
 
         <TextView

@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 public class TopicItem extends Item{
-	private int id;
+	private String id;
 	private int topicID;
 	private boolean archived;
 	private String updated;
@@ -27,7 +27,7 @@ public class TopicItem extends Item{
 		Log.v("test", "JSONObject:  " + jsobject.toString());
 		try{
 //			JSONObject auslesen
-			this.setID(jsobject.getInt("id"));
+			this.setID(jsobject.getString("id"));
 			this.setArchived(jsobject.getBoolean("archived"));
 			this.setUpdated(jsobject.getString("updated"));
 			this.title = jsobject.getString("titel");
@@ -49,7 +49,7 @@ public class TopicItem extends Item{
 		Log.v("test", "JSONObject:  " + jsobject.toString());
 		try{
 //			JSONObject auslesen
-			this.setID(jsobject.getInt("id"));
+			this.setID(jsobject.getString("id"));
 			this.title = jsobject.getString("titel");
 			this.setUpdated(jsobject.getString("updated"));
 			this.description = jsobject.getString("description");
@@ -98,12 +98,12 @@ public class TopicItem extends Item{
 		this.timestamp = timestamp;
 	}
 
-	public int getID() {
+	public String getID() {
 		return id;
 	}
 
-	public void setID(int id) {
-		this.id = id;
+	public void setID(String string) {
+		this.id = string;
 	}
 
 	public int getTopicID() {

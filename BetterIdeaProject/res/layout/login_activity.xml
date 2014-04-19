@@ -13,17 +13,16 @@
         android:contentDescription="@string/logo_image"
         android:src="@drawable/logobig" />
 
-    <!-- <EditText
+    <EditText
         android:id="@+id/user_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/user_hint" >
-
-        <requestFocus />
+        android:text="HerrPalinski@googlemail.com"
+        android:inputType="textPersonName">
+        <!-- android:hint="@string/user_hint" > -->
     </EditText>
-
+	<!-- 
     <EditText
         android:id="@+id/password_edit"
         android:layout_width="match_parent"

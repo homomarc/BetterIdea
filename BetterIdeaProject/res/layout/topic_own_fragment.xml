@@ -5,6 +5,14 @@
 	    android:orientation="vertical"
 	    android:background="#dddddd"
 	    android:scrollbars="horizontal" >
+
+    <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hier werden dir deine erstellten Themen angezeigt."
+        android:textSize="12dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 	   
 	    <ListView android:id="@+id/list_own_topics"
 	        android:layout_width="match_parent"
