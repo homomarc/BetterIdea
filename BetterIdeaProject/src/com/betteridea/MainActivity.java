@@ -2,6 +2,7 @@ package com.betteridea;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
@@ -30,6 +31,7 @@ import android.widget.Toast;
 import com.betteridea.adapter.IdeaItemAdapter;
 import com.betteridea.adapter.NavDrawerListAdapter;
 import com.betteridea.adapter.TopicItemAdapter;
+import com.betteridea.connection.Service;
 import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.fragments.CreateTopicFragment;
 import com.betteridea.fragments.HomeFragment;
@@ -319,16 +321,17 @@ public class MainActivity extends Activity {
 	/*
 	 * Idee einreichen
 	 */
-	public void sendIdea(View view) throws InterruptedException, ExecutionException{
+	public void sendIdea(View view) throws InterruptedException, ExecutionException, JSONException{
 		EditText ideaText = (EditText) findViewById(R.id.text_enter_idea);
 		String text = ideaText.getText().toString();
 		Log.v("MainActivity (SendIdea)", "Idee: " + ideaText.getText().toString());
-		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),"18.04.2014",false,-1,false,-1,-1,"-1");
+		java.util.Date now = new java.util.Date();
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
+		String date = sdf.format(now);
+		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),date,false,-1,false,-1,-1,Service.userData.getString("userName"));
 		ideaItemAdapter.addIdea(idea);
 		ideaItemAdapter.notifyDataSetChanged();
 		ideaText.setText("");
-		ListView ideaList = (ListView) findViewById(R.id.list_topic_overview);
-		
 		//An Server senden
 		String result = null;
 		try {
