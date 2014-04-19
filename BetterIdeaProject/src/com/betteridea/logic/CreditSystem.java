@@ -44,11 +44,15 @@ public class CreditSystem {
 			return "toLess";
 		}
 	}
-	public static String showIdea() throws IOException, JSONException, InterruptedException, ExecutionException{   
+	public static String showIdea(String id) throws IOException, JSONException, InterruptedException, ExecutionException{   
 		String credits = new ServiceExecuter().execute("getCredits").get();
     	int credit = Integer.valueOf(credits);
 		if(credit >= showIdea*(-1)){
-			String check = new ServiceExecuter().execute("changeCredits", String.valueOf(showIdea), "null").get();
+			String check1 = new ServiceExecuter().execute("uncover", id).get();
+			String check = "false";
+			if(check1.equals("true")){
+				check = new ServiceExecuter().execute("changeCredits", String.valueOf(showIdea), "null").get();
+			}
 			return check;
 		}
 		else{
@@ -58,16 +62,28 @@ public class CreditSystem {
 	
 	// Ab hier: Credits auf fremdem Account ändern
 	
-	public static String validIdea(String authorID) throws IOException, InterruptedException, ExecutionException{
-		String check = new ServiceExecuter().execute("changeCredits", String.valueOf(validIdea), authorID).get();
+	public static String validIdea(String authorID, String id) throws IOException, InterruptedException, ExecutionException{
+		String check1 = new ServiceExecuter().execute("valuate", id).get();
+		String check = "false";
+		if(check1.equals("true")){
+			check = new ServiceExecuter().execute("changeCredits", String.valueOf(validIdea), authorID).get();
+		}
 		return check;
 	}
-	public static String goodIdea(String authorID) throws IOException, InterruptedException, ExecutionException{
-		String check = new ServiceExecuter().execute("changeCredits", String.valueOf(goodIdea), authorID).get();
+	public static String goodIdea(String authorID, String id) throws IOException, InterruptedException, ExecutionException{
+		String check1 = new ServiceExecuter().execute("valuate", id).get();
+		String check = "false";
+		if(check1.equals("true")){
+			check = new ServiceExecuter().execute("changeCredits", String.valueOf(goodIdea), authorID).get();
+		}
 		return check;
 	}
-	public static String spamIdea(String authorID) throws IOException, InterruptedException, ExecutionException{
-		String check = new ServiceExecuter().execute("addSpam", String.valueOf(spamIdea), authorID).get();
+	public static String spamIdea(String authorID, String id) throws IOException, InterruptedException, ExecutionException{
+		String check1 = new ServiceExecuter().execute("valuate", id).get();
+		String check = "false";
+		if(check1.equals("true")){
+			check = new ServiceExecuter().execute("addSpam", String.valueOf(spamIdea), authorID).get();
+		}
 		return check;
 	}
 }

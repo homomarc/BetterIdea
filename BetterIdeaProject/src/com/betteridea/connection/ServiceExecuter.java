@@ -44,6 +44,10 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
     			check = Service.allUserTopic();
     		}else if(data[0] == "getUserRank"){
     			check = Service.getUserRank();
+    		}else if(data[0] == "uncover"){
+    			check = Service.uncoverIdea(data[1]);
+    		}else if(data[0] == "valuate"){
+    			check = Service.valuateIdea(data[1]);
     		}
     		return check;
         } catch (Exception e) {

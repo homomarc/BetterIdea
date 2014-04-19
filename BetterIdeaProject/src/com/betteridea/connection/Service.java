@@ -312,5 +312,33 @@ public class Service {
 			return "false";
 		}
 	}
+	public static String uncoverIdea(String id) throws IOException{
+        try {
+        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/idea.sjs?id=";
+        	reqUrl += id;
+        	String result = Database.getRequest(reqUrl);
+        	JSONObject idea = new JSONObject(result);
+        	idea.put("uncovered", "true");
+        	Database.postRequest(reqUrl, idea);
+        	return "true";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "false";
+		}
+	}
+	public static String valuateIdea(String id) throws IOException{
+        try {
+        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/idea.sjs?id=";
+        	reqUrl += id;
+        	String result = Database.getRequest(reqUrl);
+        	JSONObject idea = new JSONObject(result);
+        	idea.put("isValuated", "true");
+        	Database.postRequest(reqUrl, idea);
+        	return "true";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "false";
+		}
+	}
 	
 }
