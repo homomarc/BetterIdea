@@ -11,8 +11,9 @@
         android:layout_height="180dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:onClick="openOwnTopic"
-        android:layout_margin="10dp">
+         android:layout_margin="10dp">
+        <!--  android:onClick="openOwnTopic" -->
+       
         
         <TextView
             android:id="@+id/topic_feed_title"

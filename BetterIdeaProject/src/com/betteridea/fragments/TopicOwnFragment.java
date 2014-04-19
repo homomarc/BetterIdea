@@ -16,10 +16,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.app.FragmentManager;
 
 import com.betteridea.MainActivity;
 import com.betteridea.R;
+import android.widget.AdapterView.OnItemClickListener;
 import com.betteridea.adapter.TopicItemAdapter;
 import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.logic.TopicRoulette;
@@ -64,9 +67,23 @@ public class TopicOwnFragment extends Fragment {
 		
 		adapter = new TopicItemAdapter(getActivity(), topicItems);
 		
-//		mainActivity.setTopicItemAdapter(adapter);
-		
 		topicList.setAdapter(adapter);
+		
+		topicList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				TopicItemAdapter tia = (TopicItemAdapter) parent.getAdapter();
+				TopicItem selectedTopicItem = (TopicItem) tia.getItem(position);
+				
+
+				Fragment fragment = new TopicCloseFragment(selectedTopicItem);
+				FragmentManager fragmentManager = getFragmentManager();
+				fragmentManager.beginTransaction()
+		    	.replace(R.id.content_frame,fragment)
+		    	.commit();
+			}});
+		
 		
 		return view;
 	}

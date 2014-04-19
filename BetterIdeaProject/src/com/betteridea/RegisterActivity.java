@@ -75,6 +75,12 @@ public class RegisterActivity extends Activity {
 		String result = new Login().execute(email).get();
 		if(result != null){
 			System.out.println("Sign in succeeded.");
+			try {
+				TopicRoulette.loadTopicCache();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
 			startActivity(intent);
 		}else{

@@ -29,19 +29,20 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="10px"
+                android:onClick="uncoverIdea"
                 android:src="@drawable/uncover_ideas" />
 
             <TextView
                 android:id="@+id/textBadgeCount"
-                android:layout_width="20sp"
-                android:layout_height="15sp"
+                android:layout_width="25sp"
+                android:layout_height="20sp"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/imageView1"
                 android:layout_marginTop="3px"
                 android:background="@drawable/uncover_ideas_button_badge_circle"
                 android:text="10"
                 android:textColor="#FFF"
-                android:textSize="8sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -53,6 +54,17 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/relativeLayout1"
             android:src="@drawable/close_topic" />
+
+        <TextView
+            android:id="@+id/textViewCredits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="19dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
     </RelativeLayout>
 
 </RelativeLayout>

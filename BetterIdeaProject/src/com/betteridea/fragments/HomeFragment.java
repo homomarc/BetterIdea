@@ -26,6 +26,8 @@ import com.betteridea.models.TopicItem;
 
 public class HomeFragment extends Fragment {
 	ListView topicList;
+	//TODO:DELETE REFRESH SPERRE
+	private boolean refreshed=false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
@@ -44,6 +46,7 @@ public class HomeFragment extends Fragment {
 		Log.v("test","Topics erstellt");
 		
 //		TopicItem topicRouletteItem = null;
+		if(refreshed==false){
 		try{
 			String jsonObjString = new ServiceExecuter().execute("newRandTopic").get();
 			TopicItem rouletteItem = new TopicItem(new JSONObject(jsonObjString));
@@ -55,6 +58,8 @@ public class HomeFragment extends Fragment {
 			Log.v("test","InterruptedException: " + e.toString());
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
+		}
+		refreshed = true;
 		}
 //			Log.v("test","loadTopicCache() durch");
 //			topicRouletteItem = new TopicItem(TopicRoulette.getNextTopic());

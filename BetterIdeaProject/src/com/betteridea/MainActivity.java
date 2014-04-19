@@ -51,7 +51,7 @@ import com.google.android.gms.plus.Plus;
 public class MainActivity extends Activity {
 	private DrawerLayout drawerLayout;
 	private ListView navigationList;
-	private FragmentManager fragmentManager;
+	private static FragmentManager fragmentManager;
 	private ActionBarDrawerToggle drawerToggle;
 	
 //	NavigationDrawer Items (Icons, Entries)
@@ -264,13 +264,14 @@ public class MainActivity extends Activity {
 	    	.commit();
 		}
 	}
-	public void openOwnTopic(View view){
-		if(topicItemAdapter.getRouletteItem() != null){
-			Fragment fragment = new TopicCloseFragment(topicItemAdapter.getRouletteItem());
-			fragmentManager.beginTransaction()
-	    	.replace(R.id.content_frame,fragment)
-	    	.commit();
-		}
+	public void uncoverIdea(View v){
+	    TopicCloseFragment.uncoverIdea(v);
+	}
+	public static void refreshTopicCloseFragment(TopicItem item){
+		Fragment fragment = new TopicCloseFragment(item);
+		fragmentManager.beginTransaction()
+    	.replace(R.id.content_frame,fragment)
+    	.commit();
 	}
 	public void share(View view){
 		String text = "Marc braucht Hilfe beim proggen ihr Schweine...";
@@ -354,6 +355,9 @@ public class MainActivity extends Activity {
 		}else{
 			Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
 		}
+	}
+	public void makeToast(String value){
+		Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
 	}
 }
 

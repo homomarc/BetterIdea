@@ -76,6 +76,7 @@
 	         
 	         <TextView android:id="@+id/topic_feed_timestamp"
 	             android:layout_width="wrap_content"
+	             android:gravity="right"
 	             android:layout_height="match_parent"
 	             android:text="@string/label_timestamp1"
 	             android:textColor="#888" />
