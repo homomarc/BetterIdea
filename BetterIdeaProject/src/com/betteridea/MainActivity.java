@@ -353,9 +353,9 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(result=="true"){
+		if(result.equals("true")){
 			String result1 = new ServiceExecuter().execute("setScore").get();
-			if(result1=="true"){
+			if(result1.equals("true")){
 				Toast.makeText(this, "Idee eingereicht", Toast.LENGTH_SHORT).show();
 			}else{
 				Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();

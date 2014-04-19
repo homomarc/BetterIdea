@@ -88,9 +88,21 @@ public class TopicCloseFragment extends Fragment{
 	public static void uncoverIdea(View v) {
 		String result = "";
 		try {
-			if(coveredArray.length()>0){
-				result = CreditSystem.showIdea(coveredArray.getJSONObject(0).getString("id"));
+			// Prüfen ob letzte Idee bewertet ist
+			boolean allValuated = true;
+			String valuated = uncoveredArray.getJSONObject(uncoveredArray.length()).getString("isValuated");
+			if(valuated=="false"){
+				allValuated = false;
 			}
+			
+			// Aufdecken oder Bewerten
+			if(coveredArray.length()>0 && allValuated){
+				result = CreditSystem.showIdea(coveredArray.getJSONObject(0).getString("id"));
+			}else if(allValuated == false){
+				String toBeValuatedIdeaID =  uncoveredArray.getJSONObject(uncoveredArray.length()).getString("id");
+				// Dialog aufrufen --> ValuateIdeaDialogFragment.java --> bewerten
+			}
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
