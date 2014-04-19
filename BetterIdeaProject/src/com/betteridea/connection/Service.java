@@ -158,7 +158,8 @@ public class Service {
 	// Bezieht eine neue und zufällige Topic
 	public static String getNewRandTopic() throws IOException{
         try {
-        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/topicRoulette.sjs";
+        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/topicRoulette.sjs?authorID=";
+        	reqUrl += userData.getString("userID");
         	String result = Database.getRequest(reqUrl);
         	JSONObject jsObject = new JSONObject(result);
         	TopicRoulette.setTopicCache(jsObject);
@@ -166,6 +167,7 @@ public class Service {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "false";
+			
 		}
 	}
 	
@@ -280,6 +282,12 @@ public class Service {
     		json.put("date", date);
     		json.put("authorID", userData.getString("userID"));
     		Database.putRequest(reqUrl, json);
+    		String reqUrl1 = "http://space-labs.appspot.com/repo/2185003/ideas/api/topic.sjs?filter=topicID&value=";
+    		reqUrl1 += topicID;
+    		String jsTopic = Database.getRequest(reqUrl1);
+    		JSONObject jsonTopic = new JSONObject(jsTopic);
+    		jsonTopic.put("updated", date);
+    		Database.putRequest(reqUrl1, jsonTopic);
         	return "true";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -334,6 +342,20 @@ public class Service {
         	JSONObject idea = new JSONObject(result);
         	idea.put("isValuated", "true");
         	Database.postRequest(reqUrl, idea);
+        	return "true";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "false";
+		}
+	}
+	public static String closeTopic(String id) throws IOException{
+        try {
+        	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/topic.sjs?id=";
+        	reqUrl += id;
+        	String result = Database.getRequest(reqUrl);
+        	JSONObject topic = new JSONObject(result);
+        	topic.put("archived", "true");
+        	Database.postRequest(reqUrl, topic);
         	return "true";
 		} catch (Exception e) {
 			e.printStackTrace();

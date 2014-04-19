@@ -48,6 +48,8 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
     			check = Service.uncoverIdea(data[1]);
     		}else if(data[0] == "valuate"){
     			check = Service.valuateIdea(data[1]);
+    		}else if(data[0] == "closeTopic"){
+    			check = Service.closeTopic(data[1]);
     		}
     		return check;
         } catch (Exception e) {
