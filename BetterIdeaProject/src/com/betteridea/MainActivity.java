@@ -73,22 +73,18 @@ public class MainActivity extends Activity {
 	@Override
 	public void onStart(){
 		super.onStart();
-		setContentView(R.layout.drawer_layout);
         
 //      notify("Neue Ideen zu deinen Topics vorhanden!");
       fragmentManager = getFragmentManager();        
-//      
-//      activeFragment = fragmentManager.findFragmentByTag("HomeFragment");
-//      
-//      if(activeFragment == null)
-//      	activeFragment = fragmentManager.findFragmentByTag("OwnTopicFragment");
-//      
-      activeFragment = new HomeFragment();
       
-      fragmentManager.beginTransaction()
-      	.add(R.id.content_frame,activeFragment)
-      	.commit();
+      activeFragment = fragmentManager.findFragmentByTag("Default");
+      if(activeFragment == null){
+    	  activeFragment = new HomeFragment();
       
+	      fragmentManager.beginTransaction()
+	      	.replace(R.id.content_frame,activeFragment,"Default")
+	      	.commit();
+      }
 //      Load navigation entries
       navigationEntries = getResources().getStringArray(R.array.navigation_entries);
 
@@ -138,7 +134,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        setContentView(R.layout.drawer_layout);
     }
     
     @Override
@@ -150,7 +146,7 @@ public class MainActivity extends Activity {
     @Override
     public void onConfigurationChanged(Configuration newConfig){
     	super.onConfigurationChanged(newConfig);
-    	drawerToggle.onConfigurationChanged(newConfig);
+    	//drawerToggle.onConfigurationChanged(newConfig);
     }
     
     private class NavigationItemClickListener implements ListView.OnItemClickListener{
@@ -170,22 +166,30 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent();
 			switch(position){
 				case 0:
-//					fragment = (Fragment)getFragmentManager().findFragmentByTag("HomeFragment");
-//			        if(fragment == null){
-			       	fragment = new HomeFragment();
-//			        }
-			        fragmentManager = getFragmentManager();
+					fragment = getFragmentManager().findFragmentByTag("Default");
+			        if(fragment == null)
+			        	fragment = new HomeFragment();
+			        else if(!(fragment instanceof HomeFragment)){
+			        	fragment = new HomeFragment();
+			        }
+			        
+		        	fragmentManager = getFragmentManager();
 			        fragmentManager.beginTransaction()
 			        	.replace(R.id.content_frame,fragment)
 			        	.commit();
+			        
 					break;
 				case 1:
-//					fragment = (Fragment)getFragmentManager().findFragmentByTag("OwnTopicFragment");
-//					if(fragment == null)
-					fragment = new TopicOwnFragment();
+					fragment = getFragmentManager().findFragmentByTag("Default");
+					if(fragment == null)
+						fragment = new TopicOwnFragment();
+					else if(!(fragment instanceof TopicOwnFragment))
+						fragment = new TopicOwnFragment();
+				
 					fragmentManager.beginTransaction()
 			    	.replace(R.id.content_frame,fragment)
 			    	.commit();
+					
 					break;
 				//LOGOUT
 				case 2:
@@ -294,7 +298,10 @@ public class MainActivity extends Activity {
 				String result2 = new ServiceExecuter().execute("setScore").get();
 				if(result2.equals("true")){
 					Fragment fragment = new HomeFragment();
-					fragmentManager = getFragmentManager();fragmentManager.beginTransaction().add(R.id.content_frame,fragment).commit();
+					fragmentManager = getFragmentManager();
+					fragmentManager.beginTransaction().
+						add(R.id.content_frame,fragment).
+						commit();
 					Toast.makeText(this, "Thema angelegt.", Toast.LENGTH_SHORT).show();
 				}else{
 					Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
