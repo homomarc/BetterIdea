@@ -289,7 +289,8 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		String email = emailText.getText().toString();
 		try{
 			String value = KeyValueStore.get(this, "userData");
-			if(!value.equals("false")){
+			if(!value.equals("false") && !value.equals("error")){
+				System.out.println(value);
 				Service.userData = new JSONObject(value);
 				String check = TopicRoulette.loadTopicCache();
 				if(check != "false"){
@@ -305,7 +306,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 				if(result != null){
 					boolean userStored = KeyValueStore.store(this, "userData", result);
 					if(userStored != false){
-						Service.userData = new JSONObject(value);
+						Service.userData = new JSONObject(result);
 						String check = TopicRoulette.loadTopicCache();
 						if(check != "false"){
 							System.out.println("Sign in succeeded.");

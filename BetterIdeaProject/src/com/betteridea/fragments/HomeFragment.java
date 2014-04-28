@@ -30,9 +30,15 @@ public class HomeFragment extends Fragment {
 	private boolean refreshed=false;
 
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		System.out.println("TEST oncreate");
+		super.onCreate(savedInstanceState);
+	}
+	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
 		View view = inflater.inflate(R.layout.main_layout, container, false);
-		
+		System.out.println("Test oncreateVIEw");
 		MainActivity mainActivity = (MainActivity) getActivity();
 		TopicItemAdapter adapter = mainActivity.getTopicItemAdapter();
 		
@@ -40,12 +46,9 @@ public class HomeFragment extends Fragment {
 		
 		ArrayList<TopicItem> topicItems = new ArrayList<TopicItem>();
 //		topicItems.add(new TopicItem("Übungen für Handballtraining","Ich suche Handballtrainingsübung zum Aufwärmen.","14:43, 01.04.2014",false));
-//		topicItems.add(new TopicItem("Ideenmanagementapp für die Mobile Vorlesung entwickeln","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",false));
-//		topicItems.add(new TopicItem("Thema 3","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",false));
 		
-		Log.v("test","Topics erstellt");
-		
-//		TopicItem topicRouletteItem = null;
+		Log.v("HomeFragment","Topics erstellt");
+
 		if(refreshed==false){
 		try{
 			String jsonObjString = new ServiceExecuter().execute("newRandTopic").get();
@@ -59,35 +62,28 @@ public class HomeFragment extends Fragment {
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
 		}
-		refreshed = true;
+			refreshed = true;
 		}
-//			Log.v("test","loadTopicCache() durch");
-//			topicRouletteItem = new TopicItem(TopicRoulette.getNextTopic());
-//			Log.v("test", "Roulette Item erstellt");
-//		}catch(IOException ex){
-//			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT);
-//			Log.v("test", "IOException: " + ex.toString());
-//		}catch(JSONException ex){
-//			Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT);
-//			Log.v("test", "JSONException: " + ex.toString());
-//		}
-//		TopicRoulette.getNextTopic() -> JSONObject
-		
-		//TopicItem topicRouletteItem = new TopicItem("Ideenmanagementapp für die Mobile Vorlesung entwickeln","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","",true);
-
-//		if(topicRouletteItem != null)
-//			adapter = new TopicItemAdapter(getActivity().getApplicationContext(), topicItems, topicRouletteItem);
-		
 		adapter = new TopicItemAdapter(getActivity(), topicItems,new TopicItem("Thema 3","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",true));
 		
 		mainActivity.setTopicItemAdapter(adapter);
-		
 		topicList.setAdapter(adapter);
 		
 		setHasOptionsMenu(true);
-		
 		return view;
 	}
+	
+	 @Override
+	  public void onResume() {
+	     Log.e("DEBUG", "onResume of HomeFragment");
+	     super.onResume();
+	  }
+
+	  @Override
+	  public void onPause() {
+	     Log.e("DEBUG", "OnPause of HomeFragment");
+	     super.onPause();
+	  }
 	
 	@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

@@ -1,5 +1,16 @@
 package com.betteridea;
 
+/**
+ * @author Marc-Philipp Böckle
+ * 
+ * RegisterActivity Description:
+ * 
+ * Dies ist die RegisterActivity.
+ * 
+ * Hier wird der User hingeleitet, falls zu seiner G+ Email kein Account besteht.
+ * Nach Wahl eines Nutzernamens wird der User automatisch eingelogt.
+ */
+
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
@@ -27,7 +38,7 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
         
-        
+        //Von MainActivity übergebene Mailadresse in var speichern
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -39,14 +50,14 @@ public class RegisterActivity extends Activity {
             email= (String) savedInstanceState.getSerializable("EMAIL");
         }
    } 
-  //onClick Login Button
+  //onClick register Button
   	public void register(View view){
         TextView userNameTextView = (TextView) findViewById(R.id.userName);
         String userName = userNameTextView.getText().toString();
         String result = "false";
         //Service ansprechen um User anzulegen
         try {
-        	// Data1 = Username / Data2 = Usermail
+        	// Data1 = Username / Data2 = Usermail (Serviceparameter)
 			result = new ServiceExecuter().execute("createUser",userName,email).get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -71,6 +82,7 @@ public class RegisterActivity extends Activity {
         	Toast.makeText(this, "Register unsuccessful!", Toast.LENGTH_LONG).show();
         }
     }
+  	//Nach Registrierung in die Main gehen
 	public void gointoMain(View view, String email) throws InterruptedException, ExecutionException{
 		String result = new Login().execute(email).get();
 		if(result != null){
@@ -85,7 +97,7 @@ public class RegisterActivity extends Activity {
 			startActivity(intent);
 		}else{
 			System.out.println("Invalid email!!!");
+			Toast.makeText(this, "Ungültige Mail!", Toast.LENGTH_LONG).show();
 		}
-
-	}
+	}//gointoMain
 }
