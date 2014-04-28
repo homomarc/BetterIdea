@@ -28,6 +28,10 @@ public class HomeFragment extends Fragment {
 	ListView topicList;
 	//TODO:DELETE REFRESH SPERRE
 	private boolean refreshed=false;
+	
+	public HomeFragment(){
+		
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

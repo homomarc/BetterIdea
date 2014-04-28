@@ -11,6 +11,10 @@ import com.betteridea.R;
 
 public class CreateTopicFragment extends Fragment{
 	
+	public CreateTopicFragment(){
+		
+	}
+	
 	@Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

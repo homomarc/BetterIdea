@@ -22,6 +22,10 @@ import com.betteridea.connection.ServiceExecuter;
 
 public class SettingsFragment extends Fragment{
 	
+	public SettingsFragment(){
+		
+	}
+	
 	@Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

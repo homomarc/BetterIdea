@@ -20,7 +20,11 @@ import com.betteridea.models.TopicItem;
 
 public class TopicFragment extends Fragment{
 	 private TopicItem rouletteItem;
-  
+	 
+	 public TopicFragment(){
+		 
+	 }
+	 
 	 public TopicFragment(TopicItem rouletteItem){
 	 	this.rouletteItem = rouletteItem;
 	 }

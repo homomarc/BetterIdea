@@ -31,7 +31,11 @@ import com.betteridea.models.TopicItem;
 
 public class TopicOwnFragment extends Fragment {
 	ListView topicList;
-
+	
+	public TopicOwnFragment(){
+		
+	}
+	
 	@Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

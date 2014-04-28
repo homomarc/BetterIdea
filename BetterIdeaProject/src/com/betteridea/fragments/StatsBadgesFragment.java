@@ -9,7 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class StatsBadgesFragment extends Fragment {
-
+	
+	public StatsBadgesFragment(){
+		
+	}
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {

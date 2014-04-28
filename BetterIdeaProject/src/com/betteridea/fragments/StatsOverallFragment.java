@@ -19,7 +19,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class StatsOverallFragment extends Fragment{
-
+	
+	public StatsOverallFragment(){
+		
+	}
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
