@@ -13,7 +13,6 @@ package com.betteridea.fragments;
 import org.json.JSONException;
 
 import com.betteridea.R;
-import com.betteridea.connection.Login;
 import com.betteridea.connection.Service;
 
 import android.os.Bundle;
@@ -46,7 +45,6 @@ public class StatsOverviewFragment extends Fragment {
         	TextView ideas = (TextView)rootView.findViewById(R.id.textViewIdeas); 
         	ideas.setText(Service.userData.getString("ideaCount"));
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
         return rootView;

@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class StatsOverallFragment extends Fragment{
 	
@@ -93,7 +92,6 @@ public class StatsOverallFragment extends Fragment{
     	    rankListOwn.setAdapter(adapterOwnRank);
     	    
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return rootView;
