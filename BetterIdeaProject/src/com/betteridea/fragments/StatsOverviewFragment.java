@@ -1,5 +1,15 @@
 package com.betteridea.fragments;
 
+/**
+ * Author: 		Better Idea
+ * Description:	StatsOverviewFragment dient der Anzeige der Userdaten, wie
+ * 				beispielsweise Score, Credits, die Anzahl der verfassten Topics
+ * 				und Ideen.
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import org.json.JSONException;
 
 import com.betteridea.R;
@@ -15,9 +25,8 @@ import android.support.v4.app.Fragment;
 
 public class StatsOverviewFragment extends Fragment {
 	
-	public StatsOverviewFragment(){
-		
-	}
+	// Konstruktor zur Orientation-Drehung notwendig
+	public StatsOverviewFragment(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,8 +48,7 @@ public class StatsOverviewFragment extends Fragment {
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-        
+		}  
         return rootView;
     }
 }

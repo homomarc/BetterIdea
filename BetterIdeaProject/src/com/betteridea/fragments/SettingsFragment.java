@@ -1,5 +1,14 @@
 package com.betteridea.fragments;
 
+/**
+ * Author: 		Better Idea
+ * Description:	SettingsFragment enth‰lt aktuell ausschlieﬂlich die Funktion
+ * 				den Username des eingeloggten Users zu ‰nden.
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
@@ -22,9 +31,8 @@ import com.betteridea.connection.ServiceExecuter;
 
 public class SettingsFragment extends Fragment{
 	
-	public SettingsFragment(){
-		
-	}
+	// Konstruktor zur Orientation-Drehung notwendig
+	public SettingsFragment(){}
 	
 	@Override
     public void onSaveInstanceState(Bundle outState) {
@@ -37,31 +45,30 @@ public class SettingsFragment extends Fragment{
 		final View view = inflater.inflate(R.layout.settings_fragment, container, false);
 		
 		Button button = (Button) view.findViewById(R.id.button1);
-			   button.setOnClickListener(new OnClickListener()
+			button.setOnClickListener(new OnClickListener()
 			   {
-			             public void onClick(View v)
-			             {
-			            	EditText userNameT = (EditText) view.findViewById(R.id.editTextUserName);
-			         		String newUserName = userNameT.getText().toString();
-			         		
-			         		String result;
-							try {
-								result = new ServiceExecuter().execute("changeName", newUserName).get();
-				         		System.out.println("Username change request: "+result);
-				         		if(result == "true"){
-				         			Toast.makeText(getActivity(), "Nutzername erfolgreich ge‰ndert", Toast.LENGTH_LONG).show();
-				         		}
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (ExecutionException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-			         		
-			             } 
+	             public void onClick(View v)
+	             {
+	            	EditText userNameT = (EditText) view.findViewById(R.id.editTextUserName);
+	         		String newUserName = userNameT.getText().toString();
+	         		
+	         		String result;
+					try {
+						result = new ServiceExecuter().execute("changeName", newUserName).get();
+		         		System.out.println("Username change request: "+result);
+		         		if(result == "true"){
+		         			Toast.makeText(getActivity(), "Nutzername erfolgreich ge‰ndert", Toast.LENGTH_LONG).show();
+		         		}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExecutionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	         		
+	             } 
 			   }); 
-		
 		return view;
 	}
 }
