@@ -5,7 +5,7 @@ package com.betteridea.logic;
  * Description:	CreditSystem enthält alle Parameter zur Bewertung der Credits
  * 				für die einzelnen Aktionen des Users.
  * 
- * TODOS:		keine
+ * TODOS:		Ausschließlich zukünftiges TODO
  * 
  */
 
