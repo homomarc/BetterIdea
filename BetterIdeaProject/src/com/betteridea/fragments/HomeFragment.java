@@ -2,12 +2,12 @@ package com.betteridea.fragments;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,19 +15,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.betteridea.MainActivity;
 import com.betteridea.R;
+import com.betteridea.TopicActivity;
 import com.betteridea.adapter.TopicItemAdapter;
-import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.logic.TopicRoulette;
 import com.betteridea.models.TopicItem;
 
 public class HomeFragment extends Fragment {
 	ListView topicList;
-	//TODO:DELETE REFRESH SPERRE
-	private boolean refreshed=false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,11 +48,10 @@ public class HomeFragment extends Fragment {
 		ArrayList<TopicItem> topicItems = new ArrayList<TopicItem>();
 
 		Log.v("HomeFragment","Topics erstellt");
-
-		if(refreshed==false){
+		
 		try{
 			JSONObject jsonObjString = null;
-			try { 
+			try {
 				jsonObjString = TopicRoulette.getNextTopic();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -63,12 +62,27 @@ public class HomeFragment extends Fragment {
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
 		}
-			refreshed = true;
-		}
+
 		adapter = new TopicItemAdapter(getActivity(), topicItems);
 		
 		mainActivity.setTopicItemAdapter(adapter);
 		topicList.setAdapter(adapter);
+		
+		topicList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id){
+				
+				if(position == 0){
+					TopicItemAdapter adapter = (TopicItemAdapter) parent.getAdapter();
+					TopicItem item = adapter.getRouletteItem();
+					Log.v("test", "RouletteItem geklickt");
+					Intent intent = new Intent(getActivity(), TopicActivity.class);
+					intent.putExtra("com.betteridea.models.TopicItem", item);
+					startActivity(intent);
+				}
+			}
+		});
 		
 		setHasOptionsMenu(true);
 		return view;

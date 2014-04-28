@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import com.betteridea.models.TopicItem;
 public class IdeaItemAdapter extends BaseAdapter{
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private Context context;
+	private int lastPosition = -1;
 	
 	public IdeaItemAdapter(Context context, ArrayList<IdeaItem> ideaItems, TopicItem topicItem){
 		this.context = context;
@@ -80,6 +83,10 @@ public class IdeaItemAdapter extends BaseAdapter{
 			descriptionText.setText(topicItem.getDescription());
 			timestampText.setText(topicItem.getTimestamp());
 			
+			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+		    view.startAnimation(animation);
+		    lastPosition = position;
+			
 			return view;
 			
 		}else{
@@ -96,6 +103,10 @@ public class IdeaItemAdapter extends BaseAdapter{
 			//TODO: ID und kein Name!!!
 			timeStamp.setText(item.getDate());
 			userText.setText(item.getAuthorID());
+			
+			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+		    view.startAnimation(animation);
+		    lastPosition = position;
 			
 			return view;
 		}

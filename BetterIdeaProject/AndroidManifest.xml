@@ -30,6 +30,12 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
             
         </activity>
+        <activity 
+            android:name="com.betteridea.TopicActivity"
+            android:label="@string/title_topic_activity"
+            android:parentActivityName="com.betteridea.MainActivity" >
+            
+        </activity>
         <activity
             android:name="com.betteridea.RegisterActivity"
             android:label="@string/title_activity_register" 

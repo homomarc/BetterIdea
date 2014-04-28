@@ -40,6 +40,7 @@
 	<string name="button_idea_spam">Spam melden</string>
 	<string name="label_valuate_idea">Wie bewertest du die Idee?</string>
 	<string name="label_valuate_idea_headline">Idee bewerten</string>
+	<string name="title_topic_activity">Thema</string>
 	
 	<!-- close topic -->
 	<string name="uncover_all">Alle aufdecken</string>

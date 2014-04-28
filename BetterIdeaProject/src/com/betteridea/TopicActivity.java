@@ -20,8 +20,11 @@ public class TopicActivity extends Activity{
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.topic_overview_layout, null);
+		
+		Log.v("test","TopicActivity erreicht");
 		
 		Bundle bundle = getIntent().getExtras();
 		TopicItem topicItem = bundle.getParcelable("com.betteridea.models.TopicItem");
@@ -33,7 +36,7 @@ public class TopicActivity extends Activity{
 			
 			IdeaItemAdapter ideaAdapter = new IdeaItemAdapter(this, jsonArray, topicItem);
 			
-			ListView ideaList = (ListView) findViewById(R.id.list_topic_overview);
+			ListView ideaList = (ListView) view.findViewById(R.id.list_topic_overview);
 			
 			ideaList.setAdapter(ideaAdapter);
 		} catch (InterruptedException e) {

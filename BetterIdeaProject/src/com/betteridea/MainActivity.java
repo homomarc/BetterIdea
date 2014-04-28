@@ -247,20 +247,6 @@ public class MainActivity extends Activity {
 	public void setIdeaItemAdapter(IdeaItemAdapter ideaItemAdapter){
 		this.ideaItemAdapter = ideaItemAdapter;
 	}
-    
-	public void openTopic(View view){
-		Log.v("test", "LoadTopic");
-		if(topicItemAdapter.getRouletteItem() != null){
-//			Fragment fragment = new TopicFragment(topicItemAdapter.getRouletteItem());
-//			fragmentManager.beginTransaction()
-//	    	.replace(R.id.content_frame,fragment)
-//	    	.commit();
-			
-			Intent intent = new Intent(this, TopicActivity.class);
-			Log.v("test",topicItemAdapter.getRouletteItem().getID());
-			intent.putExtra("com.betteridea.models.TopicItem", topicItemAdapter.getRouletteItem());
-		}
-	}
 	
 	public void share(View view){
 		String text = "Marc braucht Hilfe beim proggen ihr Schweine...";
