@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
 		if(refreshed==false){
 		try{
 			JSONObject jsonObjString = null;
-			try {
+			try { 
 				jsonObjString = TopicRoulette.getNextTopic();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
