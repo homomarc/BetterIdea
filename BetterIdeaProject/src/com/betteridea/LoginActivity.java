@@ -315,7 +315,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 				if(result != null){
 					boolean userStored = KeyValueStore.store(this, "userData", result);
 					if(userStored != false){
-						Service.userData = user;
+						Service.userData = new JSONObject(result);
 						String check = TopicRoulette.loadTopicCache();
 						if(check != "false"){
 							System.out.println("Sign in succeeded.");
