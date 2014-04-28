@@ -23,8 +23,7 @@ public class TopicItem extends Item{
 		this.isRouletteItem = isRouletteItem;
 	}
 	
-	public TopicItem(JSONObject jsobject){
-		Log.v("test", "JSONObject:  " + jsobject.toString());
+	public TopicItem(JSONObject jsobject, boolean isRouletteItem){
 		try{
 //			JSONObject auslesen
 			this.setID(jsobject.getString("id"));
@@ -37,7 +36,7 @@ public class TopicItem extends Item{
 			this.setAuthorID(jsobject.getInt("authorID"));
 			
 //			Wichtige Information für Adapter: Ist das Element ein RouletteItem?
-			this.isRouletteItem = true;
+			this.isRouletteItem = isRouletteItem;
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
 		}
@@ -45,7 +44,7 @@ public class TopicItem extends Item{
 	
 	//Eigene Topics (kommen nicht ins Roulette) 
 	//TODO: Damit aber noch nicht aus dem Roulette gänzlich ausgeschlossen!
-	public TopicItem(JSONObject jsobject, boolean ownTopic){
+	public TopicItem(JSONObject jsobject){
 		Log.v("test", "JSONObject:  " + jsobject.toString());
 		try{
 //			JSONObject auslesen

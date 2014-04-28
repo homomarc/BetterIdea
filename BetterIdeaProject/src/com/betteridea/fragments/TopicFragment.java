@@ -30,6 +30,16 @@ public class TopicFragment extends Fragment{
 	 }
 	 
 	 @Override
+	 public void onCreate(Bundle savedInstanceState){
+		 super.onCreate(savedInstanceState);
+		 getActivity().getActionBar().setHomeButtonEnabled(true);
+		 getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+		 getActivity().getActionBar().setHomeActionContentDescription("Back");
+		 
+		 setHasOptionsMenu(true);
+	 }
+	 
+	 @Override
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
 	 	View view = inflater.inflate(R.layout.topic_overview_layout, container, false);
 	 	 
@@ -58,7 +68,7 @@ public class TopicFragment extends Fragment{
 	 	//ideaList.setAdapter(adapter);
 	 	mainActivity.setIdeaItemAdapter(adapter);
 	 	
-	 	setHasOptionsMenu(true);
+//	 	setHasOptionsMenu(true);
 	 	 
 	 	return view;
 	 }

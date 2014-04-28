@@ -28,8 +28,12 @@ public class TopicItemAdapter extends BaseAdapter {
 	public TopicItemAdapter(Context context, ArrayList<TopicItem> topicItems, TopicItem rouletteItem){
 		this.context = context;
 		this.topicItems = topicItems;
-		if(!topicItems.get(0).isRouletteItem())
-			topicItems.add(0, rouletteItem);
+		if(topicItems.size()>0){
+			if(!topicItems.get(0).isRouletteItem())
+				topicItems.add(0, rouletteItem);
+		}else{
+			topicItems.add(rouletteItem);
+		}
 	}
 	
 	@Override

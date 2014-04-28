@@ -7,7 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edittext_topic_title"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-sarif-thin"
+        android:textSize="12pt" />
     
     <EditText android:id="@+id/edittext_topic_description"
         android:layout_width="match_parent"
@@ -15,7 +17,9 @@
         android:inputType="textMultiLine"
         android:hint="@string/edittext_topic_description"
         android:layout_below="@id/edittext_topic_title"
-        android:minLines="4" />
+        android:minLines="4"
+        android:fontFamily="sans-sarif-thin"
+        android:textSize="10pt" />
 
     <LinearLayout 
         android:layout_alignParentBottom="true"

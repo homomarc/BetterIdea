@@ -9,9 +9,10 @@ import org.json.JSONException;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentManager.OnBackStackChangedListener;
+import android.app.FragmentTransaction;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -38,7 +39,6 @@ import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.fragments.CreateTopicFragment;
 import com.betteridea.fragments.HomeFragment;
 import com.betteridea.fragments.SettingsFragment;
-import com.betteridea.fragments.TopicCloseFragment;
 import com.betteridea.fragments.TopicFragment;
 import com.betteridea.fragments.TopicOwnFragment;
 import com.betteridea.logic.CreditSystem;
@@ -46,11 +46,9 @@ import com.betteridea.logic.TopicRoulette;
 import com.betteridea.models.IdeaItem;
 import com.betteridea.models.NavDrawerItem;
 import com.betteridea.models.TopicItem;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.plus.Plus;
 
 @SuppressLint("NewApi")
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnBackStackChangedListener{
 	private DrawerLayout drawerLayout;
 	private ListView navigationList;
 	private static FragmentManager fragmentManager;
@@ -68,10 +66,6 @@ public class MainActivity extends Activity {
 	private TopicItemAdapter topicItemAdapter;
 	private IdeaItemAdapter ideaItemAdapter;
 	
-	private GoogleApiClient mGoogleApiClient;
-	
-	private boolean menuIsInitialized = false;
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +73,15 @@ public class MainActivity extends Activity {
         
         notify("Better Idea hat neue Themen für dich!");
         
-        Fragment fragment = new HomeFragment();
+        Fragment fragment = (HomeFragment) getFragmentManager().findFragmentByTag("HomeFragment");
+        if(fragment == null){
+        	Log.v("test","Neues HomeFragment");
+        	fragment = new HomeFragment();
+        }
+       
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-        	.add(R.id.content_frame,fragment)
+        	.replace(R.id.content_frame, fragment, "HomeFragment")
         	.commit();
         
 //        Load navigation entries
@@ -229,6 +228,7 @@ public class MainActivity extends Activity {
     //Zurückbutton deaktivieren
     @Override
     public void onBackPressed() {
+    	super.onBackPressed();
     }
     
 	public void loadTopics(View view) throws InterruptedException, ExecutionException{
@@ -264,9 +264,10 @@ public class MainActivity extends Activity {
 	public void openTopic(View view){
 		if(topicItemAdapter.getRouletteItem() != null){
 			Fragment fragment = new TopicFragment(topicItemAdapter.getRouletteItem());
-			fragmentManager.beginTransaction()
-	    	.replace(R.id.content_frame,fragment)
-	    	.commit();
+			FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();
+	    	fragmentTrans.replace(R.id.content_frame,fragment);
+	    	fragmentTrans.addToBackStack(null);
+			fragmentTrans.commit();
 		}
 	}
 	
@@ -367,5 +368,10 @@ public class MainActivity extends Activity {
 	    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	    notificationManager.notify((int) System.currentTimeMillis(), noti);
 	  }
+
+	@Override
+	public void onBackStackChanged() {
+		
+	}
 }
 
