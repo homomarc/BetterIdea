@@ -1,5 +1,13 @@
 package com.betteridea.adapter;
 
+/**
+ * Author: 		Better Idea
+ * Description:	TopicItemAdapter
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -20,7 +28,6 @@ import com.betteridea.R;
 import com.betteridea.models.TopicItem;
 
 public class TopicItemAdapter extends BaseAdapter {
-	// 1. item is rouletteItem
 	private ArrayList<TopicItem> topicItems = new ArrayList<TopicItem>();
 	private Context context;
 	private boolean ownTopics = false;
@@ -45,11 +52,12 @@ public class TopicItemAdapter extends BaseAdapter {
 	
 	public TopicItemAdapter(Context context, JSONArray jsonArray){
 		this.context = context;
+		// Neue TopicItems aus JSONObjectarray erstellen
 		for(int i=0;i<jsonArray.length();i++){
 			try {
 				topicItems.add(new TopicItem(jsonArray.getJSONObject(i),false));
 			} catch (JSONException e) {
-				Log.v("test", e.toString());
+				Log.v("TopicItemAdapter", e.toString());
 			}
 		}
 	}
@@ -79,16 +87,17 @@ public class TopicItemAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, ViewGroup group) {
-		// Instantiate View
-
+		// 1. item ist ein RouletteItem
 		if(position == 0 && topicItems.get(position).isRouletteItem()){
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(R.layout.topic_roulette_layout, null);
-
+			
+			// Viewobjekte zuordnen
 			TextView titleView = (TextView) view.findViewById(R.id.topic_roulette_title);
 			TextView descriptionView = (TextView) view.findViewById(R.id.topic_roulette_description);
 			TextView timestampView = (TextView) view.findViewById(R.id.topic_roulette_timestamp);
 			
+			// Viewobjekte mit Text füllen
 			titleView.setText(topicItems.get(position).getTitle());
 			descriptionView.setText(topicItems.get(position).getDescription());
 			timestampView.setText(topicItems.get(position).getTimestamp());
@@ -101,16 +110,17 @@ public class TopicItemAdapter extends BaseAdapter {
 			}else{
 				view = inflater.inflate(R.layout.topic_item_layout, null);
 			}
-			// Get Resources
+			// Viewobjekte zuordnen
 			TextView titleView = (TextView) view.findViewById(R.id.topic_feed_title);
 			TextView descriptionView = (TextView) view.findViewById(R.id.topic_feed_description);
 			TextView timestampView = (TextView) view.findViewById(R.id.topic_feed_timestamp);
 			
-			// set contents to resources
+			// Viewobjekte mit Text füllen
 			titleView.setText(topicItems.get(position).getTitle());
 			descriptionView.setText(topicItems.get(position).getDescription());
 			timestampView.setText(topicItems.get(position).getTimestamp());
 			
+			// Animationsparameter
 			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 		    view.startAnimation(animation);
 		    lastPosition = position;
@@ -118,12 +128,11 @@ public class TopicItemAdapter extends BaseAdapter {
 		
 		return view;
 	}
-	
+	// Als RouletteItem setzen
 	public void setRouletteItem(TopicItem rouletteItem){
 		if(topicItems.get(0).isRouletteItem())
 			topicItems.set(0,rouletteItem);
 		else
 			topicItems.add(0,rouletteItem);
 	}	
-
 }

@@ -1,5 +1,13 @@
 package com.betteridea.adapter;
 
+/**
+ * Author: 		Better Idea
+ * Description:	IdeaItemAdapter
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -37,20 +45,18 @@ public class IdeaItemAdapter extends BaseAdapter{
 		this.context = context;
 		items.add(0,topicItem);
 		
+		// Neue IdeaItems ausJSONObjectarray erstellen
 		for(int i=0;i<jsonObjects.length();i++){
 			try {
 				JSONObject obj = jsonObjects.getJSONObject(i);
-//				Log.v("test", "JSONObject: " + obj.toString());
-				
 				items.add(new IdeaItem(obj));
 			} catch (JSONException e) {
-				Log.v("test", "JSONException: " + e.toString());
+				Log.v("IdeaItemAdapter", "JSONException: " + e.toString());
 			} catch (Exception ex){
-				Log.v("test", "Exception: " + ex.toString());
+				Log.v("IdeaItemAdapter", "Exception: " + ex.toString());
 			}
 		}
 	}
-	
 	
 	@Override
 	public int getCount() {
@@ -69,41 +75,48 @@ public class IdeaItemAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View view, ViewGroup group) {
+		// Erste Position ist als Topic gekennzeichnet --> gelber Hintergrund
 		if(position == 0){
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(R.layout.topic_overview_item_layout, null);
 			
+			// Viewobjekte zuordnen
 			TextView titleText = (TextView) view.findViewById(R.id.topic_overview_title);
 			TextView descriptionText = (TextView) view.findViewById(R.id.topic_overview_description);
 			TextView timestampText = (TextView) view.findViewById(R.id.topic_overview_timestamp);
 			
 			TopicItem topicItem = (TopicItem) items.get(position);
 			
+			// Viewobjekte mit Text füllen
 			titleText.setText(topicItem.getTitle());
 			descriptionText.setText(topicItem.getDescription());
 			timestampText.setText(topicItem.getTimestamp());
 			
+			// Animationsparameter
 			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 		    view.startAnimation(animation);
 		    lastPosition = position;
 			
 			return view;
 			
+		//Ideen zum Topic
 		}else{
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(R.layout.idea_item_layout, null);
 			
+			// Viewobjekte zuordnen
 			TextView userText = (TextView) view.findViewById(R.id.text_idea_user);
 			TextView text = (TextView) view.findViewById(R.id.text_idea);
 			TextView timeStamp = (TextView) view.findViewById(R.id.topic_feed_timestamp);
 			
 			IdeaItem item = (IdeaItem) items.get(position);
 			
+			// Viewobjekte mit Text füllen
 			text.setText(item.getText());
-			//TODO: ID und kein Name!!!
 			timeStamp.setText(item.getDate());
 			userText.setText(item.getAuthorID());
 			
+			// Animationsparameter
 			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 		    view.startAnimation(animation);
 		    lastPosition = position;
@@ -115,5 +128,4 @@ public class IdeaItemAdapter extends BaseAdapter{
 	public void addIdea(IdeaItem idea){
 		items.add(idea);
 	}
-
 }
