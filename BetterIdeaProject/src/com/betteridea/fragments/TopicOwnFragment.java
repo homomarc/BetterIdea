@@ -47,7 +47,6 @@ public class TopicOwnFragment extends Fragment {
 		View view = inflater.inflate(R.layout.topic_own_fragment, container, false);
 		
 		MainActivity mainActivity = (MainActivity) getActivity();
-		TopicItemAdapter adapter = mainActivity.getTopicItemAdapter();
 		
 		topicList = (ListView) view.findViewById(R.id.list_own_topics);
 		
@@ -56,6 +55,10 @@ public class TopicOwnFragment extends Fragment {
 		try{
 			String jsonObjString = new ServiceExecuter().execute("allUserTopics").get();
 			JSONArray jsArray = new JSONArray(jsonObjString);
+			TopicItemAdapter topicAdapter = new TopicItemAdapter(getActivity(),jsArray);
+			topicAdapter.setOwnTopics(true);
+			
+			topicList.setAdapter(topicAdapter);
 			//Keine eigenen Themen vorhanden?
 			if(jsArray.length()<1){
 				TextView textViewInfo = (TextView) view.findViewById(R.id.textViewInfo);
@@ -75,10 +78,6 @@ public class TopicOwnFragment extends Fragment {
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
 		}
-		
-		adapter = new TopicItemAdapter(getActivity(), topicItems);
-		
-		topicList.setAdapter(adapter);
 		
 		topicList.setOnItemClickListener(new OnItemClickListener() {
 			@Override

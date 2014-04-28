@@ -58,14 +58,14 @@ public class HomeFragment extends Fragment {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			TopicItem rouletteItem = new TopicItem(jsonObjString);
+			TopicItem rouletteItem = new TopicItem(jsonObjString,true);
 			topicItems.add(rouletteItem);
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
 		}
 			refreshed = true;
 		}
-		adapter = new TopicItemAdapter(getActivity(), topicItems,new TopicItem("Thema 3","Wir haben die Aufgabe bekommen, eine native App für die Mobile Vorlesung zu entwickeln. Uns fehlen Ideen, welche Möglichkeiten es für Ideenapps gibt.","18:12, 01.04.2014",true));
+		adapter = new TopicItemAdapter(getActivity(), topicItems);
 		
 		mainActivity.setTopicItemAdapter(adapter);
 		topicList.setAdapter(adapter);

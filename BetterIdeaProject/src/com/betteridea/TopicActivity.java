@@ -23,7 +23,9 @@ public class TopicActivity extends Activity{
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.topic_overview_layout, null);
 		
-		TopicItem topicItem = (TopicItem) savedInstanceState.get("topic");
+		Bundle bundle = getIntent().getExtras();
+		TopicItem topicItem = bundle.getParcelable("com.betteridea.models.TopicItem");
+		
 		String jsonString;
 		try {
 			jsonString = new ServiceExecuter().execute("showTopic",""+topicItem.getTopicID()).get();

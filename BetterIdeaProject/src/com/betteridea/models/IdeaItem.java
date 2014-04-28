@@ -3,6 +3,8 @@ package com.betteridea.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 public class IdeaItem extends Item{
@@ -40,6 +42,48 @@ public class IdeaItem extends Item{
 		}catch(JSONException ex){
 			Log.v("text", "JSONException: " + ex.toString());
 		}
+	}
+	
+	public IdeaItem(Parcel in){
+		readFromParcel(in);
+	}
+	
+	public static final Parcelable.Creator<IdeaItem> CREATOR =
+			new Parcelable.Creator<IdeaItem>() {
+				public IdeaItem createFromParcel(Parcel in){
+					return new IdeaItem(in);
+				}
+				public IdeaItem[] newArray(int size){
+					return new IdeaItem[size];
+				}
+			};
+	
+	@Override 
+	public int describeContents() { 
+		return 0; 
+	}
+			
+	@Override
+	public void writeToParcel(Parcel dest, int flags){
+		dest.writeString(text);
+		dest.writeString(date);
+		dest.writeByte((byte)(isValuated ? 1 : 0));
+		dest.writeString(id);
+		dest.writeByte((byte)(uncovered ? 1 : 0));
+		dest.writeInt(ideaID);
+		dest.writeInt(topicID);
+		dest.writeString(authorID);
+	}
+	
+	private void readFromParcel(Parcel in){
+		text = in.readString();
+		date = in.readString();
+		isValuated = in.readByte() != 0;
+		id = in.readString();
+		uncovered = in.readByte() != 0;
+		ideaID = in.readInt();
+		topicID = in.readInt();
+		authorID = in.readString();
 	}
 	
 	public String getText(){

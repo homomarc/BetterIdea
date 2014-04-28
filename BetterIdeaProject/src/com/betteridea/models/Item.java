@@ -1,5 +1,7 @@
 package com.betteridea.models;
 
-public class Item {
+import android.os.Parcelable;
+
+public abstract class Item implements Parcelable{
 
 }

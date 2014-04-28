@@ -3,6 +3,8 @@ package com.betteridea.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 public class TopicItem extends Item{
@@ -59,6 +61,50 @@ public class TopicItem extends Item{
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
 		}
+	}
+	
+	public static final Parcelable.Creator<TopicItem> CREATOR = 
+			new Parcelable.Creator<TopicItem>() { 
+		public TopicItem createFromParcel(Parcel in) { 
+			return new TopicItem(in); 
+		}   
+		public TopicItem[] newArray(int size) { 
+			return new TopicItem[size]; 
+		} 
+	};
+	
+	public TopicItem(Parcel in){
+		readFromParcel(in);
+	}
+	
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(id);
+		dest.writeInt(topicID);
+		dest.writeByte((byte) (archived ? 1 : 0));
+		dest.writeString(updated);
+		dest.writeString(title);
+		dest.writeString(description);
+		dest.writeString(timestamp);
+		dest.writeByte((byte) (isRouletteItem ? 1 : 0));
+		dest.writeInt(authorID);
+	}
+	
+	private void readFromParcel(Parcel in){
+		id = in.readString();
+		topicID = in.readInt();
+		archived = in.readByte() != 0;
+		updated = in.readString();
+		title = in.readString();
+		description = in.readString();
+		timestamp = in.readString();
+		isRouletteItem = in.readByte() != 0;
+		authorID = in.readInt();
 	}
 	
 	
@@ -136,4 +182,6 @@ public class TopicItem extends Item{
 	public void setAuthorID(int authorID) {
 		this.authorID = authorID;
 	}
+
+
 }
