@@ -58,8 +58,10 @@ public class TopicRoulette {
 		return topicCache;
 	}
 
-	public static void setTopicCache(JSONArray jsObject) {
-		TopicRoulette.topicCache.put(jsObject);
+	public static void setTopicCache(JSONArray jsArr) throws JSONException {
+		for(int i=0; i<5;i++){
+			TopicRoulette.topicCache.put(jsArr.getJSONObject(i));	
+		}
 	}
 	
 }
