@@ -297,8 +297,10 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    progress.show();
 		try{
 			String value = KeyValueStore.get(this, "userData");
-			if(!value.equals("false") && !value.equals("error")){
-				Service.userData = new JSONObject(value);
+			JSONObject user = new JSONObject(value);
+			String emailOnKeyValue = user.getString("mail");
+			if(!value.equals("false") && !value.equals("error") && emailOnKeyValue.equals(email)){
+				Service.userData = user;
 				String check = TopicRoulette.loadTopicCache();
 				if(check != "false"){
 					System.out.println("Sign in succeeded.");
@@ -313,7 +315,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 				if(result != null){
 					boolean userStored = KeyValueStore.store(this, "userData", result);
 					if(userStored != false){
-						Service.userData = new JSONObject(result);
+						Service.userData = user;
 						String check = TopicRoulette.loadTopicCache();
 						if(check != "false"){
 							System.out.println("Sign in succeeded.");

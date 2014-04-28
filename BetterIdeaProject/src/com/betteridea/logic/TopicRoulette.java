@@ -21,7 +21,6 @@ public class TopicRoulette {
 		check = new ServiceExecuter().execute("newRandTopic").get();
 		return check;
 	}
-	
 	public static JSONObject getNextTopic() throws IOException, JSONException{
 		boolean check = true;
 		int try1 = 0;
@@ -44,10 +43,8 @@ public class TopicRoulette {
 			try {
 				loadTopicCache();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
