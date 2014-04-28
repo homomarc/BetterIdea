@@ -1,6 +1,16 @@
 package com.betteridea;
 
-import java.util.ArrayList;
+/**
+ * Author: 		Better Idea
+ * Description:	LoginActivity 
+ * 				User loggt sich mit G+/zukünftig FB Account ein, falls noch kein 
+ * 				Account mit der verknüpften Email vorhanden ist, wird der User auf die RegisterActivity weiterleitet.
+ * 
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONObject;
@@ -31,13 +41,9 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity implements OnClickListener,
 ConnectionCallbacks, OnConnectionFailedListener {
-	
-	  //Instanz
-	public static LoginActivity loginactivity = new LoginActivity();
 
 	  //Logcat Tag
 	  private static final String TAG = "LoginActivity";
-	  
 	  private static final int RC_SIGN_IN = 0;
 
 	  // GoogleApiClient 
@@ -67,6 +73,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    mSignInButton.setOnClickListener(this);
 	    
 	    mGoogleApiClient = buildGoogleApiClient();
+	    
 	  }
 	  
 	  private GoogleApiClient buildGoogleApiClient() {
@@ -331,19 +338,4 @@ ConnectionCallbacks, OnConnectionFailedListener {
 			Log.v("test",ex.toString());
 		}
 	}
-	
-	private boolean checkPassword(String user, String password){
-		return true;
-	}
-	private void cancelLogin(){
-		
-	}
-	//	onClick Register Button
-	/*
-	public void register(View view){
-		Intent intent = new Intent(this,RegisterActivity.class);
-		startActivity(intent);
-	}*/
-  
-
 }

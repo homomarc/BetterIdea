@@ -54,10 +54,9 @@ public class SplashScreenActivity extends Activity {
                 final Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 SplashScreenActivity.this.startActivity(mainIntent);
                 SplashScreenActivity.this.finish();
+                
+                overridePendingTransition(R.anim.login_activity_oncreate_anim,R.anim.up_from_bottom);
             }
         }, 5000);
- 
     }
-    
-
 }
