@@ -1,5 +1,14 @@
 package com.betteridea.models;
 
+/**
+ * Author: 		Better Idea
+ * Description:	Modelklasse für die Datenhaltung der einzelnen TopicItems, 
+ * 				notwendig zur Anzeige für den TopicItemAdapter.
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,16 +17,12 @@ import android.os.Parcelable;
 import android.util.Log;
 
 public class TopicItem extends Item{
-	private String id;
-	private int topicID;
-	private boolean archived;
-	private String updated;
-	private String title;
-	private String description;
-	private String timestamp;
-	private boolean isRouletteItem;
-	private int authorID;
+	//Variablendeklaration
+	private int topicID, authorID;
+	private boolean archived, isRouletteItem;
+	private String id, updated, title, description, timestamp;
 	
+	//TopicItem Konstruktor
 	public TopicItem(String title, String description, String timestamp, boolean isRouletteItem){
 		this.title = title;
 		this.description = description;
@@ -25,9 +30,10 @@ public class TopicItem extends Item{
 		this.isRouletteItem = isRouletteItem;
 	}
 	
+	//TopicItem Konstruktor mit JSONObject und RouletteItem = true/false
 	public TopicItem(JSONObject jsobject, boolean isRouletteItem){
 		try{
-//			JSONObject auslesen
+			// JSONObject auslesen
 			this.setID(jsobject.getString("id"));
 			this.setArchived(jsobject.getBoolean("archived"));
 			this.setUpdated(jsobject.getString("updated"));
@@ -36,33 +42,32 @@ public class TopicItem extends Item{
 			this.setTopicID(jsobject.getInt("topicID"));
 			this.timestamp = jsobject.getString("date");
 			this.setAuthorID(jsobject.getInt("authorID"));
-			
-//			Wichtige Information für Adapter: Ist das Element ein RouletteItem?
+			// Wichtige Information für Adapter: Ist das Element ein RouletteItem?
 			this.isRouletteItem = isRouletteItem;
 		}catch(JSONException ex){
-			Log.v("test", "JSONException: " + ex.toString());
+			Log.v("TopicItem - Konstruktor", "JSONException: " + ex.toString());
 		}
 	}
 	
 	//Eigene Topics (kommen nicht ins Roulette) 
-	//TODO: Damit aber noch nicht aus dem Roulette gänzlich ausgeschlossen!
 	public TopicItem(JSONObject jsobject){
-		Log.v("test", "JSONObject:  " + jsobject.toString());
+		Log.v("TopicItem Konstruktor-Object", "JSONObject:  " + jsobject.toString());
 		try{
-//			JSONObject auslesen
+			// JSONObject auslesen
 			this.setID(jsobject.getString("id"));
 			this.title = jsobject.getString("titel");
 			this.setUpdated(jsobject.getString("updated"));
 			this.description = jsobject.getString("description");
 			this.setTopicID(jsobject.getInt("topicID"));
-			this.timestamp = jsobject.getString("date");
-			
+			this.timestamp = jsobject.getString("date");	
 			this.isRouletteItem = false;
 		}catch(JSONException ex){
-			Log.v("test", "JSONException: " + ex.toString());
+			Log.v("TopicItem - Konstruktor-Object", "JSONException: " + ex.toString());
 		}
 	}
 	
+	//Parcelable Konstrukt, damit Activitys einzelne TopicItems übergeben werden können,
+	//für anzeigen eines konkreten Topics notwendig.
 	public static final Parcelable.Creator<TopicItem> CREATOR = 
 			new Parcelable.Creator<TopicItem>() { 
 		public TopicItem createFromParcel(Parcel in) { 
@@ -106,7 +111,6 @@ public class TopicItem extends Item{
 		isRouletteItem = in.readByte() != 0;
 		authorID = in.readInt();
 	}
-	
 	
 	/*
 	 * GETTER & SETTER
@@ -182,6 +186,4 @@ public class TopicItem extends Item{
 	public void setAuthorID(int authorID) {
 		this.authorID = authorID;
 	}
-
-
 }

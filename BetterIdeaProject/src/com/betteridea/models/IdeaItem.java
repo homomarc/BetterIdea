@@ -1,5 +1,14 @@
 package com.betteridea.models;
 
+/**
+ * Author: 		Better Idea
+ * Description:	Modelklasse für die Datenhaltung der einzelnen IdeaItems,
+ * 				notwendig zur Anzeige für den IdeaItemAdapter.
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,7 +18,6 @@ import android.util.Log;
 
 public class IdeaItem extends Item{
 	private String text = "";
-//	private int user;
 	private String date = "";
 	private boolean isValuated = false;
 	private String id = "";
@@ -18,6 +26,7 @@ public class IdeaItem extends Item{
 	private int topicID = -1;
 	private String authorID = "-1";
 	
+	//IdeaItem Konstruktor mit allen Parametern
 	public IdeaItem(String text, String date, boolean isValuated, String id, boolean uncovered, int ideaID, int topicID, String authorID){
 		this.text = text;
 		this.date = date;
@@ -28,7 +37,7 @@ public class IdeaItem extends Item{
 		this.setTopicID(topicID);
 		this.setAuthorID(authorID);
 	}
-	
+	//IdeaItem Konstruktor mit JSONObject
 	public IdeaItem(JSONObject obj){
 		try{
 			this.text = obj.getString("text");
@@ -43,7 +52,8 @@ public class IdeaItem extends Item{
 			Log.v("text", "JSONException: " + ex.toString());
 		}
 	}
-	
+	//Parcelable Konstrukt, damit Activitys einzelne IdeaItems übergeben werden können,
+	//für anzeigen einer konkreten Idee notwendig.
 	public IdeaItem(Parcel in){
 		readFromParcel(in);
 	}

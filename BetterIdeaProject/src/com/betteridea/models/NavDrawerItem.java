@@ -1,5 +1,14 @@
 package com.betteridea.models;
 
+/**
+ * Author: 		Better Idea
+ * Description:	Modelklasse für die Datenhaltung der einzelnen NavigationDrawerItems.
+ * 				Enthält die einzelnen Texte des Navigationsmenüs und die zugehörigen Ikonen.
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 public class NavDrawerItem {
 	private String title;
 	private int icon;

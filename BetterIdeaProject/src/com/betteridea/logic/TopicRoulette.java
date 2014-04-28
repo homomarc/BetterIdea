@@ -1,5 +1,16 @@
 package com.betteridea.logic;
 
+/**
+ * Author: 		Better Idea
+ * Description:	TopicRoulette-Logik verwendet einen sogenannten TopicCache,
+ * 				mithilfe dieses TopicCaches werden zunächst 5 Topics im Cache vorgehalten.
+ * 				Der TopicCache wird dynamisch erweitert. Wenn TopicCachegröße-2 Topics angezeigt wurden,
+ * 				werden fünf weitere Topics in den Cache geladen.
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
@@ -16,11 +27,13 @@ public class TopicRoulette {
 	private static int counter = 0;
 	private static int arrayLength = 0;
 	
+	// TopicCache wird geladen (angestoßen beim Login)
 	public static String loadTopicCache() throws IOException, InterruptedException, ExecutionException{
 		String check = null;
 		check = new ServiceExecuter().execute("newRandTopic").get();
 		return check;
 	}
+	// Nächstes Topic ins Roulette aus dem Cache laden
 	public static JSONObject getNextTopic() throws IOException, JSONException{
 		boolean check = true;
 		int try1 = 0;
