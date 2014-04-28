@@ -1,24 +1,19 @@
 package com.betteridea;
 
 /**
- * @author Marc-Philipp Böckle
+ * Author: 		Better Idea
+ * Description:	RegisterActivity 
+ * 				Hier wird der User hingeleitet, falls zu seiner G+/FB-Email kein Account besteht.
+ * 				Nach Wahl eines Nutzernamens wird der User automatisch eingelogt.
  * 
- * RegisterActivity Description:
+ * TODOS:		keine
  * 
- * Dies ist die RegisterActivity.
- * 
- * Hier wird der User hingeleitet, falls zu seiner G+ Email kein Account besteht.
- * Nach Wahl eines Nutzernamens wird der User automatisch eingelogt.
  */
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.betteridea.connection.Login;
-import com.betteridea.connection.Service;
 import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.logic.*;
 
@@ -26,19 +21,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegisterActivity extends Activity {
-	String email;
+	private String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
         
-        //Von MainActivity übergebene Mailadresse in var speichern
+        //Von MainActivity übergebene Mailadresse in Variable speichern
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -50,7 +43,7 @@ public class RegisterActivity extends Activity {
             email= (String) savedInstanceState.getSerializable("EMAIL");
         }
    } 
-  //onClick register Button
+    //onClick register Button
   	public void register(View view){
         TextView userNameTextView = (TextView) findViewById(R.id.userName);
         String userName = userNameTextView.getText().toString();
@@ -60,10 +53,8 @@ public class RegisterActivity extends Activity {
         	// Data1 = Username / Data2 = Usermail (Serviceparameter)
 			result = new ServiceExecuter().execute("createUser",userName,email).get();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         if(result=="true"){
@@ -72,16 +63,15 @@ public class RegisterActivity extends Activity {
         	try {
 				gointoMain(view2, email);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }else{
         	Toast.makeText(this, "Register unsuccessful!", Toast.LENGTH_LONG).show();
         }
     }
+  	
   	//Nach Registrierung in die Main gehen
 	public void gointoMain(View view, String email) throws InterruptedException, ExecutionException{
 		String result = new Login().execute(email).get();
@@ -90,7 +80,6 @@ public class RegisterActivity extends Activity {
 			try {
 				TopicRoulette.loadTopicCache();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
@@ -99,5 +88,5 @@ public class RegisterActivity extends Activity {
 			System.out.println("Invalid email!!!");
 			Toast.makeText(this, "Ungültige Mail!", Toast.LENGTH_LONG).show();
 		}
-	}//gointoMain
+	}//gointoMain()
 }

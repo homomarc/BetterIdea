@@ -11,9 +11,6 @@ package com.betteridea.fragments;
 
 import java.util.concurrent.ExecutionException;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +20,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.betteridea.R;
@@ -60,10 +56,8 @@ public class SettingsFragment extends Fragment{
 		         			Toast.makeText(getActivity(), "Nutzername erfolgreich geändert", Toast.LENGTH_LONG).show();
 		         		}
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (ExecutionException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 	         		
