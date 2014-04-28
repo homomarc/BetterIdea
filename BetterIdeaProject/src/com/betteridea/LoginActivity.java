@@ -19,6 +19,7 @@ import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
@@ -171,9 +172,10 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    private void updateUI(boolean isSignedIn) throws InterruptedException, ExecutionException {
 	        if (isSignedIn) {
 	        	Intent intent = null;
-	    		try{
+	        	try{
 	    			String value = KeyValueStore.get(this, "userData");
-	    			if(!value.equals("false")){
+	    			if(!value.equals("false") && !value.equals("error")){
+	    				System.out.println(value);
 	    				Service.userData = new JSONObject(value);
 	    				String check = TopicRoulette.loadTopicCache();
 	    				if(check != "false"){
@@ -189,7 +191,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    				if(result != null){
 	    					boolean userStored = KeyValueStore.store(this, "userData", result);
 	    					if(userStored != false){
-	    						Service.userData = new JSONObject(value);
+	    						Service.userData = new JSONObject(result);
 	    						String check = TopicRoulette.loadTopicCache();
 	    						if(check != "false"){
 	    							System.out.println("Sign in succeeded.");
@@ -287,10 +289,15 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		Intent intent = null;
 		EditText emailText = (EditText) findViewById(R.id.user_edit);
 		String email = emailText.getText().toString();
+		//Progresscircle anzeigen
+		ProgressDialog progress = new ProgressDialog(this);
+		progress.setMessage("Update Themenroulette");
+	    progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+	    progress.setIndeterminate(true);
+	    progress.show();
 		try{
 			String value = KeyValueStore.get(this, "userData");
 			if(!value.equals("false") && !value.equals("error")){
-				System.out.println(value);
 				Service.userData = new JSONObject(value);
 				String check = TopicRoulette.loadTopicCache();
 				if(check != "false"){

@@ -11,18 +11,18 @@
                 @string/navigation_stats
             </item>
             <item>
-                @string/navigation_logout
+            	@string/navigation_settings
             </item>
             <item>
-            	@string/navigation_settings
+                @string/navigation_logout
             </item>
         </string-array>
         
         <array name="navigation_icons">
-            <item>@drawable/ic_home</item>
-            <item>@drawable/logo</item>
+            <item>@drawable/home</item>
+            <item>@drawable/mytopics</item>
             <item>@drawable/stats</item>
-            <item>@drawable/options</item>
             <item>@drawable/settings</item>
+            <item>@drawable/logout</item>
         </array>
     </resources>
