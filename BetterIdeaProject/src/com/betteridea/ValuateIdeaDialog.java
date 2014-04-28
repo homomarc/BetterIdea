@@ -15,7 +15,7 @@ public class ValuateIdeaDialog extends DialogFragment {
 		
 		builder.setView(inflater.inflate(R.layout.valuate_idea_dialog, null));
 		
-		builder.setTitle(R.string.label_create_topic_headline);
+		builder.setTitle(R.string.label_valuate_idea_headline);
 		
 		return builder.create();
 	}

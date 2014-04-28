@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-	<EditText android:id="@+id/edittext_topic_title"
+	<TextView android:id="@+id/label_valuate_idea"
 	    android:layout_margin="5dp"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"

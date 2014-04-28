@@ -68,16 +68,12 @@ public class MainActivity extends Activity {
 	private TopicItemAdapter topicItemAdapter;
 	private IdeaItemAdapter ideaItemAdapter;
 	
-	private GoogleApiClient mGoogleApiClient;
-	
-	private boolean menuIsInitialized = false;
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_layout);
         
-        notify("Neue Ideen zu deinen Topics vorhanden!");
+//        notify("Neue Ideen zu deinen Topics vorhanden!");
         
         Fragment fragment = new HomeFragment();
         fragmentManager = getFragmentManager();
@@ -146,7 +142,7 @@ public class MainActivity extends Activity {
     private class NavigationItemClickListener implements ListView.OnItemClickListener{
 
 		@Override
-		public void onItemClick(AdapterView parent, View view, int position,
+		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			selectItem(position);
 		}
@@ -252,10 +248,13 @@ public class MainActivity extends Activity {
     
 	public void openTopic(View view){
 		if(topicItemAdapter.getRouletteItem() != null){
-			Fragment fragment = new TopicFragment(topicItemAdapter.getRouletteItem());
-			fragmentManager.beginTransaction()
-	    	.replace(R.id.content_frame,fragment)
-	    	.commit();
+//			Fragment fragment = new TopicFragment(topicItemAdapter.getRouletteItem());
+//			fragmentManager.beginTransaction()
+//	    	.replace(R.id.content_frame,fragment)
+//	    	.commit();
+			
+			Intent intent = new Intent(this, TopicActivity.class);
+			intent.putExtra("com.betteridea.models.TopicItem", topicItemAdapter.getRouletteItem());
 		}
 	}
 	

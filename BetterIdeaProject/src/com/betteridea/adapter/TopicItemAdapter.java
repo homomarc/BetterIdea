@@ -2,11 +2,17 @@ package com.betteridea.adapter;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -15,9 +21,10 @@ import com.betteridea.models.TopicItem;
 
 public class TopicItemAdapter extends BaseAdapter {
 	// 1. item is rouletteItem
-	private ArrayList<TopicItem> topicItems;
+	private ArrayList<TopicItem> topicItems = new ArrayList<TopicItem>();
 	private Context context;
-	private boolean ownTopics= false;
+	private boolean ownTopics = false;
+	private int lastPosition = -1;
 	
 	public TopicItemAdapter(Context context, ArrayList<TopicItem> topicItems){
 		this.context = context;
@@ -36,6 +43,17 @@ public class TopicItemAdapter extends BaseAdapter {
 		}
 	}
 	
+	public TopicItemAdapter(Context context, JSONArray jsonArray){
+		this.context = context;
+		for(int i=0;i<jsonArray.length();i++){
+			try {
+				topicItems.add(new TopicItem(jsonArray.getJSONObject(i),false));
+			} catch (JSONException e) {
+				Log.v("test", e.toString());
+			}
+		}
+	}
+	
 	@Override
 	public int getCount() {
 		return topicItems.size();
@@ -43,6 +61,10 @@ public class TopicItemAdapter extends BaseAdapter {
 	
 	public TopicItem getRouletteItem(){
 		return topicItems.get(0).isRouletteItem() ? topicItems.get(0) : null;
+	}
+	
+	public void setOwnTopics(boolean ownTopics){
+		this.ownTopics = ownTopics;
 	}
 
 	@Override
@@ -89,6 +111,10 @@ public class TopicItemAdapter extends BaseAdapter {
 			descriptionView.setText(topicItems.get(position).getDescription());
 			timestampView.setText(topicItems.get(position).getTimestamp());
 		}
+		
+		Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+	    view.startAnimation(animation);
+	    lastPosition = position;
 		
 		return view;
 	}
