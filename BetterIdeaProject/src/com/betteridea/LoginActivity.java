@@ -3,6 +3,9 @@ package com.betteridea;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONObject;
+
+import com.betteridea.connection.KeyValueStore;
 import com.betteridea.connection.Login;
 import com.betteridea.connection.Service;
 import com.betteridea.logic.TopicRoulette;
@@ -167,16 +170,39 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	     * */
 	    private void updateUI(boolean isSignedIn) throws InterruptedException, ExecutionException {
 	        if (isSignedIn) {
-	    		String result = new Login().execute(email).get();
-	    		if(result != null){
-	    			System.out.println("Sign in succeeded.");
-	    			Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+	        	Intent intent = null;
+	    		try{
+	    			String value = KeyValueStore.get(this, "userData");
+	    			if(!value.equals("false")){
+	    				Service.userData = new JSONObject(value);
+	    				String check = TopicRoulette.loadTopicCache();
+	    				if(check != "false"){
+	    					System.out.println("Sign in succeeded.");
+	    					intent = new Intent(LoginActivity.this,MainActivity.class);		
+	    				}else{		
+	    					intent = new Intent(LoginActivity.this,RegisterActivity.class);
+	    					intent.putExtra("EMAIL", email);
+	    				}
+	    			}else{
+	    				System.out.println("UserData not in KeyValueStore!");
+	    				String result = new Login().execute(email).get();
+	    				if(result != null){
+	    					boolean userStored = KeyValueStore.store(this, "userData", result);
+	    					if(userStored != false){
+	    						Service.userData = new JSONObject(value);
+	    						String check = TopicRoulette.loadTopicCache();
+	    						if(check != "false"){
+	    							System.out.println("Sign in succeeded.");
+	    							intent = new Intent(LoginActivity.this,MainActivity.class);							
+	    						}
+	    					}
+	    				}else{
+	    					System.out.println("Invalid email!");
+	    				}
+	    			}
 	    			startActivity(intent);
-	    		}else{
-	    			System.out.println("Invalid email!");
-	    			Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-	    			intent.putExtra("EMAIL", email);
-	    			startActivity(intent);
+	    		}catch(Exception ex){
+	    			Log.v("test",ex.toString());
 	    		}
 	        } else {
 	        	//TODO: Do nothing?
@@ -259,32 +285,38 @@ ConnectionCallbacks, OnConnectionFailedListener {
   	//onClick Login Button
 	public void login(View view){
 		Intent intent = null;
-		//		Check Password
-		/*EditText user = (EditText) findViewById(R.id.user_edit);
-		EditText password = (EditText) findViewById(R.id.password_edit);*/
-		//TODO: TESTEMAIL!
 		EditText emailText = (EditText) findViewById(R.id.user_edit);
 		String email = emailText.getText().toString();
 		try{
-			String result = new Login().execute(email).get();
-			if(result != null){
+			String value = KeyValueStore.get(this, "userData");
+			if(!value.equals("false")){
+				Service.userData = new JSONObject(value);
 				String check = TopicRoulette.loadTopicCache();
 				if(check != "false"){
 					System.out.println("Sign in succeeded.");
-					intent = new Intent(LoginActivity.this,MainActivity.class);
-		//			startActivity(intent);
+					intent = new Intent(LoginActivity.this,MainActivity.class);		
+				}else{		
+					intent = new Intent(LoginActivity.this,RegisterActivity.class);
+					intent.putExtra("EMAIL", email);
 				}
 			}else{
-				System.out.println("Invalid email!");
-				intent = new Intent(LoginActivity.this,RegisterActivity.class);
-				intent.putExtra("EMAIL", email);
-	//			startActivity(intent);
+				System.out.println("UserData not in KeyValueStore!");
+				String result = new Login().execute(email).get();
+				if(result != null){
+					boolean userStored = KeyValueStore.store(this, "userData", result);
+					if(userStored != false){
+						Service.userData = new JSONObject(value);
+						String check = TopicRoulette.loadTopicCache();
+						if(check != "false"){
+							System.out.println("Sign in succeeded.");
+							intent = new Intent(LoginActivity.this,MainActivity.class);							
+						}
+					}
+				}else{
+					System.out.println("Invalid email!");
+				}
 			}
-		
-			/*if(checkPassword(user.getText().toString(),password.getText().toString()))*/
-				startActivity(intent);
-			/*else
-				cancelLogin();*/
+			startActivity(intent);
 		}catch(Exception ex){
 			Log.v("test",ex.toString());
 		}
