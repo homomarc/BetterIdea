@@ -91,12 +91,17 @@ public class TopicCloseActivity extends Activity{
 	}
 	
 	@Override
+	public void onResume(){
+		super.onResume();
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		int id = item.getItemId();
 		
 		if(id == android.R.id.home){
 			NavUtils.navigateUpFromSameTask(this);
-			return true;
+			finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}

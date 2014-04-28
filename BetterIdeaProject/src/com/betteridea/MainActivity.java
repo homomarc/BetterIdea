@@ -68,6 +68,8 @@ public class MainActivity extends Activity {
 	private TopicItemAdapter topicItemAdapter;
 	private IdeaItemAdapter ideaItemAdapter;
 	
+	private int position = 0;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
