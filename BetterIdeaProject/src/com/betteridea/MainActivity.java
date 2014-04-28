@@ -12,6 +12,8 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -74,6 +76,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_layout);
+        
+        notify("Better Idea hat neue Themen für dich!");
         
         Fragment fragment = new HomeFragment();
         fragmentManager = getFragmentManager();
@@ -148,12 +152,7 @@ public class MainActivity extends Activity {
 		}
 		
 		private void selectItem(int position){
-			Fragment fragment = new HomeFragment();
-			
-			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.content_frame, fragment)
-					.commit();
+			Fragment fragment = null;
 			
 			navigationList.setItemChecked(position, true);
 			getActionBar().setTitle(navigationEntries[position]);
@@ -161,6 +160,14 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent();
 			switch(position){
 				case 0:
+					fragment = (Fragment)getFragmentManager().findFragmentByTag("HomeFragment");
+			        if(fragment == null){
+			        	fragment = new HomeFragment();
+			        }
+			        fragmentManager = getFragmentManager();
+			        fragmentManager.beginTransaction()
+			        	.replace(R.id.content_frame,fragment,"HomeFragment")
+			        	.commit();
 					break;
 				case 1:
 					//TODO: 
@@ -349,5 +356,16 @@ public class MainActivity extends Activity {
 	public void makeToast(String value){
 		Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
 	}
+	
+	private void notify(String methodName) {
+	    String name = this.getClass().getName();
+	    String[] strings = name.split("\\.");
+	    Notification noti = new Notification.Builder(this)
+	        .setContentTitle(methodName + " " + strings[strings.length - 1]).setAutoCancel(true)
+	        .setSmallIcon(R.drawable.ic_launcher)
+	        .setContentText(name).build();
+	    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+	    notificationManager.notify((int) System.currentTimeMillis(), noti);
+	  }
 }
 

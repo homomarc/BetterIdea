@@ -33,6 +33,7 @@ public class HomeFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		System.out.println("TEST oncreate");
 		super.onCreate(savedInstanceState);
+		
 	}
 	
 	@Override
