@@ -41,6 +41,7 @@
 	<string name="label_valuate_idea">Wie bewertest du die Idee?</string>
 	<string name="label_valuate_idea_headline">Idee bewerten</string>
 	<string name="title_topic_activity">Thema</string>
+	<string name="title_topic_close_activity">Eigenes Thema</string>
 	
 	<!-- close topic -->
 	<string name="uncover_all">Alle aufdecken</string>

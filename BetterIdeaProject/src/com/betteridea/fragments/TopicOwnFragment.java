@@ -1,14 +1,13 @@
 package com.betteridea.fragments;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,16 +16,15 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.app.FragmentManager;
 
 import com.betteridea.MainActivity;
 import com.betteridea.R;
-import android.widget.AdapterView.OnItemClickListener;
+import com.betteridea.TopicCloseActivity;
 import com.betteridea.adapter.TopicItemAdapter;
 import com.betteridea.connection.ServiceExecuter;
-import com.betteridea.logic.TopicRoulette;
 import com.betteridea.models.TopicItem;
 
 public class TopicOwnFragment extends Fragment {
@@ -87,11 +85,14 @@ public class TopicOwnFragment extends Fragment {
 				TopicItem selectedTopicItem = (TopicItem) tia.getItem(position);
 				
 
-				Fragment fragment = new TopicCloseFragment(selectedTopicItem);
-				FragmentManager fragmentManager = getFragmentManager();
-				fragmentManager.beginTransaction()
-		    	.replace(R.id.content_frame,fragment)
-		    	.commit();
+//				Fragment fragment = new TopicCloseFragment(selectedTopicItem);
+//				FragmentManager fragmentManager = getFragmentManager();
+//				fragmentManager.beginTransaction()
+//		    	.replace(R.id.content_frame,fragment)
+//		    	.commit();
+				Intent intent = new Intent(getActivity(), TopicCloseActivity.class);
+				intent.putExtra("com.betteridea.models.TopicItem", selectedTopicItem);
+				startActivity(intent);
 			}});
 		
 		

@@ -36,6 +36,12 @@
             android:parentActivityName="com.betteridea.MainActivity" >
             
         </activity>
+        <activity 
+            android:name="com.betteridea.TopicCloseActivity"
+            android:label="@string/title_topic_close_activity"
+            android:parentActivityName="com.betteridea.MainActivity">
+            
+        </activity>
         <activity
             android:name="com.betteridea.RegisterActivity"
             android:label="@string/title_activity_register" 
