@@ -58,8 +58,8 @@ public class TopicRoulette {
 		return topicCache;
 	}
 
-	public static void setTopicCache(JSONObject topic) {
-		TopicRoulette.topicCache.put(topic);
+	public static void setTopicCache(JSONArray jsObject) {
+		TopicRoulette.topicCache.put(jsObject);
 	}
 	
 }

@@ -161,13 +161,12 @@ public class Service {
         	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/topicRoulette.sjs?authorID=";
         	reqUrl += userData.getString("userID");
         	String result = Database.getRequest(reqUrl);
-        	JSONObject jsObject = new JSONObject(result);
+        	JSONArray jsObject = new JSONArray(result);
         	TopicRoulette.setTopicCache(jsObject);
         	return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "false";
-			
 		}
 	}
 	
