@@ -68,67 +68,77 @@ public class MainActivity extends Activity {
 	private TopicItemAdapter topicItemAdapter;
 	private IdeaItemAdapter ideaItemAdapter;
 	
-	private int position = 0;
+	private Fragment activeFragment;
+	
+	@Override
+	public void onStart(){
+		super.onStart();
+		setContentView(R.layout.drawer_layout);
+        
+//      notify("Neue Ideen zu deinen Topics vorhanden!");
+      fragmentManager = getFragmentManager();        
+//      
+//      activeFragment = fragmentManager.findFragmentByTag("HomeFragment");
+//      
+//      if(activeFragment == null)
+//      	activeFragment = fragmentManager.findFragmentByTag("OwnTopicFragment");
+//      
+      activeFragment = new HomeFragment();
+      
+      fragmentManager.beginTransaction()
+      	.add(R.id.content_frame,activeFragment)
+      	.commit();
+      
+//      Load navigation entries
+      navigationEntries = getResources().getStringArray(R.array.navigation_entries);
+
+//      Load navigation icons
+      navigationIcons = getResources().obtainTypedArray(R.array.navigation_icons);
+      
+//      Instantiate drawerLayout and navigationList
+      drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+      navigationList = (ListView) findViewById(R.id.left_drawer);        
+      
+//      Instantiate and fill drawerItems (consisting of icon and text)
+      navigationItems = new ArrayList<NavDrawerItem>();
+      navigationItems.add(new NavDrawerItem(navigationEntries[0],navigationIcons.getResourceId(0,-1)));
+      navigationItems.add(new NavDrawerItem(navigationEntries[1],navigationIcons.getResourceId(1,-1)));
+      navigationItems.add(new NavDrawerItem(navigationEntries[2],navigationIcons.getResourceId(2,-1)));
+      navigationItems.add(new NavDrawerItem(navigationEntries[3],navigationIcons.getResourceId(3,-1)));
+      navigationItems.add(new NavDrawerItem(navigationEntries[4],navigationIcons.getResourceId(4,-1)));
+      
+      adapter = new NavDrawerListAdapter(getApplicationContext(), navigationItems);
+      
+      navigationList.setAdapter(adapter);
+      navigationList.setItemChecked(0,true);
+      navigationList.setOnItemClickListener(new NavigationItemClickListener());
+      
+      drawerToggle = new ActionBarDrawerToggle(this, 
+      		drawerLayout, 
+      		R.drawable.ic_drawer,
+      		R.string.drawer_open,
+      		R.string.drawer_close){
+      	public void onDrawerClosed(View view){
+      		super.onDrawerClosed(view);
+      		invalidateOptionsMenu();
+      	}
+      	
+      	public void onDrawerOpened(View view){
+      		super.onDrawerOpened(view);
+      		invalidateOptionsMenu();
+      	}
+      };
+      
+      drawerLayout.setDrawerListener(drawerToggle);
+      
+      getActionBar().setDisplayHomeAsUpEnabled(true);
+      getActionBar().setHomeButtonEnabled(true);
+	}
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_layout);
         
-//        notify("Neue Ideen zu deinen Topics vorhanden!");
-        fragmentManager = getFragmentManager();
-        Fragment homeFragment = fragmentManager.findFragmentByTag("HomeFragment");
-        if(homeFragment == null)
-        	homeFragment = new HomeFragment();
-        
-        fragmentManager.beginTransaction()
-        	.replace(R.id.content_frame,homeFragment,"HomeFragment")
-        	.commit();
-        
-//        Load navigation entries
-        navigationEntries = getResources().getStringArray(R.array.navigation_entries);
- 
-//        Load navigation icons
-        navigationIcons = getResources().obtainTypedArray(R.array.navigation_icons);
-        
-//        Instantiate drawerLayout and navigationList
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationList = (ListView) findViewById(R.id.left_drawer);        
-        
-//        Instantiate and fill drawerItems (consisting of icon and text)
-        navigationItems = new ArrayList<NavDrawerItem>();
-        navigationItems.add(new NavDrawerItem(navigationEntries[0],navigationIcons.getResourceId(0,-1)));
-        navigationItems.add(new NavDrawerItem(navigationEntries[1],navigationIcons.getResourceId(1,-1)));
-        navigationItems.add(new NavDrawerItem(navigationEntries[2],navigationIcons.getResourceId(2,-1)));
-        navigationItems.add(new NavDrawerItem(navigationEntries[3],navigationIcons.getResourceId(3,-1)));
-        navigationItems.add(new NavDrawerItem(navigationEntries[4],navigationIcons.getResourceId(4,-1)));
-        
-        adapter = new NavDrawerListAdapter(getApplicationContext(), navigationItems);
-        
-        navigationList.setAdapter(adapter);
-        navigationList.setItemChecked(0,true);
-        navigationList.setOnItemClickListener(new NavigationItemClickListener());
-        
-        drawerToggle = new ActionBarDrawerToggle(this, 
-        		drawerLayout, 
-        		R.drawable.ic_drawer,
-        		R.string.drawer_open,
-        		R.string.drawer_close){
-        	public void onDrawerClosed(View view){
-        		super.onDrawerClosed(view);
-        		invalidateOptionsMenu();
-        	}
-        	
-        	public void onDrawerOpened(View view){
-        		super.onDrawerOpened(view);
-        		invalidateOptionsMenu();
-        	}
-        };
-        
-        drawerLayout.setDrawerListener(drawerToggle);
-        
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
     }
     
     @Override
@@ -160,17 +170,18 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent();
 			switch(position){
 				case 0:
-					fragment = (Fragment)getFragmentManager().findFragmentByTag("HomeFragment");
-			        if(fragment == null){
-			        	fragment = new HomeFragment();
-			        }
+//					fragment = (Fragment)getFragmentManager().findFragmentByTag("HomeFragment");
+//			        if(fragment == null){
+			       	fragment = new HomeFragment();
+//			        }
 			        fragmentManager = getFragmentManager();
 			        fragmentManager.beginTransaction()
-			        	.replace(R.id.content_frame,fragment,"HomeFragment")
+			        	.replace(R.id.content_frame,fragment)
 			        	.commit();
 					break;
 				case 1:
-					//TODO: 
+//					fragment = (Fragment)getFragmentManager().findFragmentByTag("OwnTopicFragment");
+//					if(fragment == null)
 					fragment = new TopicOwnFragment();
 					fragmentManager.beginTransaction()
 			    	.replace(R.id.content_frame,fragment)
@@ -299,43 +310,43 @@ public class MainActivity extends Activity {
 	/*
 	 * Idee einreichen
 	 */
-	public void sendIdea(View view) throws InterruptedException, ExecutionException, JSONException{
-		EditText ideaText = (EditText) findViewById(R.id.text_enter_idea);
-		String text = ideaText.getText().toString();
-		Log.v("MainActivity (SendIdea)", "Idee: " + ideaText.getText().toString());
-		java.util.Date now = new java.util.Date();
-		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
-		String date = sdf.format(now);
-		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),date,false,"",false,-1,-1,Service.userData.getString("userName"));
-		ideaItemAdapter.addIdea(idea);
-		ideaItemAdapter.notifyDataSetChanged();
-		ideaText.setText("");
-		//An Server senden
-		String result = null;
-		try {
-			result = new ServiceExecuter().execute("addIdea", text, topicItemAdapter.getRouletteItem().getTopicID()+"").get();
-			
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(result.equals("true")){
-			String result1 = new ServiceExecuter().execute("setScore").get();
-			if(result1.equals("true")){
-				Toast.makeText(this, "Idee eingereicht", Toast.LENGTH_SHORT).show();
-			}else{
-				Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
-			}
-		}else{
-			Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
-		}
-	}
-	public void makeToast(String value){
-		Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
-	}
+//	public void sendIdea(View view) throws InterruptedException, ExecutionException, JSONException{
+//		EditText ideaText = (EditText) findViewById(R.id.text_enter_idea);
+//		String text = ideaText.getText().toString();
+//		Log.v("MainActivity (SendIdea)", "Idee: " + ideaText.getText().toString());
+//		java.util.Date now = new java.util.Date();
+//		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
+//		String date = sdf.format(now);
+//		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),date,false,"",false,-1,-1,Service.userData.getString("userName"));
+//		ideaItemAdapter.addIdea(idea);
+//		ideaItemAdapter.notifyDataSetChanged();
+//		ideaText.setText("");
+//		//An Server senden
+//		String result = null;
+//		try {
+//			result = new ServiceExecuter().execute("addIdea", text, topicItemAdapter.getRouletteItem().getTopicID()+"").get();
+//			
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ExecutionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		if(result.equals("true")){
+//			String result1 = new ServiceExecuter().execute("setScore").get();
+//			if(result1.equals("true")){
+//				Toast.makeText(this, "Idee eingereicht", Toast.LENGTH_SHORT).show();
+//			}else{
+//				Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
+//			}
+//		}else{
+//			Toast.makeText(this, "Übertragung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
+//		}
+//	}
+//	public void makeToast(String value){
+//		Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
+//	}
 	
 	private void notify(String text) {
 	    String name = "Better Idea";

@@ -42,6 +42,7 @@ public class TopicOwnFragment extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
+		super.onCreateView(inflater, container, savedInstaceState);
 		View view = inflater.inflate(R.layout.topic_own_fragment, container, false);
 		
 		MainActivity mainActivity = (MainActivity) getActivity();
@@ -97,6 +98,12 @@ public class TopicOwnFragment extends Fragment {
 		
 		
 		return view;
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setRetainInstance(true);
 	}
 	
 	@Override

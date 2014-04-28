@@ -31,15 +31,15 @@ public class HomeFragment extends Fragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		System.out.println("TEST oncreate");
 		super.onCreate(savedInstanceState);
-		
+		setRetainInstance(true);
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
+		super.onCreateView(inflater, container, savedInstaceState);
 		View view = inflater.inflate(R.layout.main_layout, container, false);
-		System.out.println("Test oncreateVIEw");
+
 		MainActivity mainActivity = (MainActivity) getActivity();
 		TopicItemAdapter adapter = mainActivity.getTopicItemAdapter();
 		
@@ -59,6 +59,15 @@ public class HomeFragment extends Fragment {
 			}
 			TopicItem rouletteItem = new TopicItem(jsonObjString,true);
 			topicItems.add(rouletteItem);
+			TopicItem pseudoItem1 = new TopicItem("Pseudo Thema 1", "Beschreibung Beschreibung Beschreibung", "29.04.2014", false);
+			TopicItem pseudoItem2 = new TopicItem("Pseudo Thema 2", "Beschreibung Beschreibung Beschreibung", "29.04.2014", false);
+			TopicItem pseudoItem3 = new TopicItem("Pseudo Thema 3", "Beschreibung Beschreibung Beschreibung", "29.04.2014", false);
+			TopicItem pseudoItem4 = new TopicItem("Pseudo Thema 4", "Beschreibung Beschreibung Beschreibung", "29.04.2014", false);
+			topicItems.add(pseudoItem1);
+			topicItems.add(pseudoItem2);
+			topicItems.add(pseudoItem3);
+			topicItems.add(pseudoItem4);
+			
 		}catch(JSONException ex){
 			Log.v("test", "JSONException: " + ex.toString());
 		}
@@ -83,7 +92,7 @@ public class HomeFragment extends Fragment {
 				}
 			}
 		});
-		
+	
 		setHasOptionsMenu(true);
 		return view;
 	}
