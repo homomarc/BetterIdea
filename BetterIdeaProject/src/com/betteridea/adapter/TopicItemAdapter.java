@@ -110,11 +110,11 @@ public class TopicItemAdapter extends BaseAdapter {
 			titleView.setText(topicItems.get(position).getTitle());
 			descriptionView.setText(topicItems.get(position).getDescription());
 			timestampView.setText(topicItems.get(position).getTimestamp());
+			
+			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+		    view.startAnimation(animation);
+		    lastPosition = position;
 		}
-		
-		Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
-	    view.startAnimation(animation);
-	    lastPosition = position;
 		
 		return view;
 	}

@@ -74,11 +74,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.drawer_layout);
         
 //        notify("Neue Ideen zu deinen Topics vorhanden!");
-        
-        Fragment fragment = new HomeFragment();
         fragmentManager = getFragmentManager();
+        Fragment homeFragment = fragmentManager.findFragmentByTag("HomeFragment");
+        if(homeFragment == null)
+        	homeFragment = new HomeFragment();
+        
         fragmentManager.beginTransaction()
-        	.add(R.id.content_frame,fragment)
+        	.replace(R.id.content_frame,homeFragment,"HomeFragment")
         	.commit();
         
 //        Load navigation entries
@@ -220,7 +222,7 @@ public class MainActivity extends Activity {
 		Log.v("test", "Start loadTopics");
 		
 		try{
-			TopicItem topicItem = new TopicItem(TopicRoulette.getNextTopic());
+			TopicItem topicItem = new TopicItem(TopicRoulette.getNextTopic(),true);
 			topicItemAdapter.setRouletteItem(topicItem);
 			topicItemAdapter.notifyDataSetChanged();
 		}catch(IOException ex){
@@ -247,6 +249,7 @@ public class MainActivity extends Activity {
 	}
     
 	public void openTopic(View view){
+		Log.v("test", "LoadTopic");
 		if(topicItemAdapter.getRouletteItem() != null){
 //			Fragment fragment = new TopicFragment(topicItemAdapter.getRouletteItem());
 //			fragmentManager.beginTransaction()
@@ -254,6 +257,7 @@ public class MainActivity extends Activity {
 //	    	.commit();
 			
 			Intent intent = new Intent(this, TopicActivity.class);
+			Log.v("test",topicItemAdapter.getRouletteItem().getID());
 			intent.putExtra("com.betteridea.models.TopicItem", topicItemAdapter.getRouletteItem());
 		}
 	}
