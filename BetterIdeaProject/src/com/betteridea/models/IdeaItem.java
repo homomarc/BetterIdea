@@ -10,13 +10,13 @@ public class IdeaItem extends Item{
 //	private int user;
 	private String date = "";
 	private boolean isValuated = false;
-	private int id = -1;
+	private String id = "";
 	private boolean uncovered = false;
 	private int ideaID = -1;
 	private int topicID = -1;
 	private String authorID = "-1";
 	
-	public IdeaItem(String text, String date, boolean isValuated, int id, boolean uncovered, int ideaID, int topicID, String authorID){
+	public IdeaItem(String text, String date, boolean isValuated, String id, boolean uncovered, int ideaID, int topicID, String authorID){
 		this.text = text;
 		this.date = date;
 		this.setValuated(isValuated);
@@ -32,7 +32,7 @@ public class IdeaItem extends Item{
 			this.text = obj.getString("text");
 			this.date = obj.getString("date");
 			this.isValuated = obj.getBoolean("isValuated");
-			this.id = obj.getInt("id");
+			this.id = obj.getString("id");
 			this.uncovered = obj.getBoolean("uncovered");
 			this.ideaID = obj.getInt("ideaID");
 			this.topicID = obj.getInt("topicID");
@@ -58,11 +58,11 @@ public class IdeaItem extends Item{
 		this.isValuated = isValuated;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

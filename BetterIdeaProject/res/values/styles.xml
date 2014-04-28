@@ -24,6 +24,11 @@
          <item name="android:textColor">#fff</item>
      </style>
      
+     <style name="button_style_green" parent="@style/AppBaseTheme">
+         <item name="android:background">#139339</item>
+         <item name="android:textColor">#fff</item>
+     </style>
+     
      <style name="button_style_white" parent="@style/AppBaseTheme">
          <item name="android:background">#fff</item>
          <item name="android:textColor">#ba5041</item>

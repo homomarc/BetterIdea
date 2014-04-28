@@ -190,9 +190,7 @@ public class MainActivity extends Activity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-       
+        // Inflate the menu; this adds items to the action bar if it is present       
         return true;
     }
     
@@ -264,23 +262,7 @@ public class MainActivity extends Activity {
 	    	.commit();
 		}
 	}
-	public void uncoverIdea(View v){
-	    TopicCloseFragment.uncoverIdea(v);
-	}
-	public static void closeTopic(View v){
-		Fragment fragment = new CloseTopicDialog();
-		fragmentManager.beginTransaction()
-    	.replace(R.id.content_frame,fragment)
-    	.commit();
-		TopicCloseFragment.closeTopic(v);
-	    
-	}
-	public static void refreshTopicCloseFragment(TopicItem item){
-		Fragment fragment = new TopicCloseFragment(item);
-		fragmentManager.beginTransaction()
-    	.replace(R.id.content_frame,fragment)
-    	.commit();
-	}
+	
 	public void share(View view){
 		String text = "Marc braucht Hilfe beim proggen ihr Schweine...";
 		Intent sendIntent = new Intent();
@@ -337,7 +319,7 @@ public class MainActivity extends Activity {
 		java.util.Date now = new java.util.Date();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
 		String date = sdf.format(now);
-		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),date,false,-1,false,-1,-1,Service.userData.getString("userName"));
+		IdeaItem idea = new IdeaItem(ideaText.getText().toString(),date,false,"",false,-1,-1,Service.userData.getString("userName"));
 		ideaItemAdapter.addIdea(idea);
 		ideaItemAdapter.notifyDataSetChanged();
 		ideaText.setText("");
