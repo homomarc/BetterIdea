@@ -1,6 +1,16 @@
 package com.betteridea;
 
-import java.util.ArrayList;
+/**
+ * Author: 		Better Idea
+ * Description:	LoginActivity 
+ * 				User loggt sich mit G+/zukünftig FB Account ein, falls noch kein 
+ * 				Account mit der verknüpften Email vorhanden ist, wird der User auf die RegisterActivity weiterleitet.
+ * 
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONObject;
@@ -40,30 +50,26 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	  
 	  private static final int RC_SIGN_IN = 0;
 
-	  // GoogleApiClient 
+	  // GoogleApiClient Instanz
 	  private GoogleApiClient mGoogleApiClient;
 	  
 	  //Flag welches ausschließt, damit nächster Intent nicht
 	  //geöffnet wird ohne dass Vorgang abgeschlossen ist
 	  private boolean mIntentInProgress;
-	  
 	  private boolean mSignInClicked;
 	  
 	  private ConnectionResult mConnectionResult;
-	  
 	  private SignInButton mSignInButton;
 
-	private String personName;
-
-	private String email;
+	  private String personName;
+	  private String email;
 	  
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.login_activity);
-
+	    // Viewobjekt G+ Sign-In Button zuweisen und onclicklistener erstellen
 	    mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
-
 	    mSignInButton.setOnClickListener(this);
 	    
 	    mGoogleApiClient = buildGoogleApiClient();
@@ -94,10 +100,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	      mGoogleApiClient.disconnect();
 	    }
 	  }
-	  
-	  /**
-	  * Method to resolve any signin errors
-	  * */
+	  // Methode alle signin errors behandeln
 	  private void resolveSignInError() {
 	    if (mConnectionResult.hasResolution()) {
 	        try {
@@ -109,7 +112,6 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	        }
 	    }
 	  }
-	  
 	  @Override
 	    public void onConnectionFailed(ConnectionResult result) {
 	        if (!result.hasResolution()) {
@@ -117,11 +119,9 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	                    0).show();
 	            return;
 	        }
-	 
 	        if (!mIntentInProgress) {
 	            // Store the ConnectionResult for later usage
 	            mConnectionResult = result;
-	 
 	            if (mSignInClicked) {
 	                // The user has already clicked 'sign-in' so we attempt to
 	                // resolve all
@@ -129,7 +129,6 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	                resolveSignInError();
 	            }
 	        }
-	 
 	    }
 	  @Override
 	    protected void onActivityResult(int requestCode, int responseCode,
@@ -138,7 +137,6 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	            if (responseCode != RESULT_OK) {
 	                mSignInClicked = false;
 	            }
-	 
 	            mIntentInProgress = false;
 	 
 	            if (!mGoogleApiClient.isConnecting()) {
@@ -173,9 +171,10 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	        if (isSignedIn) {
 	        	Intent intent = null;
 	        	try{
+	        		// Userdata aus dem KeyValueStore laden, falls vorhanden ansonsten Userdata Service-Abfrage starten
 	    			String value = KeyValueStore.get(this, "userData");
 	    			if(!value.equals("false") && !value.equals("error")){
-	    				System.out.println(value);
+	    				System.out.println("UserData is in KeyValueStore!");
 	    				Service.userData = new JSONObject(value);
 	    				String check = TopicRoulette.loadTopicCache();
 	    				if(check != "false"){
@@ -206,15 +205,9 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	    		}catch(Exception ex){
 	    			Log.v("test",ex.toString());
 	    		}
-	        } else {
-	        	//TODO: Do nothing?
-	        	
-	        }
+	        } else {}
 	    }
-	 
-	    /**
-	     * Fetching user's information name, email, profile pic
-	     * */
+	    // Fetchen der Userdata name, email, profile pic, etc.
 	    private boolean getProfileInformation() {
 	        try {
 	            if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
@@ -250,16 +243,8 @@ ConnectionCallbacks, OnConnectionFailedListener {
 				e.printStackTrace();
 			}
 	    }
-	    
-//	  @Override
-//	  protected void onSaveInstanceState(Bundle outState) {
-//	    super.onSaveInstanceState(outState);
-//	    outState.putInt(SAVED_PROGRESS, mSignInProgress);
-//	  }
-
 	  @Override
 	  public void onClick(View v) {
-	   
 	      switch (v.getId()) {
 	          case R.id.sign_in_button:
 	        	  if (!mGoogleApiClient.isConnecting()) {
@@ -269,7 +254,6 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	            break;
 	    }
 	  }
-	  
 	  /**
 	   * Sign-out from google wird momentan nicht verwendet
 	 * @throws InterruptedException 
@@ -303,7 +287,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 				user = new JSONObject(value);
 				emailOnKeyValue = user.getString("mail");
 			} catch (Exception e) {
-				Log.v("test",e.toString());
+				Log.v("LoginActivity",e.toString());
 			}
 			if(!value.equals("false") && !value.equals("error") && emailOnKeyValue.equals(email)){
 				String result = new Login().execute(email).get();
@@ -335,22 +319,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 			}
 			startActivity(intent);
 		}catch(Exception ex){
-			Log.v("test",ex.toString());
+			Log.v("LoginActivity",ex.toString());
 		}
 	}
-	
-	private boolean checkPassword(String user, String password){
-		return true;
-	}
-	private void cancelLogin(){
-		
-	}
-	//	onClick Register Button
-	/*
-	public void register(View view){
-		Intent intent = new Intent(this,RegisterActivity.class);
-		startActivity(intent);
-	}*/
-  
-
 }
