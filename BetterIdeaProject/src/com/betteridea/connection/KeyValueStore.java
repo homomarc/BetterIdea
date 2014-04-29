@@ -1,17 +1,20 @@
 package com.betteridea.connection;
 
+/**
+ * Author: 		Better Idea
+ * Description:	KeyValueStore
+ * 				Userdaten werden im KeyValueStore gespeichert, dadurch wird beispielsweise der Login beschleunigt.
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 public class KeyValueStore {
-	
-	/*
-	 * Keys:
-	 *  1. userData
-	 *  2. 
-	 */
-	
+	//Daten in KeyValueStore übergeben
 	public static boolean store(Activity activity, String key, String value){
 		try {
 			SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
@@ -21,9 +24,9 @@ public class KeyValueStore {
 			return true;
 		} catch (Exception e) {
 			return false;
-		}
-		
+		}	
 	}
+	//Daten aus KeyValueStore erhalten
 	public static String get(Activity activity, String key){
 		try {
 			SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);

@@ -1,11 +1,20 @@
 package com.betteridea;
 
+/**
+ * Author: 		Better Idea
+ * Description:	CloseTopicDialog 
+ * 				Dialogbox zum schlieﬂen eines Themas
+ * 
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 
 public class CloseTopicDialog extends DialogFragment {
 	public static AlertDialog alert = null;

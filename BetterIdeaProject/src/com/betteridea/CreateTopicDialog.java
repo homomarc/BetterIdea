@@ -1,11 +1,19 @@
 package com.betteridea;
 
+/**
+ * Author: 		Better Idea
+ * Description:	CreateTopicDialog
+ * 				Dialogbox zum erstellen eines Themas
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 
 public class CreateTopicDialog extends DialogFragment {
 	public static AlertDialog alert = null;
