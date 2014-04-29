@@ -2,7 +2,8 @@ package com.betteridea.connection;
 
 /**
  * Author: 		Better Idea
- * Description:	Login-Connectionklasse als Supportklasse zur Datenabfrage, ob User vorhanden.
+ * Description:	Login-Connectionklasse als Supportklasse zur Datenabfrage, ob User vorhanden ist.
+ * 				Auﬂerdem werden somit die Nutzerdaten direkt aktualisiert.
  * 
  * TODOS:		keine
  * 

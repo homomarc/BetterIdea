@@ -314,6 +314,8 @@ ConnectionCallbacks, OnConnectionFailedListener {
 						}
 					}
 				}else{
+					intent = new Intent(LoginActivity.this,RegisterActivity.class);
+					intent.putExtra("EMAIL", email);
 					System.out.println("Invalid email!");
 				}
 			}

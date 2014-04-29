@@ -2,7 +2,9 @@ package com.betteridea.connection;
 
 /**
  * Author: 		Better Idea
- * Description:	ServiceExecuter
+ * Description:	ServiceExecuter ist eine Hilfsklasse zur direkten Ansprache aus Aktivitäten zur Erstellung asynchroner Tasks 
+ * 				und den darin abgearbeitete Methoden dient. Die Methoden liegen genauer in der Service-Klasse. Die Ausführung in diesen Tasks
+ * 				ist gemäß den Paradigmen zur Abarbeitung von Datenbankanfragen von den Aktivitäten zu trennen. 
  * 
  * TODOS:		keine
  * 

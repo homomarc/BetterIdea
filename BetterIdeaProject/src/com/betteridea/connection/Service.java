@@ -2,8 +2,8 @@ package com.betteridea.connection;
 
 /**
  * Author: 		Better Idea
- * Description:	Service-Klasse erlaubt auf Services von Activities/Fragments drauf zuzugreifen dabei
- * 				muss mit dem ServiceExecuter zusammengearbeitet werden.
+ * Description:	Die Klasse erlaubt auf Services auf der Datenbank mit vordefinierten Variablen und Übergabevariablen zuzugreifen.
+ * 				Die Methoden können von Activities/Fragments über den ServiceExecuter aufgerufen werden.
  * 
  * TODOS:		keine
  * 
