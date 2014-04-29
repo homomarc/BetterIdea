@@ -1,5 +1,13 @@
 package com.betteridea.connection;
 
+/**
+ * Author: 		Better Idea
+ * Description:	ServiceExecuter
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import android.os.AsyncTask;
 
 public class ServiceExecuter extends AsyncTask<String, Integer, String>{
@@ -56,4 +64,3 @@ public class ServiceExecuter extends AsyncTask<String, Integer, String>{
 		}
 	}
 }
-

@@ -1,5 +1,14 @@
 package com.betteridea.connection;
 
+/**
+ * Author: 		Better Idea
+ * Description:	Service-Klasse erlaubt auf Services von Activities/Fragments drauf zuzugreifen dabei
+ * 				muss mit dem ServiceExecuter zusammengearbeitet werden.
+ * 
+ * TODOS:		keine
+ * 
+ */
+
 import java.io.IOException;
 import java.util.Locale;
 
@@ -10,7 +19,6 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.betteridea.logic.TopicRoulette;
-
 
 public class Service {
 	
@@ -46,7 +54,6 @@ public class Service {
 			return "false";
 		}
 	}
-	
 	// Ändert den Usernamen eines Users
 	public static String changeUsername(String newUserName) throws IOException{
         try {
@@ -58,9 +65,7 @@ public class Service {
 			e.printStackTrace();
 			return "false";
 		}
-       
 	}
-	
 	// Ändert die Credits eines Users
 	public static String changeCredits(String newCredits, String authorID) throws IOException{
         try {
@@ -93,7 +98,6 @@ public class Service {
 			return "false";
 		}
 	}
-	
 	// Aktualisiert die Credits im User-Objekt
 	public static String getCredits() throws IOException{
         try {
@@ -111,7 +115,6 @@ public class Service {
 			return "-999";
 		}
 	}
-
 	// Erhöht den Spamcounter des Users um 1 und verringert die Credits bei einem Spamcount von 5
 	public static String addSpam(String newCredits, String authorID) throws IOException{
         try {
@@ -139,7 +142,6 @@ public class Service {
 			return "false";
 		}
 	}
-	
 	// Gibt alle Ideen zu einer Topic in das Array topicContent zurück
 	public static String showTopic(String data) throws IOException{
         try {
@@ -154,7 +156,6 @@ public class Service {
 			return "false";
 		}
 	}
-	
 	// Bezieht eine neue und zufällige Topic
 	public static String getNewRandTopic() throws IOException{
         try {
@@ -169,7 +170,6 @@ public class Service {
 			return "false";
 		}
 	}
-	
 	// Bezieht die Top-Rangliste 
 	public static String getRankingList() throws IOException{
         try {
@@ -184,7 +184,6 @@ public class Service {
 			return "false";
 		}
 	}
-	
 	// Berechnet den Score des Users 
 	public static String setUserScore() throws IOException{
         try {
@@ -203,7 +202,6 @@ public class Service {
 			return "false";
 		}
 	}
-
 	// Fügt dem IdeaConut des Users 1 hinzu 
 	public static String addIdeaCount() throws IOException{
         try {
@@ -219,8 +217,6 @@ public class Service {
 			return "false";
 		}
 	}
-
-	
 	// Fügt dem TopicCount des Users 1 hinzu
 	public static String addTopicCount() throws IOException{
         try {
@@ -236,8 +232,7 @@ public class Service {
 			return "false";
 		}
 	}
-	
-	// Erstellt eine neue Topic
+	// Erstellt ein neues Topic
 	public static String addTopic(String title, String descripction) throws IOException{
         try {
     		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/insertTopic.sjs";
@@ -262,7 +257,7 @@ public class Service {
 			return "false";
 		}
 	}
-	
+	// Idee hinzufügen
 	public static String addIdea(String text, String topicID) throws IOException{
         try {
     		String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/insertIdea.sjs";
@@ -308,6 +303,7 @@ public class Service {
 			return "false";
 		}
 	}
+	// UserRank erhalten (Positionierung)
 	public static String getUserRank() throws IOException{
         try {
         	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/services/getUserRank.sjs?sort=score&id=";
@@ -319,6 +315,7 @@ public class Service {
 			return "false";
 		}
 	}
+	// Idee aufdecken
 	public static String uncoverIdea(String id) throws IOException{
         try {
         	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/idea.sjs?id=";
@@ -333,6 +330,7 @@ public class Service {
 			return "false";
 		}
 	}
+	// Idee bewerten
 	public static String valuateIdea(String id) throws IOException{
         try {
         	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/idea.sjs?id=";
@@ -347,6 +345,7 @@ public class Service {
 			return "false";
 		}
 	}
+	// Thema/Topic schließen
 	public static String closeTopic(String id) throws IOException{
         try {
         	String reqUrl = "http://space-labs.appspot.com/repo/2185003/ideas/api/topic.sjs?id=";
@@ -361,5 +360,4 @@ public class Service {
 			return "false";
 		}
 	}
-	
 }

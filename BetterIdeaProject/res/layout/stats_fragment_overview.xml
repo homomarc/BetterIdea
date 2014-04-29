@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10px"
                 android:layout_marginRight="10px"
-                android:src="@drawable/person" />
+                android:src="@drawable/stats_fragment_person" />
 
             <TextView
                 android:id="@+id/textViewUserName"

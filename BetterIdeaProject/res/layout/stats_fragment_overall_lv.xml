@@ -10,7 +10,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/person" >
+        android:src="@drawable/stats_fragment_person" >
     </ImageView>
 
     <TextView

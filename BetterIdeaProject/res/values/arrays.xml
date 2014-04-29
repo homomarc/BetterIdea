@@ -19,10 +19,10 @@
         </string-array>
         
         <array name="navigation_icons">
-            <item>@drawable/home</item>
-            <item>@drawable/mytopics</item>
-            <item>@drawable/stats</item>
-            <item>@drawable/settings</item>
-            <item>@drawable/logout</item>
+            <item>@drawable/navigation_home</item>
+            <item>@drawable/navigation_mytopics</item>
+            <item>@drawable/navigation_stats</item>
+            <item>@drawable/navigation_settings</item>
+            <item>@drawable/navigation_logout</item>
         </array>
     </resources>
