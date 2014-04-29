@@ -102,9 +102,10 @@ public class TopicCloseActivity extends Activity {
 						Log.v("test", "Ergebnis aus Dialog: " + result);
 						if(result.equals("good")){
 							try {
-								String success = CreditSystem.goodIdea(ideaItemAdapter.toBeValuated().getAuthorID(), ideaItemAdapter.toBeValuated().getId());
+								IdeaItem item = ideaItemAdapter.toBeValuated();
+								String success = CreditSystem.goodIdea(item.getAuthorID(), item.getId());
 								if(success.equals("true")){
-									
+									item.setValuated(true);
 								}else{
 									Log.v("test", "Spam: false");
 								}
@@ -119,9 +120,10 @@ public class TopicCloseActivity extends Activity {
 						}else if(result.equals("valid")){
 							
 							try {
-								String success = CreditSystem.validIdea(ideaItemAdapter.toBeValuated().getAuthorID(), ideaItemAdapter.toBeValuated().getId());
+								IdeaItem item = ideaItemAdapter.toBeValuated();
+								String success = CreditSystem.validIdea(item.getAuthorID(), item.getId());
 								if(success.equals("true")){
-									
+									item.setValuated(true);
 								}else{
 									Log.v("test", "Spam: false");
 								}
@@ -135,9 +137,10 @@ public class TopicCloseActivity extends Activity {
 							
 						}else if(result.equals("spam")){
 							try {
-								String success = CreditSystem.spamIdea(ideaItemAdapter.toBeValuated().getAuthorID(), ideaItemAdapter.toBeValuated().getId());
+								IdeaItem item = ideaItemAdapter.toBeValuated();
+								String success = CreditSystem.spamIdea(item.getAuthorID(), item.getId());
 								if(success.equals("true")){
-									
+									item.setValuated(true);
 								}else{
 									Log.v("test", "Spam: false");
 								}
@@ -158,7 +161,6 @@ public class TopicCloseActivity extends Activity {
 			try {
 				boolean success = ideaItem.setUncovered(true);
 				if(success){
-					ideaItemAdapter.setToBeValuated(ideaItem);
 					ideaItemAdapter.notifyDataSetChanged();
 					TextView badgeCount = (TextView) findViewById(R.id.textBadgeCount);
 					badgeCount.setText(ideaItemAdapter.getCountCovered()+"");
