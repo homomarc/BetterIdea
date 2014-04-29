@@ -9,8 +9,12 @@ package com.betteridea.models;
  * 
  */
 
+import java.util.concurrent.ExecutionException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.betteridea.connection.ServiceExecuter;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -32,7 +36,7 @@ public class IdeaItem extends Item{
 		this.date = date;
 		this.setValuated(isValuated);
 		this.setId(id);
-		this.setUncovered(uncovered);
+		this.uncovered = uncovered;
 		this.setIdeaID(ideaID);
 		this.setTopicID(topicID);
 		this.setAuthorID(authorID);
@@ -124,8 +128,15 @@ public class IdeaItem extends Item{
 		return uncovered;
 	}
 
-	public void setUncovered(boolean uncovered) {
-		this.uncovered = uncovered;
+	public boolean setUncovered(boolean uncovered) throws Exception {
+		if(uncovered){
+			String success = new ServiceExecuter().execute("uncover",this.id).get();
+			if(success.equals("true"))
+				this.uncovered = true;
+			else
+				this.uncovered = false;
+		}
+		return this.uncovered;
 	}
 
 	public int getIdeaID() {

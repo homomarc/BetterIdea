@@ -19,7 +19,7 @@
         <activity
             android:name="com.betteridea.MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop" >
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="com.betteridea.OptionActivity"
@@ -40,7 +40,8 @@
         <activity 
             android:name="com.betteridea.TopicCloseActivity"
             android:label="@string/title_topic_close_activity"
-            android:parentActivityName="com.betteridea.MainActivity">
+            android:parentActivityName="com.betteridea.MainActivity"
+            android:launchMode="singleTop">
             
         </activity>
         <activity

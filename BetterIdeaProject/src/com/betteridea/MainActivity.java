@@ -2,14 +2,12 @@ package com.betteridea;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.Notification;
@@ -25,7 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,21 +30,15 @@ import android.widget.Toast;
 import com.betteridea.adapter.IdeaItemAdapter;
 import com.betteridea.adapter.NavDrawerListAdapter;
 import com.betteridea.adapter.TopicItemAdapter;
-import com.betteridea.connection.Service;
 import com.betteridea.connection.ServiceExecuter;
 import com.betteridea.fragments.CreateTopicFragment;
 import com.betteridea.fragments.HomeFragment;
 import com.betteridea.fragments.SettingsFragment;
-import com.betteridea.fragments.TopicCloseFragment;
-import com.betteridea.fragments.TopicFragment;
 import com.betteridea.fragments.TopicOwnFragment;
 import com.betteridea.logic.CreditSystem;
 import com.betteridea.logic.TopicRoulette;
-import com.betteridea.models.IdeaItem;
 import com.betteridea.models.NavDrawerItem;
 import com.betteridea.models.TopicItem;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.plus.Plus;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
@@ -70,71 +61,65 @@ public class MainActivity extends Activity {
 	
 	private Fragment activeFragment;
 	
-	@Override
-	public void onStart(){
-		super.onStart();
-        
-//      notify("Neue Ideen zu deinen Topics vorhanden!");
-      fragmentManager = getFragmentManager();        
-      
-      activeFragment = fragmentManager.findFragmentByTag("Default");
-      if(activeFragment == null){
-    	  activeFragment = new HomeFragment();
-      
-	      fragmentManager.beginTransaction()
-	      	.replace(R.id.content_frame,activeFragment,"Default")
-	      	.commit();
-      }
-//      Load navigation entries
-      navigationEntries = getResources().getStringArray(R.array.navigation_entries);
-
-//      Load navigation icons
-      navigationIcons = getResources().obtainTypedArray(R.array.navigation_icons);
-      
-//      Instantiate drawerLayout and navigationList
-      drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-      navigationList = (ListView) findViewById(R.id.left_drawer);        
-      
-//      Instantiate and fill drawerItems (consisting of icon and text)
-      navigationItems = new ArrayList<NavDrawerItem>();
-      navigationItems.add(new NavDrawerItem(navigationEntries[0],navigationIcons.getResourceId(0,-1)));
-      navigationItems.add(new NavDrawerItem(navigationEntries[1],navigationIcons.getResourceId(1,-1)));
-      navigationItems.add(new NavDrawerItem(navigationEntries[2],navigationIcons.getResourceId(2,-1)));
-      navigationItems.add(new NavDrawerItem(navigationEntries[3],navigationIcons.getResourceId(3,-1)));
-      navigationItems.add(new NavDrawerItem(navigationEntries[4],navigationIcons.getResourceId(4,-1)));
-      
-      adapter = new NavDrawerListAdapter(getApplicationContext(), navigationItems);
-      
-      navigationList.setAdapter(adapter);
-      navigationList.setItemChecked(0,true);
-      navigationList.setOnItemClickListener(new NavigationItemClickListener());
-      
-      drawerToggle = new ActionBarDrawerToggle(this, 
-      		drawerLayout, 
-      		R.drawable.ic_drawer,
-      		R.string.drawer_open,
-      		R.string.drawer_close){
-      	public void onDrawerClosed(View view){
-      		super.onDrawerClosed(view);
-      		invalidateOptionsMenu();
-      	}
-      	
-      	public void onDrawerOpened(View view){
-      		super.onDrawerOpened(view);
-      		invalidateOptionsMenu();
-      	}
-      };
-      
-      drawerLayout.setDrawerListener(drawerToggle);
-      
-      getActionBar().setDisplayHomeAsUpEnabled(true);
-      getActionBar().setHomeButtonEnabled(true);
-	}
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_layout);
+        
+        fragmentManager = getFragmentManager();        
+        
+        activeFragment = fragmentManager.findFragmentByTag("Default");
+        if(activeFragment == null){
+      	  activeFragment = new HomeFragment();
+        
+  	      fragmentManager.beginTransaction()
+  	      	.replace(R.id.content_frame,activeFragment,"Default")
+  	      	.commit();
+        }
+//        Load navigation entries
+        navigationEntries = getResources().getStringArray(R.array.navigation_entries);
+
+//        Load navigation icons
+        navigationIcons = getResources().obtainTypedArray(R.array.navigation_icons);
+        
+//        Instantiate drawerLayout and navigationList
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationList = (ListView) findViewById(R.id.left_drawer);        
+        
+//        Instantiate and fill drawerItems (consisting of icon and text)
+        navigationItems = new ArrayList<NavDrawerItem>();
+        navigationItems.add(new NavDrawerItem(navigationEntries[0],navigationIcons.getResourceId(0,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[1],navigationIcons.getResourceId(1,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[2],navigationIcons.getResourceId(2,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[3],navigationIcons.getResourceId(3,-1)));
+        navigationItems.add(new NavDrawerItem(navigationEntries[4],navigationIcons.getResourceId(4,-1)));
+        
+        adapter = new NavDrawerListAdapter(getApplicationContext(), navigationItems);
+        
+        navigationList.setAdapter(adapter);
+        navigationList.setItemChecked(0,true);
+        navigationList.setOnItemClickListener(new NavigationItemClickListener());
+        
+        drawerToggle = new ActionBarDrawerToggle(this, 
+        		drawerLayout, 
+        		R.drawable.ic_drawer,
+        		R.string.drawer_open,
+        		R.string.drawer_close){
+        	public void onDrawerClosed(View view){
+        		super.onDrawerClosed(view);
+        		invalidateOptionsMenu();
+        	}
+        	
+        	public void onDrawerOpened(View view){
+        		super.onDrawerOpened(view);
+        		invalidateOptionsMenu();
+        	}
+        };
+        
+        drawerLayout.setDrawerListener(drawerToggle);
+        
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
     }
     
     @Override
@@ -219,9 +204,15 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	if(item.getItemId()==R.id.action_add){
-    		CreateTopicFragment fragment = new CreateTopicFragment();
+    		Fragment fragment = getFragmentManager().findFragmentByTag("Default");
+    		if(fragment == null)
+    			fragment = new CreateTopicFragment();
+    		else if(!(fragment instanceof CreateTopicFragment))
+    			fragment = new CreateTopicFragment();
+    		
     		fragmentManager.beginTransaction()
 	    	.replace(R.id.content_frame,fragment)
+	    	.addToBackStack(null)
 	    	.commit();
     		return true;
     	}
@@ -275,8 +266,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void close(View view){
-//		CreateTopicDialog.alert.dismiss();
-//		System.out.println("CLOSE");
+		getFragmentManager().popBackStack();
 	}
 	
 	/*

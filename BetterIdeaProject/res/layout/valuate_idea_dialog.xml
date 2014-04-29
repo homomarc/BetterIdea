@@ -8,36 +8,35 @@
 	    android:layout_margin="5dp"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:hint="@string/edittext_topic_title"/>
+	    android:hint="@string/label_valuate_idea"
+	    android:fontFamily="sans-serif-thin"
+	    android:textSize="10pt" />
 	
 	<LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal"
 	    android:layout_margin="5dp">
-	    <Button 
+	    <Button android:id="@+id/button_idea_good"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_marginRight="5dp"
 	        android:layout_height="wrap_content"
 	        style="@style/button_style_green"
-	        android:text="@string/button_idea_good"
-	        android:onClick="goodIdea" />
-	    <Button
+	        android:text="@string/button_idea_good" />
+	    <Button android:id="@+id/button_idea_valid"
 		    android:layout_width="0dp"
 		    android:layout_weight="1"
 		    android:layout_marginRight="5dp"
 		    android:layout_height="wrap_content"
 		    style="@style/button_style_white"
-		    android:text="@string/button_idea_valid"
-		    android:onClick="validIdea"/>
-		<Button
+		    android:text="@string/button_idea_valid" />
+		<Button android:id="@+id/button_idea_spam"
 	    	android:layout_width="0dp"
 	    	android:layout_weight="1"
 	    	android:layout_height="wrap_content"
 	   	 	style="@style/button_style"
-	    	android:text="@string/button_idea_spam"
-	    	android:onClick="reportSpam"/>
+	    	android:text="@string/button_idea_spam" />
 	</LinearLayout>
 	
 </LinearLayout>

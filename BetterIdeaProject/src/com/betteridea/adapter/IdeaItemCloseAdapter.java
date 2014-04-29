@@ -34,6 +34,7 @@ public class IdeaItemCloseAdapter extends BaseAdapter{
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private Context context;
 	private int lastPosition = -1;
+	private IdeaItem toBeValuated = null;
 	
 	public IdeaItemCloseAdapter(Context context, ArrayList<IdeaItem> ideaItems, TopicItem topicItem){
 		this.context = context;
@@ -137,7 +138,7 @@ public class IdeaItemCloseAdapter extends BaseAdapter{
 	}
 	
 	// Counter für die Statusleiste/Uncovered Badge
-	public int getCountUncovered(){
+	public int getCountCovered(){
 		int count = 0;
 		for(int i=1;i<items.size();i++){
 			IdeaItem item = (IdeaItem) items.get(i);
@@ -145,5 +146,26 @@ public class IdeaItemCloseAdapter extends BaseAdapter{
 				count++;
 		}
 		return count;
+	}
+	
+	public IdeaItem getCoveredIdea(){
+		for(int i=1;i<items.size();i++){
+			IdeaItem item = (IdeaItem) items.get(i);
+			if(!item.isUncovered())
+				return item;
+		}
+		return null;
+	}
+	
+	public void setToBeValuated(IdeaItem toBeValuated){
+		this.toBeValuated = toBeValuated;
+	}
+	
+	public IdeaItem toBeValuated(){
+		return toBeValuated;
+	}
+	
+	public void removeToBeValuated(){
+		this.toBeValuated = null;
 	}
 }
